@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
 
-import '../../home_widget.dart';
+import '../home_widget.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[

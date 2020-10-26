@@ -6,8 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 import 'generated/l10n.dart';
-import 'home_widget.dart';
 import 'injection.dart';
+import 'presentation/home_widget.dart';
 import 'presentation/routes/router.gr.dart' as generated_router;
 
 Future<void> main() async {
@@ -39,6 +39,9 @@ class CurrencyApp extends StatelessWidget {
         home: HomeWidget(),
         builder: ExtendedNavigator(
           router: generated_router.Router(),
+        ),
+        theme: ThemeData(
+          accentColor: Colors.black,
         ),
       ),
     );
