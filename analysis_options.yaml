@@ -1,0 +1,27 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "lib/generated/**"
+    - "build/**"
+    - "lib/generated/*"
+    - "lib/icons/*"
+    - "**/*.freezed.dart"
+    - "**/*g.dart"
+    - "*.g.dart"
+    - "test/**"
+    - "**/*_test.dart"
+  errors:
+    missing_required_param: error
+    missing_return: error
+    must_be_immutable: error
+    sort_unnamed_constructors_first: ignore
+
+linter:
+  rules:
+    - prefer_single_quotes
+    - avoid_annotating_with_dynamic
+    - prefer_final_locals
+    - avoid_unnecessary_containers
+    #    - prefer_expression_function_bodies
+    - prefer_relative_imports
