@@ -45,10 +45,10 @@ class S {
     );
   }
 
-  /// `Currency`
+  /// `Курсы валют`
   String get currency {
     return Intl.message(
-      'Currency',
+      'Курсы валют',
       name: 'currency',
       desc: '',
       args: [],

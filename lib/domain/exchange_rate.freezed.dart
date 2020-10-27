@@ -14,9 +14,11 @@ class _$ExchangeRateTearOff {
   const _$ExchangeRateTearOff();
 
 // ignore: unused_element
-  _ExchangeRate call({String id}) {
+  _ExchangeRate call(
+      {@required String currencyName, @required List<Bid> bids}) {
     return _ExchangeRate(
-      id: id,
+      currencyName: currencyName,
+      bids: bids,
     );
   }
 }
@@ -27,7 +29,8 @@ const $ExchangeRate = _$ExchangeRateTearOff();
 
 /// @nodoc
 mixin _$ExchangeRate {
-  String get id;
+  String get currencyName;
+  List<Bid> get bids;
 
   $ExchangeRateCopyWith<ExchangeRate> get copyWith;
 }
@@ -37,7 +40,7 @@ abstract class $ExchangeRateCopyWith<$Res> {
   factory $ExchangeRateCopyWith(
           ExchangeRate value, $Res Function(ExchangeRate) then) =
       _$ExchangeRateCopyWithImpl<$Res>;
-  $Res call({String id});
+  $Res call({String currencyName, List<Bid> bids});
 }
 
 /// @nodoc
@@ -50,10 +53,14 @@ class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
+    Object currencyName = freezed,
+    Object bids = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
+      currencyName: currencyName == freezed
+          ? _value.currencyName
+          : currencyName as String,
+      bids: bids == freezed ? _value.bids : bids as List<Bid>,
     ));
   }
 }
@@ -65,7 +72,7 @@ abstract class _$ExchangeRateCopyWith<$Res>
           _ExchangeRate value, $Res Function(_ExchangeRate) then) =
       __$ExchangeRateCopyWithImpl<$Res>;
   @override
-  $Res call({String id});
+  $Res call({String currencyName, List<Bid> bids});
 }
 
 /// @nodoc
@@ -80,37 +87,51 @@ class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object currencyName = freezed,
+    Object bids = freezed,
   }) {
     return _then(_ExchangeRate(
-      id: id == freezed ? _value.id : id as String,
+      currencyName: currencyName == freezed
+          ? _value.currencyName
+          : currencyName as String,
+      bids: bids == freezed ? _value.bids : bids as List<Bid>,
     ));
   }
 }
 
 /// @nodoc
 class _$_ExchangeRate extends _ExchangeRate {
-  const _$_ExchangeRate({this.id}) : super._();
+  const _$_ExchangeRate({@required this.currencyName, @required this.bids})
+      : assert(currencyName != null),
+        assert(bids != null),
+        super._();
 
   @override
-  final String id;
+  final String currencyName;
+  @override
+  final List<Bid> bids;
 
   @override
   String toString() {
-    return 'ExchangeRate(id: $id)';
+    return 'ExchangeRate(currencyName: $currencyName, bids: $bids)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ExchangeRate &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.currencyName, currencyName) ||
+                const DeepCollectionEquality()
+                    .equals(other.currencyName, currencyName)) &&
+            (identical(other.bids, bids) ||
+                const DeepCollectionEquality().equals(other.bids, bids)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(currencyName) ^
+      const DeepCollectionEquality().hash(bids);
 
   @override
   _$ExchangeRateCopyWith<_ExchangeRate> get copyWith =>
@@ -119,10 +140,14 @@ class _$_ExchangeRate extends _ExchangeRate {
 
 abstract class _ExchangeRate extends ExchangeRate {
   const _ExchangeRate._() : super._();
-  const factory _ExchangeRate({String id}) = _$_ExchangeRate;
+  const factory _ExchangeRate(
+      {@required String currencyName,
+      @required List<Bid> bids}) = _$_ExchangeRate;
 
   @override
-  String get id;
+  String get currencyName;
+  @override
+  List<Bid> get bids;
   @override
   _$ExchangeRateCopyWith<_ExchangeRate> get copyWith;
 }
