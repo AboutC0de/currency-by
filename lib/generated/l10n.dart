@@ -35,7 +35,35 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Currency BY`
+  String get appTitle {
+    return Intl.message(
+      'Currency BY',
+      name: 'appTitle',
+      desc: '',
+      args: [],
+    );
+  }
 
+  /// `Currency`
+  String get currency {
+    return Intl.message(
+      'Currency',
+      name: 'currency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `изменить`
+  String get edit {
+    return Intl.message(
+      'изменить',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -44,6 +72,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'ru'),
+      Locale.fromSubtags(languageCode: 'en'),
     ];
   }
 

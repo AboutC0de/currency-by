@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../generated/l10n.dart';
+
 class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
+        elevation: 0,
         backgroundColor: Theme.of(context).accentColor,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -17,16 +20,16 @@ class HomeWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Курсы валют',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).currency,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     DateFormat('dd MMMM').format(DateTime.now()).toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,
                     ),
@@ -36,8 +39,8 @@ class HomeWidget extends StatelessWidget {
               FlatButton(
                 onPressed: () {},
                 child: Text(
-                  'Изменить',
-                  style: TextStyle(color: Colors.lightBlue),
+                  S.of(context).edit,
+                  style: const TextStyle(color: Colors.lightBlue),
                 ),
               ),
             ],
@@ -46,18 +49,18 @@ class HomeWidget extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Text('search'),
+          const Text('search'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                children: [
+                children: const [
                   Text('Currency name'),
                 ],
               ),
-              Text('chart'),
+              const Text('chart'),
               Column(
-                children: [
+                children: const [
                   Text('currency'),
                   Text('changes'),
                 ],
