@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 
+import 'application/exchange_rate/exchange_rate_bloc.dart';
 import 'generated/l10n.dart';
 import 'injection.dart';
 import 'presentation/home_widget.dart';
@@ -22,8 +23,8 @@ class CurrencyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => null,
+        BlocProvider<ExchangeRateBloc>(
+          create: (BuildContext context) => getIt<ExchangeRateBloc>(),
         ),
       ],
       child: MaterialApp(
