@@ -12,7 +12,8 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
 
   const factory ExchangeRateDTO({
     @required double amount,
-    @required DateTime bcseDate,
+    @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+        DateTime bcseDate,
     @required double bcseDiff,
     @required double bcseRate,
     @required double buy,
@@ -22,7 +23,8 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
     @required String namePlural,
     @required String namePluralShort,
     @required double nb,
-    @required DateTime nbDate,
+    @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+        DateTime nbDate,
     @required double nbDiff,
     @required double sell,
     @required double sellDiff,
@@ -53,4 +55,9 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
 
   factory ExchangeRateDTO.fromFirestore(DocumentSnapshot doc) =>
       ExchangeRateDTO.fromJson(doc.data());
+
+  static DateTime _stringToDateTime(String date) =>
+      date.isNotEmpty ? DateTime.parse(date) : null;
+
+  static String _dateTimeToString(DateTime date) => '';
 }

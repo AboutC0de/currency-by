@@ -9,9 +9,7 @@ part of 'exchange_rate_dto.dart';
 _$_ExchangeRateDTO _$_$_ExchangeRateDTOFromJson(Map<String, dynamic> json) {
   return _$_ExchangeRateDTO(
     amount: (json['amount'] as num)?.toDouble(),
-    bcseDate: json['bcseDate'] == null
-        ? null
-        : DateTime.parse(json['bcseDate'] as String),
+    bcseDate: ExchangeRateDTO._stringToDateTime(json['bcseDate'] as String),
     bcseDiff: (json['bcseDiff'] as num)?.toDouble(),
     bcseRate: (json['bcseRate'] as num)?.toDouble(),
     buy: (json['buy'] as num)?.toDouble(),
@@ -21,9 +19,7 @@ _$_ExchangeRateDTO _$_$_ExchangeRateDTOFromJson(Map<String, dynamic> json) {
     namePlural: json['namePlural'] as String,
     namePluralShort: json['namePluralShort'] as String,
     nb: (json['nb'] as num)?.toDouble(),
-    nbDate: json['nbDate'] == null
-        ? null
-        : DateTime.parse(json['nbDate'] as String),
+    nbDate: ExchangeRateDTO._stringToDateTime(json['nbDate'] as String),
     nbDiff: (json['nbDiff'] as num)?.toDouble(),
     sell: (json['sell'] as num)?.toDouble(),
     sellDiff: (json['sellDiff'] as num)?.toDouble(),
@@ -33,7 +29,7 @@ _$_ExchangeRateDTO _$_$_ExchangeRateDTOFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_ExchangeRateDTOToJson(_$_ExchangeRateDTO instance) =>
     <String, dynamic>{
       'amount': instance.amount,
-      'bcseDate': instance.bcseDate?.toIso8601String(),
+      'bcseDate': ExchangeRateDTO._dateTimeToString(instance.bcseDate),
       'bcseDiff': instance.bcseDiff,
       'bcseRate': instance.bcseRate,
       'buy': instance.buy,
@@ -43,7 +39,7 @@ Map<String, dynamic> _$_$_ExchangeRateDTOToJson(_$_ExchangeRateDTO instance) =>
       'namePlural': instance.namePlural,
       'namePluralShort': instance.namePluralShort,
       'nb': instance.nb,
-      'nbDate': instance.nbDate?.toIso8601String(),
+      'nbDate': ExchangeRateDTO._dateTimeToString(instance.nbDate),
       'nbDiff': instance.nbDiff,
       'sell': instance.sell,
       'sellDiff': instance.sellDiff,

@@ -18,21 +18,36 @@ class _$ExchangeRateDTOTearOff {
 
 // ignore: unused_element
   _ExchangeRateDTO call(
-      {@required double amount,
-      @required DateTime bcseDate,
-      @required double bcseDiff,
-      @required double bcseRate,
-      @required double buy,
-      @required double buyDiff,
-      @required String currencyCode,
-      @required String name,
-      @required String namePlural,
-      @required String namePluralShort,
-      @required double nb,
-      @required DateTime nbDate,
-      @required double nbDiff,
-      @required double sell,
-      @required double sellDiff}) {
+      {@required
+          double amount,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime bcseDate,
+      @required
+          double bcseDiff,
+      @required
+          double bcseRate,
+      @required
+          double buy,
+      @required
+          double buyDiff,
+      @required
+          String currencyCode,
+      @required
+          String name,
+      @required
+          String namePlural,
+      @required
+          String namePluralShort,
+      @required
+          double nb,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime nbDate,
+      @required
+          double nbDiff,
+      @required
+          double sell,
+      @required
+          double sellDiff}) {
     return _ExchangeRateDTO(
       amount: amount,
       bcseDate: bcseDate,
@@ -65,6 +80,9 @@ const $ExchangeRateDTO = _$ExchangeRateDTOTearOff();
 /// @nodoc
 mixin _$ExchangeRateDTO {
   double get amount;
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   DateTime get bcseDate;
   double get bcseDiff;
   double get bcseRate;
@@ -75,6 +93,9 @@ mixin _$ExchangeRateDTO {
   String get namePlural;
   String get namePluralShort;
   double get nb;
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   DateTime get nbDate;
   double get nbDiff;
   double get sell;
@@ -91,7 +112,8 @@ abstract class $ExchangeRateDTOCopyWith<$Res> {
       _$ExchangeRateDTOCopyWithImpl<$Res>;
   $Res call(
       {double amount,
-      DateTime bcseDate,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime bcseDate,
       double bcseDiff,
       double bcseRate,
       double buy,
@@ -101,7 +123,8 @@ abstract class $ExchangeRateDTOCopyWith<$Res> {
       String namePlural,
       String namePluralShort,
       double nb,
-      DateTime nbDate,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime nbDate,
       double nbDiff,
       double sell,
       double sellDiff});
@@ -168,7 +191,8 @@ abstract class _$ExchangeRateDTOCopyWith<$Res>
   @override
   $Res call(
       {double amount,
-      DateTime bcseDate,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime bcseDate,
       double bcseDiff,
       double bcseRate,
       double buy,
@@ -178,7 +202,8 @@ abstract class _$ExchangeRateDTOCopyWith<$Res>
       String namePlural,
       String namePluralShort,
       double nb,
-      DateTime nbDate,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime nbDate,
       double nbDiff,
       double sell,
       double sellDiff});
@@ -243,23 +268,37 @@ class __$ExchangeRateDTOCopyWithImpl<$Res>
 /// @nodoc
 class _$_ExchangeRateDTO extends _ExchangeRateDTO {
   const _$_ExchangeRateDTO(
-      {@required this.amount,
-      @required this.bcseDate,
-      @required this.bcseDiff,
-      @required this.bcseRate,
-      @required this.buy,
-      @required this.buyDiff,
-      @required this.currencyCode,
-      @required this.name,
-      @required this.namePlural,
-      @required this.namePluralShort,
-      @required this.nb,
-      @required this.nbDate,
-      @required this.nbDiff,
-      @required this.sell,
-      @required this.sellDiff})
+      {@required
+          this.amount,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          this.bcseDate,
+      @required
+          this.bcseDiff,
+      @required
+          this.bcseRate,
+      @required
+          this.buy,
+      @required
+          this.buyDiff,
+      @required
+          this.currencyCode,
+      @required
+          this.name,
+      @required
+          this.namePlural,
+      @required
+          this.namePluralShort,
+      @required
+          this.nb,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          this.nbDate,
+      @required
+          this.nbDiff,
+      @required
+          this.sell,
+      @required
+          this.sellDiff})
       : assert(amount != null),
-        assert(bcseDate != null),
         assert(bcseDiff != null),
         assert(bcseRate != null),
         assert(buy != null),
@@ -269,7 +308,6 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
         assert(namePlural != null),
         assert(namePluralShort != null),
         assert(nb != null),
-        assert(nbDate != null),
         assert(nbDiff != null),
         assert(sell != null),
         assert(sellDiff != null),
@@ -281,6 +319,9 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
   @override
   final double amount;
   @override
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   final DateTime bcseDate;
   @override
   final double bcseDiff;
@@ -301,6 +342,9 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
   @override
   final double nb;
   @override
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   final DateTime nbDate;
   @override
   final double nbDiff;
@@ -390,21 +434,36 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
 abstract class _ExchangeRateDTO extends ExchangeRateDTO {
   const _ExchangeRateDTO._() : super._();
   const factory _ExchangeRateDTO(
-      {@required double amount,
-      @required DateTime bcseDate,
-      @required double bcseDiff,
-      @required double bcseRate,
-      @required double buy,
-      @required double buyDiff,
-      @required String currencyCode,
-      @required String name,
-      @required String namePlural,
-      @required String namePluralShort,
-      @required double nb,
-      @required DateTime nbDate,
-      @required double nbDiff,
-      @required double sell,
-      @required double sellDiff}) = _$_ExchangeRateDTO;
+      {@required
+          double amount,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime bcseDate,
+      @required
+          double bcseDiff,
+      @required
+          double bcseRate,
+      @required
+          double buy,
+      @required
+          double buyDiff,
+      @required
+          String currencyCode,
+      @required
+          String name,
+      @required
+          String namePlural,
+      @required
+          String namePluralShort,
+      @required
+          double nb,
+      @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+          DateTime nbDate,
+      @required
+          double nbDiff,
+      @required
+          double sell,
+      @required
+          double sellDiff}) = _$_ExchangeRateDTO;
 
   factory _ExchangeRateDTO.fromJson(Map<String, dynamic> json) =
       _$_ExchangeRateDTO.fromJson;
@@ -412,6 +471,9 @@ abstract class _ExchangeRateDTO extends ExchangeRateDTO {
   @override
   double get amount;
   @override
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   DateTime get bcseDate;
   @override
   double get bcseDiff;
@@ -432,6 +494,9 @@ abstract class _ExchangeRateDTO extends ExchangeRateDTO {
   @override
   double get nb;
   @override
+  @JsonKey(
+      fromJson: ExchangeRateDTO._stringToDateTime,
+      toJson: ExchangeRateDTO._dateTimeToString)
   DateTime get nbDate;
   @override
   double get nbDiff;
