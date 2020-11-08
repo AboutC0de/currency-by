@@ -8,7 +8,7 @@ abstract class ExchangeRate implements _$ExchangeRate {
 
   const factory ExchangeRate({
     @required double amount,
-    @required DateTime bcseDate,
+    DateTime bcseDate,
     @required double bcseDiff,
     @required double bcseRate,
     @required double buy,
@@ -18,7 +18,7 @@ abstract class ExchangeRate implements _$ExchangeRate {
     @required String namePlural,
     @required String namePluralShort,
     @required double nb,
-    @required DateTime nbDate,
+    DateTime nbDate,
     @required double nbDiff,
     @required double sell,
     @required double sellDiff,

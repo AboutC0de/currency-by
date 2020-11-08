@@ -16,7 +16,7 @@ class _$ExchangeRateTearOff {
 // ignore: unused_element
   _ExchangeRate call(
       {@required double amount,
-      @required DateTime bcseDate,
+      DateTime bcseDate,
       @required double bcseDiff,
       @required double bcseRate,
       @required double buy,
@@ -26,7 +26,7 @@ class _$ExchangeRateTearOff {
       @required String namePlural,
       @required String namePluralShort,
       @required double nb,
-      @required DateTime nbDate,
+      DateTime nbDate,
       @required double nbDiff,
       @required double sell,
       @required double sellDiff}) {
@@ -231,7 +231,7 @@ class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
 class _$_ExchangeRate extends _ExchangeRate {
   const _$_ExchangeRate(
       {@required this.amount,
-      @required this.bcseDate,
+      this.bcseDate,
       @required this.bcseDiff,
       @required this.bcseRate,
       @required this.buy,
@@ -241,12 +241,11 @@ class _$_ExchangeRate extends _ExchangeRate {
       @required this.namePlural,
       @required this.namePluralShort,
       @required this.nb,
-      @required this.nbDate,
+      this.nbDate,
       @required this.nbDiff,
       @required this.sell,
       @required this.sellDiff})
       : assert(amount != null),
-        assert(bcseDate != null),
         assert(bcseDiff != null),
         assert(bcseRate != null),
         assert(buy != null),
@@ -256,7 +255,6 @@ class _$_ExchangeRate extends _ExchangeRate {
         assert(namePlural != null),
         assert(namePluralShort != null),
         assert(nb != null),
-        assert(nbDate != null),
         assert(nbDiff != null),
         assert(sell != null),
         assert(sellDiff != null),
@@ -370,7 +368,7 @@ abstract class _ExchangeRate extends ExchangeRate {
   const _ExchangeRate._() : super._();
   const factory _ExchangeRate(
       {@required double amount,
-      @required DateTime bcseDate,
+      DateTime bcseDate,
       @required double bcseDiff,
       @required double bcseRate,
       @required double buy,
@@ -380,7 +378,7 @@ abstract class _ExchangeRate extends ExchangeRate {
       @required String namePlural,
       @required String namePluralShort,
       @required double nb,
-      @required DateTime nbDate,
+      DateTime nbDate,
       @required double nbDiff,
       @required double sell,
       @required double sellDiff}) = _$_ExchangeRate;

@@ -50,6 +50,26 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
     );
   }
 
+  ExchangeRate toDomain() {
+    return ExchangeRate(
+      amount: amount,
+      bcseDiff: bcseDiff,
+      bcseRate: bcseRate,
+      bcseDate: bcseDate,
+      buy: buy,
+      buyDiff: buyDiff,
+      currencyCode: currencyCode,
+      name: name,
+      namePlural: namePlural,
+      namePluralShort: namePluralShort,
+      nb: nb,
+      nbDate: nbDate,
+      nbDiff: nbDiff,
+      sell: sell,
+      sellDiff: sellDiff,
+    );
+  }
+
   factory ExchangeRateDTO.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRateDTOFromJson(json);
 

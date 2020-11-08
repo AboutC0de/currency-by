@@ -1,5 +1,5 @@
-import '../../infrastructure/exchange_rate/exchange_rate_dto.dart';
+import 'exchange_rate.dart';
 
 abstract class IExchangeRateRepository {
-  Future<List<ExchangeRateDTO>> getTodayExchangeRates();
+  Future<List<ExchangeRate>> getTodayExchangeRates();
 }
