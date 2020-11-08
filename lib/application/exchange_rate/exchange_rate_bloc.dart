@@ -25,5 +25,7 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
     emit(const ExchangeRateState.loaded());
   }
 
+  Future<void> _getOneWeekExchangeRates() async {}
+
   List<ExchangeRate> get exchangeRates => _exchangeRates;
 }
