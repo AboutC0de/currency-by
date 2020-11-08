@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
+import '../domain/exchange_rate/exchange_rate.dart';
 import '../generated/l10n.dart';
 
 class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    context.bloc<ExchangeRateBloc>();
-
+    final bloc = context.watch<ExchangeRateBloc>();
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -51,28 +51,48 @@ class HomeWidget extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          const Text('search'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: const [
-                  Text('Currency name'),
-                ],
-              ),
-              const Text('chart'),
-              Column(
-                children: const [
-                  Text('currency'),
-                  Text('changes'),
-                ],
-              ),
-            ],
-          )
-        ],
+      body: bloc.state.when(
+        initial: () => const Text('initial'),
+        loaded: () => ListView(
+          children: [
+            ...bloc.exchangeRates
+                .map(
+                  (e) => _OneDayExchangeRate(
+                    exchangeRate: e,
+                  ),
+                )
+                .toList()
+          ],
+        ),
+        loading: () => const Text('loading'),
       ),
+    );
+  }
+}
+
+class _OneDayExchangeRate extends StatelessWidget {
+  final ExchangeRate exchangeRate;
+
+  const _OneDayExchangeRate({Key key, this.exchangeRate}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            Text(exchangeRate.name),
+            Text(exchangeRate.currencyCode),
+          ],
+        ),
+        const Text('chart'),
+        Column(
+          children: [
+            Text(exchangeRate.nb.toString()),
+          ],
+        ),
+      ],
     );
   }
 }
