@@ -94,12 +94,18 @@ class _OneDayExchangeRate extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                exchangeRate.name,
-                style: const TextStyle(color: Colors.white),
+                exchangeRate.currencyCode,
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
-                exchangeRate.currencyCode,
-                style: const TextStyle(color: Colors.grey),
+                exchangeRate.name,
+                style: const TextStyle(
+                  color: Colors.grey,
+                ),
               ),
             ],
           ),
