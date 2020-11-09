@@ -25,7 +25,7 @@ class HomeWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    S.of(context).currency,
+                    S.of(context).appTitle,
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -53,16 +53,24 @@ class HomeWidget extends StatelessWidget {
       ),
       body: bloc.state.when(
         initial: () => const Text('initial'),
-        loaded: () => ListView(
-          children: [
-            ...bloc.exchangeRates
-                .map(
-                  (e) => _OneDayExchangeRate(
-                    exchangeRate: e,
-                  ),
-                )
-                .toList()
-          ],
+        loaded: () => Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          color: Theme.of(context).accentColor,
+          child: ListView.separated(
+            itemBuilder: (context, index) {
+              return _OneDayExchangeRate(
+                exchangeRate: bloc.exchangeRates[index],
+              );
+            },
+            itemCount: bloc.exchangeRates.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return Column(
+                children: const [
+                  Divider(color: Colors.grey),
+                ],
+              );
+            },
+          ),
         ),
         loading: () => const Text('loading'),
       ),
@@ -80,17 +88,70 @@ class _OneDayExchangeRate extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          children: [
-            Text(exchangeRate.name),
-            Text(exchangeRate.currencyCode),
-          ],
+        Expanded(
+          flex: 6,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                exchangeRate.name,
+                style: const TextStyle(color: Colors.white),
+              ),
+              Text(
+                exchangeRate.currencyCode,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
         ),
-        const Text('chart'),
-        Column(
-          children: [
-            Text(exchangeRate.nb.toString()),
-          ],
+        const Expanded(
+          flex: 3,
+          child: Text('chart'),
+        ),
+        Expanded(
+          flex: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // const Text(
+                  //   'НБРБ',
+                  //   style: TextStyle(
+                  //     color: Colors.grey,
+                  //     fontWeight: FontWeight.w400,
+                  //     fontSize: 5,
+                  //   ),
+                  // ),
+                  const SizedBox(width: 1),
+                  Text(
+                    exchangeRate.nb.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+              LayoutBuilder(builder: (context, constraints) {
+                return Container(
+                  width: constraints.maxWidth / 2.5,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(2.0),
+                    ),
+                    color: Colors.green,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      exchangeRate.sellDiff.toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ],
     );
