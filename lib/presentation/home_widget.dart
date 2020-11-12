@@ -149,6 +149,14 @@ class _OneDayExchangeRate extends StatelessWidget {
   }
 }
 
+class _ExchangeRateChart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
 class _ExchangeRate extends StatelessWidget {
   final ExchangeRate exchangeRate;
 
