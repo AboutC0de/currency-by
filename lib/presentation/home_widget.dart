@@ -40,13 +40,13 @@ class HomeWidget extends StatelessWidget {
                   )
                 ],
               ),
-              FlatButton(
-                onPressed: () {},
-                child: Text(
-                  S.of(context).edit,
-                  style: const TextStyle(color: Colors.lightBlue),
-                ),
-              ),
+              // FlatButton(
+              //   onPressed: () {},
+              //   child: Text(
+              //     S.of(context).edit,
+              //     style: const TextStyle(color: Colors.lightBlue),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -138,28 +138,49 @@ class _OneDayExchangeRate extends StatelessWidget {
                   ),
                 ],
               ),
-              LayoutBuilder(builder: (context, constraints) {
-                return Container(
-                  width: constraints.maxWidth / 2.5,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(2.0),
-                    ),
-                    color: Colors.green,
-                  ),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      exchangeRate.sellDiff.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                  ),
-                );
-              }),
+              _ExchangeRate(
+                exchangeRate: exchangeRate,
+              ),
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ExchangeRate extends StatelessWidget {
+  final ExchangeRate exchangeRate;
+
+  const _ExchangeRate({
+    Key key,
+    this.exchangeRate,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          width: constraints.maxWidth / 2.2,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(2.0),
+            ),
+            color: exchangeRate.nbDiff >= 0 ? Colors.green : Colors.red,
+          ),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              exchangeRate.nbDiff.toStringAsFixed(4),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
