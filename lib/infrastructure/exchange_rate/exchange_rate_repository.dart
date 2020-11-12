@@ -3,9 +3,11 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/exchange_rate/exchange_rate.dart';
 import '../../domain/exchange_rate/i_exchange_rate_repository.dart';
+import '../../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import 'exchange_rate_dto.dart';
 
 const String oneDayCollection = '1D';
+const String oneWeekAllCurrenciesCollection = '1WByCurrency';
 
 @LazySingleton(as: IExchangeRateRepository)
 class ExchangeRateRepository implements IExchangeRateRepository {
@@ -28,5 +30,15 @@ class ExchangeRateRepository implements IExchangeRateRepository {
         .cast<ExchangeRate>()
         .toList();
     return result as List<ExchangeRate>;
+  }
+
+  @override
+  Future<Map<String, OneDayExchangeRate>> getCurrentWeekExchangeRates() async {
+    final exchangeRates = await _firestore
+        .collection(oneWeekAllCurrenciesCollection)
+        .doc('exchangeRates')
+        .get();
+
+    return {};
   }
 }

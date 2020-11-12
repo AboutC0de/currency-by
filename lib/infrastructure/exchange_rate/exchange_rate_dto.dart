@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/exchange_rate/exchange_rate.dart';
+import '../../utils/date_utils.dart';
 
 part 'exchange_rate_dto.freezed.dart';
 part 'exchange_rate_dto.g.dart';
@@ -11,23 +12,42 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
   const ExchangeRateDTO._();
 
   const factory ExchangeRateDTO({
-    @required double amount,
-    @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+    @required
+        double amount,
+    @JsonKey(
+      fromJson: stringToDateTime,
+      toJson: dateTimeToString,
+    )
         DateTime bcseDate,
-    @required double bcseDiff,
-    @required double bcseRate,
-    @required double buy,
-    @required double buyDiff,
-    @required String currencyCode,
-    @required String name,
-    @required String namePlural,
-    @required String namePluralShort,
-    @required double nb,
-    @JsonKey(fromJson: ExchangeRateDTO._stringToDateTime, toJson: ExchangeRateDTO._dateTimeToString)
+    @required
+        double bcseDiff,
+    @required
+        double bcseRate,
+    @required
+        double buy,
+    @required
+        double buyDiff,
+    @required
+        String currencyCode,
+    @required
+        String name,
+    @required
+        String namePlural,
+    @required
+        String namePluralShort,
+    @required
+        double nb,
+    @JsonKey(
+      fromJson: stringToDateTime,
+      toJson: dateTimeToString,
+    )
         DateTime nbDate,
-    @required double nbDiff,
-    @required double sell,
-    @required double sellDiff,
+    @required
+        double nbDiff,
+    @required
+        double sell,
+    @required
+        double sellDiff,
   }) = _ExchangeRateDTO;
 
   factory ExchangeRateDTO.fromDomain(ExchangeRate exchangeRate) {
@@ -75,9 +95,4 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
 
   factory ExchangeRateDTO.fromFirestore(DocumentSnapshot doc) =>
       ExchangeRateDTO.fromJson(doc.data());
-
-  static DateTime _stringToDateTime(String date) =>
-      date.isNotEmpty ? DateTime.parse(date) : null;
-
-  static String _dateTimeToString(DateTime date) => '';
 }
