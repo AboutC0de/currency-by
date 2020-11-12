@@ -162,7 +162,8 @@ class _ExchangeRate extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
-          width: constraints.maxWidth / 2.2,
+          width: 50,
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(
               Radius.circular(2.0),
