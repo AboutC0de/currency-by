@@ -1,3 +1,4 @@
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -110,9 +111,12 @@ class _OneDayExchangeRate extends StatelessWidget {
             ],
           ),
         ),
-        const Expanded(
-          flex: 3,
-          child: Text('chart'),
+        Expanded(
+          flex: 10,
+          child: SizedBox(
+            height: 50,
+            child: _ExchangeRateChart.withSampleData(),
+          ),
         ),
         Expanded(
           flex: 3,
@@ -150,11 +154,60 @@ class _OneDayExchangeRate extends StatelessWidget {
 }
 
 class _ExchangeRateChart extends StatelessWidget {
+  final List<charts.Series> seriesList;
+  final bool animate;
+
+  const _ExchangeRateChart(this.seriesList, {this.animate});
+
+  factory _ExchangeRateChart.withSampleData() {
+    return _ExchangeRateChart(
+      _createSampleData(),
+      // Disable animations for image tests.
+      animate: false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return charts.LineChart(
+      seriesList,
+      defaultRenderer:
+          charts.LineRendererConfig(includeArea: true, stacked: true),
+      animate: animate,
+      primaryMeasureAxis:
+          const charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+      domainAxis:
+          const charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+    );
   }
+
+  /// Create one series with sample hard coded data.
+  static List<charts.Series<LinearSales, int>> _createSampleData() {
+    final myFakeMobileData = [
+      LinearSales(0, 15),
+      LinearSales(1, 75),
+      LinearSales(2, 300),
+      LinearSales(3, 225),
+    ];
+
+    return [
+      charts.Series<LinearSales, int>(
+        id: 'Mobile',
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: myFakeMobileData,
+      ),
+    ];
+  }
+}
+
+/// Sample linear data type.
+class LinearSales {
+  final int year;
+  final int sales;
+
+  LinearSales(this.year, this.sales);
 }
 
 class _ExchangeRate extends StatelessWidget {
