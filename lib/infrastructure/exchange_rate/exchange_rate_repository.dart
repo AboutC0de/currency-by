@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/exchange_rate/exchange_rate.dart';
 import '../../domain/exchange_rate/i_exchange_rate_repository.dart';
 import '../../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
+import 'day_dto/one_day_exchange_rate_dto.dart';
 import 'exchange_rate_dto.dart';
 
 const String oneDayCollection = '1D';
@@ -38,7 +39,15 @@ class ExchangeRateRepository implements IExchangeRateRepository {
         .collection(oneWeekAllCurrenciesCollection)
         .doc('exchangeRates')
         .get();
-
-    return {};
+    return exchangeRates
+        .data()
+        .map((currency, value) => MapEntry(
+              currency,
+              value
+                  .map((v) =>
+                      OneDayExchangeRateDTO.fromJson(v as Map<String, dynamic>))
+                  .toList(),
+            ))
+        .cast<String, OneDayExchangeRate>();
   }
 }
