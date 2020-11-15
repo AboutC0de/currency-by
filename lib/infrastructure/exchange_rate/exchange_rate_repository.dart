@@ -34,7 +34,8 @@ class ExchangeRateRepository implements IExchangeRateRepository {
   }
 
   @override
-  Future<Map<String, OneDayExchangeRate>> getCurrentWeekExchangeRates() async {
+  Future<Map<String, List<OneDayExchangeRate>>>
+      getCurrentWeekExchangeRates() async {
     final exchangeRates = await _firestore
         .collection(oneWeekAllCurrenciesCollection)
         .doc('exchangeRates')
@@ -45,9 +46,11 @@ class ExchangeRateRepository implements IExchangeRateRepository {
               currency,
               value
                   .map((v) =>
-                      OneDayExchangeRateDTO.fromJson(v as Map<String, dynamic>))
+                      OneDayExchangeRateDTO.fromJson(v as Map<String, dynamic>)
+                          .toDomain())
+                  .cast<OneDayExchangeRate>()
                   .toList(),
             ))
-        .cast<String, OneDayExchangeRate>();
+        .cast<String, List<OneDayExchangeRate>>();
   }
 }

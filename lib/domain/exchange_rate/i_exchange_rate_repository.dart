@@ -4,5 +4,5 @@ import 'one_day/one_day_exchange_rate.dart';
 abstract class IExchangeRateRepository {
   Future<List<ExchangeRate>> getTodayExchangeRates();
 
-  Future<Map<String, OneDayExchangeRate>> getCurrentWeekExchangeRates();
+  Future<Map<String, List<OneDayExchangeRate>>> getCurrentWeekExchangeRates();
 }
