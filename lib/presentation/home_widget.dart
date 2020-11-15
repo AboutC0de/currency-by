@@ -130,14 +130,6 @@ class _OneDayExchangeRate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // const Text(
-                  //   'НБРБ',
-                  //   style: TextStyle(
-                  //     color: Colors.grey,
-                  //     fontWeight: FontWeight.w400,
-                  //     fontSize: 5,
-                  //   ),
-                  // ),
                   const SizedBox(width: 1),
                   Text(
                     exchangeRate.nb.toString(),
@@ -147,6 +139,17 @@ class _OneDayExchangeRate extends StatelessWidget {
               ),
               _ExchangeRate(
                 exchangeRate: exchangeRate,
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              Text(
+                'НБРБ: ${DateFormat('dd MMM').format(exchangeRate.nbDate)}',
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 7,
+                ),
               ),
             ],
           ),
