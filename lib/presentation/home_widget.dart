@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
+import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../generated/l10n.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -115,7 +116,9 @@ class _OneDayExchangeRate extends StatelessWidget {
           flex: 10,
           child: SizedBox(
             height: 50,
-            child: _ExchangeRateChart.withSampleData(),
+            child: _ExchangeRateChart(
+              exchangeRate: exchangeRate,
+            ),
           ),
         ),
         Expanded(
@@ -154,60 +157,47 @@ class _OneDayExchangeRate extends StatelessWidget {
 }
 
 class _ExchangeRateChart extends StatelessWidget {
-  final List<charts.Series> seriesList;
-  final bool animate;
+  final ExchangeRate exchangeRate;
 
-  const _ExchangeRateChart(this.seriesList, {this.animate});
-
-  factory _ExchangeRateChart.withSampleData() {
-    return _ExchangeRateChart(
-      _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
-    );
-  }
+  const _ExchangeRateChart({Key key, this.exchangeRate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return charts.LineChart(
-      seriesList,
-      defaultRenderer:
-          charts.LineRendererConfig(includeArea: true, stacked: true),
-      animate: animate,
-      primaryMeasureAxis:
-          const charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
-      domainAxis:
-          const charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
-    );
-  }
+    final bloc = context.watch<ExchangeRateBloc>();
 
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
-    final myFakeMobileData = [
-      LinearSales(0, 15),
-      LinearSales(1, 75),
-      LinearSales(2, 300),
-      LinearSales(3, 225),
-    ];
-
-    return [
-      charts.Series<LinearSales, int>(
-        id: 'Mobile',
+    final exchangeRates = bloc.weekExchangeRates[exchangeRate.currencyCode];
+    final series = [
+      charts.Series<OneDayExchangeRate, DateTime>(
+        id: 'currency',
         colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: myFakeMobileData,
+        domainFn: (OneDayExchangeRate exchangeRate, _) {
+          return exchangeRate.nbDate;
+        },
+        measureFn: (OneDayExchangeRate exchangeRate, _) =>
+            exchangeRate.nb * 10000,
+        data: exchangeRates,
       ),
     ];
+
+    return charts.TimeSeriesChart(
+      series,
+      defaultRenderer:
+          charts.LineRendererConfig(includeArea: true, stacked: true),
+      animate: false,
+      primaryMeasureAxis: const charts.NumericAxisSpec(
+        renderSpec: charts.NoneRenderSpec(),
+        tickProviderSpec: charts.BasicNumericTickProviderSpec(
+          zeroBound: false,
+        ),
+        showAxisLine: false,
+      ),
+      domainAxis: const charts.DateTimeAxisSpec(
+        renderSpec: charts.NoneRenderSpec(),
+        tickProviderSpec: charts.DayTickProviderSpec(increments: [1]),
+        showAxisLine: false,
+      ),
+    );
   }
-}
-
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
 }
 
 class _ExchangeRate extends StatelessWidget {
@@ -229,7 +219,11 @@ class _ExchangeRate extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(2.0),
             ),
-            color: exchangeRate.nbDiff >= 0 ? Colors.green : Colors.red,
+            color: exchangeRate.nbDiff == 0
+                ? Colors.grey
+                : exchangeRate.nbDiff < 0
+                    ? Colors.green
+                    : Colors.red,
           ),
           child: Align(
             alignment: Alignment.centerRight,
