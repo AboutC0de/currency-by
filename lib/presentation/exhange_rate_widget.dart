@@ -89,8 +89,12 @@ class _ExchangeRateWidgetState extends State<ExchangeRateWidget> {
     final exchangeRate = widget._exchangeRate;
     return GestureDetector(
       onTap: () {
+        final index = CurrencySource.values
+            .indexWhere((element) => element == _currencySource);
         setState(() {
-          _currencySource = CurrencySource.bcse;
+          _currencySource = CurrencySource.values.length - 1 == index
+              ? CurrencySource.values[0]
+              : CurrencySource.values[index + 1];
         });
       },
       child: Column(
