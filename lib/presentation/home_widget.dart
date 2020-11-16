@@ -8,6 +8,7 @@ import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../generated/l10n.dart';
+import 'exhange_rate_widget.dart';
 
 class HomeWidget extends StatelessWidget {
   @override
@@ -122,38 +123,10 @@ class _OneDayExchangeRate extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 3,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const SizedBox(width: 1),
-                  Text(
-                    exchangeRate.nb.toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-              _ExchangeRate(
-                exchangeRate: exchangeRate,
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text(
-                'НБРБ: ${DateFormat('dd MMM').format(exchangeRate.nbDate)}',
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 7,
-                ),
-              ),
-            ],
-          ),
-        ),
+            flex: 3,
+            child: ExchangeRateWidget(
+              exchangeRate: exchangeRate,
+            )),
       ],
     );
   }
@@ -199,47 +172,6 @@ class _ExchangeRateChart extends StatelessWidget {
         tickProviderSpec: charts.DayTickProviderSpec(increments: [1]),
         showAxisLine: false,
       ),
-    );
-  }
-}
-
-class _ExchangeRate extends StatelessWidget {
-  final ExchangeRate exchangeRate;
-
-  const _ExchangeRate({
-    Key key,
-    this.exchangeRate,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Container(
-          width: 50,
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(2.0),
-            ),
-            color: exchangeRate.nbDiff == 0
-                ? Colors.grey
-                : exchangeRate.nbDiff < 0
-                    ? Colors.green
-                    : Colors.red,
-          ),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              exchangeRate.nbDiff.toStringAsFixed(4),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

@@ -22,7 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "appTitle" : MessageLookupByLibrary.simpleMessage("Currency BY"),
+    "bcse" : MessageLookupByLibrary.simpleMessage("БВФБ"),
+    "buy" : MessageLookupByLibrary.simpleMessage("Купить"),
     "currency" : MessageLookupByLibrary.simpleMessage("Курсы валют"),
-    "edit" : MessageLookupByLibrary.simpleMessage("изменить")
+    "edit" : MessageLookupByLibrary.simpleMessage("изменить"),
+    "nb" : MessageLookupByLibrary.simpleMessage("НБРБ"),
+    "sell" : MessageLookupByLibrary.simpleMessage("Продать")
   };
 }

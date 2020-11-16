@@ -8,7 +8,7 @@ import 'day_dto/one_day_exchange_rate_dto.dart';
 import 'exchange_rate_dto.dart';
 
 const String oneDayCollection = '1D';
-const String oneWeekAllCurrenciesCollection = '1WByCurrency';
+const String monthAllCurrenciesCollection = 'monthAllCurrency';
 
 @LazySingleton(as: IExchangeRateRepository)
 class ExchangeRateRepository implements IExchangeRateRepository {
@@ -37,7 +37,7 @@ class ExchangeRateRepository implements IExchangeRateRepository {
   Future<Map<String, List<OneDayExchangeRate>>>
       getCurrentWeekExchangeRates() async {
     final exchangeRates = await _firestore
-        .collection(oneWeekAllCurrenciesCollection)
+        .collection(monthAllCurrenciesCollection)
         .doc('exchangeRates')
         .get();
     return exchangeRates

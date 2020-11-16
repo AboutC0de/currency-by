@@ -1,5 +1,10 @@
 {
+  "@@locale": "en",
   "appTitle": "Currency BY",
   "currency": "Currency",
-  "edit": "edit"
+  "edit": "edit",
+  "nb": "NB",
+  "bcse": "BCSE",
+  "sell": "Sell",
+  "buy": "Buy"
 }

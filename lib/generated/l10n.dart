@@ -64,6 +64,46 @@ class S {
       args: [],
     );
   }
+
+  /// `НБРБ`
+  String get nb {
+    return Intl.message(
+      'НБРБ',
+      name: 'nb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `БВФБ`
+  String get bcse {
+    return Intl.message(
+      'БВФБ',
+      name: 'bcse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Продать`
+  String get sell {
+    return Intl.message(
+      'Продать',
+      name: 'sell',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Купить`
+  String get buy {
+    return Intl.message(
+      'Купить',
+      name: 'buy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
