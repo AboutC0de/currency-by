@@ -141,6 +141,7 @@ class _CurrencyChanges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sign = diff > 0 ? '+' : '';
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
@@ -159,7 +160,7 @@ class _CurrencyChanges extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: Text(
-              diff.toStringAsFixed(4),
+              sign + diff.toStringAsFixed(4),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
