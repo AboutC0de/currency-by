@@ -69,7 +69,17 @@ class HomeWidget extends StatelessWidget {
             },
           ),
         ),
-        loading: () => const Text('loading'),
+        loading: () => Container(
+          color: Theme.of(context).accentColor,
+          child: Center(
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                accentColor: Colors.white,
+              ),
+              child: const CircularProgressIndicator(),
+            ),
+          ),
+        ),
       ),
     );
   }
