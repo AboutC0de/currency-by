@@ -9,6 +9,7 @@ import '../domain/exchange_rate/exchange_rate.dart';
 import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../generated/l10n.dart';
 import '../utils/constants.dart';
+import 'currency_info.dart';
 import 'exchange_rate_widget.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -95,47 +96,52 @@ class _OneDayExchangeRate extends StatelessWidget {
     final exchangeRateName = exchangeRate.amount != 1
         ? '${exchangeRate.amount.toInt()} ${exchangeRate.namePlural}'
         : exchangeRate.name;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          flex: 8,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                exchangeRate.currencyCode,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        showCurrencyInfo(context, exchangeRate);
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  exchangeRate.currencyCode,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Text(
-                exchangeRateName,
-                style: const TextStyle(
-                  color: Colors.grey,
+                Text(
+                  exchangeRateName,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          flex: 8,
-          child: SizedBox(
-            height: 50,
-            child: _ExchangeRateChart(
+          Expanded(
+            flex: 8,
+            child: SizedBox(
+              height: 50,
+              child: _ExchangeRateChart(
+                exchangeRate: exchangeRate,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: ExchangeRateWidget(
               exchangeRate: exchangeRate,
             ),
           ),
-        ),
-        Expanded(
-          flex: 3,
-          child: ExchangeRateWidget(
-            exchangeRate: exchangeRate,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
