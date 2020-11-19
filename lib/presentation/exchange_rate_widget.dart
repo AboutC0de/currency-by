@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../generated/l10n.dart';
+import '../utils/constants.dart';
 
 enum CurrencySource { nb, bcse, buy, sell }
 
@@ -155,8 +156,8 @@ class _CurrencyChanges extends StatelessWidget {
             color: diff == 0
                 ? Colors.grey
                 : diff < 0
-                    ? Colors.green
-                    : Colors.red,
+                    ? greenColor
+                    : redColor,
           ),
           child: Align(
             alignment: Alignment.centerRight,

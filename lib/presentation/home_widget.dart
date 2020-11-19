@@ -8,6 +8,7 @@ import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../generated/l10n.dart';
+import '../utils/constants.dart';
 import 'exchange_rate_widget.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -143,32 +144,64 @@ class _ExchangeRateChart extends StatelessWidget {
       charts.Series<OneDayExchangeRate, DateTime>(
         id: 'currency',
         colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (OneDayExchangeRate exchangeRate, _) {
-          return exchangeRate.nbDate;
-        },
+        domainFn: (OneDayExchangeRate exchangeRate, _) => exchangeRate.nbDate,
         measureFn: (OneDayExchangeRate exchangeRate, _) =>
             exchangeRate.nb * 10000,
         data: exchangeRates,
+        strokeWidthPxFn: (_, __) => 1.5,
       ),
     ];
 
-    return charts.TimeSeriesChart(
-      series,
-      defaultRenderer:
-          charts.LineRendererConfig(includeArea: true, stacked: true),
-      animate: false,
-      primaryMeasureAxis: const charts.NumericAxisSpec(
-        renderSpec: charts.NoneRenderSpec(),
-        tickProviderSpec: charts.BasicNumericTickProviderSpec(
-          zeroBound: false,
+    return Stack(
+      children: [
+        ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return const LinearGradient(
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+              colors: [
+                greenColor,
+                Colors.black,
+              ],
+            ).createShader(bounds);
+          },
+          child: charts.TimeSeriesChart(
+            series,
+            defaultRenderer: charts.LineRendererConfig(
+              areaOpacity: 0.05,
+              includeArea: true,
+              stacked: true,
+            ),
+            animate: false,
+            primaryMeasureAxis: const charts.NumericAxisSpec(
+              renderSpec: charts.NoneRenderSpec(),
+              tickProviderSpec: charts.BasicNumericTickProviderSpec(
+                zeroBound: false,
+              ),
+              showAxisLine: false,
+            ),
+            domainAxis: const charts.DateTimeAxisSpec(
+              renderSpec: charts.NoneRenderSpec(),
+              showAxisLine: false,
+            ),
+          ),
         ),
-        showAxisLine: false,
-      ),
-      domainAxis: const charts.DateTimeAxisSpec(
-        renderSpec: charts.NoneRenderSpec(),
-        tickProviderSpec: charts.DayTickProviderSpec(increments: [1]),
-        showAxisLine: false,
-      ),
+        charts.TimeSeriesChart(
+          series,
+          animate: false,
+          primaryMeasureAxis: const charts.NumericAxisSpec(
+            renderSpec: charts.NoneRenderSpec(),
+            tickProviderSpec: charts.BasicNumericTickProviderSpec(
+              zeroBound: false,
+            ),
+            showAxisLine: false,
+          ),
+          domainAxis: const charts.DateTimeAxisSpec(
+            renderSpec: charts.NoneRenderSpec(),
+            showAxisLine: false,
+          ),
+        ),
+      ],
     );
   }
 }
