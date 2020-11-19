@@ -104,6 +104,14 @@ class _ExchangeRateWidgetState extends State<ExchangeRateWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          Text(
+            '${_currencySource.getTranslation(context)}: $formattedDate',
+            style: const TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.w400,
+              fontSize: 7,
+            ),
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -117,17 +125,6 @@ class _ExchangeRateWidgetState extends State<ExchangeRateWidget> {
           ),
           _CurrencyChanges(
             diff: _currencySource.getDiff(exchangeRate),
-          ),
-          const SizedBox(
-            height: 3,
-          ),
-          Text(
-            '${_currencySource.getTranslation(context)}: $formattedDate',
-            style: const TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.w400,
-              fontSize: 7,
-            ),
           ),
         ],
       ),
