@@ -8,7 +8,7 @@ import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../generated/l10n.dart';
-import 'exhange_rate_widget.dart';
+import 'exchange_rate_widget.dart';
 
 class HomeWidget extends StatelessWidget {
   @override
@@ -123,10 +123,11 @@ class _OneDayExchangeRate extends StatelessWidget {
           ),
         ),
         Expanded(
-            flex: 3,
-            child: ExchangeRateWidget(
-              exchangeRate: exchangeRate,
-            )),
+          flex: 3,
+          child: ExchangeRateWidget(
+            exchangeRate: exchangeRate,
+          ),
+        ),
       ],
     );
   }

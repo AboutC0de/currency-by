@@ -59,6 +59,7 @@ extension CurrencySourceExtension on CurrencySource {
     switch (this) {
       case CurrencySource.buy:
       case CurrencySource.sell:
+        return DateTime.now();
       case CurrencySource.nb:
         return exchangeRate.nbDate;
       case CurrencySource.bcse:
@@ -87,6 +88,9 @@ class _ExchangeRateWidgetState extends State<ExchangeRateWidget> {
   @override
   Widget build(BuildContext context) {
     final exchangeRate = widget._exchangeRate;
+    final date = _currencySource.getDate(exchangeRate);
+    final formattedDate =
+        date != null ? DateFormat('dd MMM').format(date) : '-';
     return GestureDetector(
       onTap: () {
         final index = CurrencySource.values
@@ -118,7 +122,7 @@ class _ExchangeRateWidgetState extends State<ExchangeRateWidget> {
             height: 3,
           ),
           Text(
-            '${_currencySource.getTranslation(context)}: ${DateFormat('dd MMM').format(_currencySource.getDate(exchangeRate))}',
+            '${_currencySource.getTranslation(context)}: $formattedDate',
             style: const TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.w400,
