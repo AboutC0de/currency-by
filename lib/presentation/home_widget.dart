@@ -157,18 +157,19 @@ class _ExchangeRateChart extends StatelessWidget {
         ShaderMask(
           shaderCallback: (Rect bounds) {
             return const LinearGradient(
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
                 greenColor,
-                Colors.black,
+                Colors.transparent,
               ],
             ).createShader(bounds);
           },
+          blendMode: BlendMode.dstIn,
           child: charts.TimeSeriesChart(
             series,
             defaultRenderer: charts.LineRendererConfig(
-              areaOpacity: 0.05,
+              areaOpacity: 0.2,
               includeArea: true,
               stacked: true,
             ),
