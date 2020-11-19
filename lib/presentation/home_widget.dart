@@ -43,13 +43,6 @@ class HomeWidget extends StatelessWidget {
                   )
                 ],
               ),
-              // FlatButton(
-              //   onPressed: () {},
-              //   child: Text(
-              //     S.of(context).edit,
-              //     style: const TextStyle(color: Colors.lightBlue),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -88,11 +81,14 @@ class _OneDayExchangeRate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final exchangeRateName = exchangeRate.amount != 1
+        ? '${exchangeRate.amount.toInt()} ${exchangeRate.namePlural}'
+        : exchangeRate.name;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          flex: 6,
+          flex: 8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -105,7 +101,7 @@ class _OneDayExchangeRate extends StatelessWidget {
                 ),
               ),
               Text(
-                exchangeRate.name,
+                exchangeRateName,
                 style: const TextStyle(
                   color: Colors.grey,
                 ),
@@ -114,7 +110,7 @@ class _OneDayExchangeRate extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 10,
+          flex: 8,
           child: SizedBox(
             height: 50,
             child: _ExchangeRateChart(
