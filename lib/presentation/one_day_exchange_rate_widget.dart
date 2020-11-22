@@ -122,6 +122,16 @@ class _ExchangeRateChart extends StatelessWidget {
       ),
     ];
 
+    final behaviors = [
+      charts.LinePointHighlighter(
+        showHorizontalFollowLine:
+            charts.LinePointHighlighterFollowLineType.none,
+        showVerticalFollowLine: charts.LinePointHighlighterFollowLineType.none,
+        drawFollowLinesAcrossChart: false,
+        defaultRadiusPx: 0,
+      )
+    ];
+
     return Stack(
       children: [
         ShaderMask(
@@ -155,6 +165,7 @@ class _ExchangeRateChart extends StatelessWidget {
               renderSpec: charts.NoneRenderSpec(),
               showAxisLine: false,
             ),
+            behaviors: behaviors,
           ),
         ),
         charts.TimeSeriesChart(
@@ -171,6 +182,7 @@ class _ExchangeRateChart extends StatelessWidget {
             renderSpec: charts.NoneRenderSpec(),
             showAxisLine: false,
           ),
+          behaviors: behaviors,
         ),
       ],
     );
