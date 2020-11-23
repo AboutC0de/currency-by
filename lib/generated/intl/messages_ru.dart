@@ -27,6 +27,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "currency" : MessageLookupByLibrary.simpleMessage("Курсы валют"),
     "edit" : MessageLookupByLibrary.simpleMessage("изменить"),
     "nb" : MessageLookupByLibrary.simpleMessage("НБРБ"),
-    "sell" : MessageLookupByLibrary.simpleMessage("Продать")
+    "oneMonth" : MessageLookupByLibrary.simpleMessage("1М"),
+    "oneWeek" : MessageLookupByLibrary.simpleMessage("7Д"),
+    "oneYear" : MessageLookupByLibrary.simpleMessage("1Г"),
+    "sell" : MessageLookupByLibrary.simpleMessage("Продать"),
+    "sixMonth" : MessageLookupByLibrary.simpleMessage("6М"),
+    "threeMonth" : MessageLookupByLibrary.simpleMessage("3М")
   };
 }

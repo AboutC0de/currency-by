@@ -5,4 +5,4 @@ const redColor = Color(0xFFfe3c30);
 
 const greyColor = Color(0xFF8e8d93);
 const darkGreyColor = Color(0xFF1c1c1e);
-const buttonBackgroundGreyColor = Color(0xFF343338);
+const backgroundGreyColor = Color(0xFF343338);

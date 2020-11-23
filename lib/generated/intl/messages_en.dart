@@ -27,6 +27,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "currency" : MessageLookupByLibrary.simpleMessage("Currency"),
     "edit" : MessageLookupByLibrary.simpleMessage("edit"),
     "nb" : MessageLookupByLibrary.simpleMessage("NB"),
-    "sell" : MessageLookupByLibrary.simpleMessage("Sell")
+    "oneMonth" : MessageLookupByLibrary.simpleMessage("1M"),
+    "oneWeek" : MessageLookupByLibrary.simpleMessage("1W"),
+    "oneYear" : MessageLookupByLibrary.simpleMessage("1Y"),
+    "sell" : MessageLookupByLibrary.simpleMessage("Sell"),
+    "sixMonth" : MessageLookupByLibrary.simpleMessage("6M"),
+    "threeMonth" : MessageLookupByLibrary.simpleMessage("3M")
   };
 }

@@ -6,5 +6,10 @@
   "nb": "НБРБ",
   "bcse": "БВФБ",
   "sell": "Продать",
-  "buy": "Купить"
+  "buy": "Купить",
+  "oneWeek": "7Д",
+  "oneMonth": "1М",
+  "threeMonth": "3М",
+  "sixMonth": "6М",
+  "oneYear": "1Г"
 }

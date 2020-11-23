@@ -104,6 +104,56 @@ class S {
       args: [],
     );
   }
+
+  /// `7Д`
+  String get oneWeek {
+    return Intl.message(
+      '7Д',
+      name: 'oneWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1М`
+  String get oneMonth {
+    return Intl.message(
+      '1М',
+      name: 'oneMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3М`
+  String get threeMonth {
+    return Intl.message(
+      '3М',
+      name: 'threeMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `6М`
+  String get sixMonth {
+    return Intl.message(
+      '6М',
+      name: 'sixMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1Г`
+  String get oneYear {
+    return Intl.message(
+      '1Г',
+      name: 'oneYear',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

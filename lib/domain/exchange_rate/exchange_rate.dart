@@ -23,4 +23,8 @@ abstract class ExchangeRate implements _$ExchangeRate {
     @required double sell,
     @required double sellDiff,
   }) = _ExchangeRate;
+
+  String get currencyFullName {
+    return amount != 1 ? '${amount.toInt()} $namePlural' : name;
+  }
 }

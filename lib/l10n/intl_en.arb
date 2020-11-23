@@ -6,5 +6,10 @@
   "nb": "NB",
   "bcse": "BCSE",
   "sell": "Sell",
-  "buy": "Buy"
+  "buy": "Buy",
+  "oneWeek": "1W",
+  "oneMonth": "1M",
+  "threeMonth": "3M",
+  "sixMonth": "6M",
+  "oneYear": "1Y"
 }

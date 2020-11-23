@@ -27,12 +27,13 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
   @override
   Widget build(BuildContext context) {
     final exchangeRate = widget._exchangeRate;
-    final exchangeRateName = exchangeRate.amount != 1
-        ? '${exchangeRate.amount.toInt()} ${exchangeRate.namePlural}'
-        : exchangeRate.name;
     return GestureDetector(
       onTap: () {
-        showCurrencyInfo(context, exchangeRate);
+        showCurrencyInfo(
+          context,
+          exchangeRate,
+          _currencySource,
+        );
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +52,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
                   ),
                 ),
                 Text(
-                  exchangeRateName,
+                  exchangeRate.currencyFullName,
                   style: const TextStyle(
                     color: Colors.grey,
                   ),

@@ -86,13 +86,17 @@ extension CurrencySourceExtension on CurrencySource {
     return diff == 0
         ? greyColor
         : diff > 0
-            ? greenColor
-            : redColor;
+            ? redColor
+            : greenColor;
   }
 
   Color getColor(ExchangeRate exchangeRate) {
     final diff = getDiffValue(exchangeRate);
     return _getDiffColor(diff);
+  }
+
+  Color getNbDiffColor(ExchangeRate exchangeRate) {
+    return _getDiffColor(exchangeRate.nbDiff);
   }
 
   charts.Color getChartColor(ExchangeRate exchangeRate) {
