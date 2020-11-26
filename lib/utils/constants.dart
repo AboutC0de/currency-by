@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const String dateFormat = 'dd MMMM';
+
 const greenColor = Color(0xFF36c759);
 const redColor = Color(0xFFfe3c30);
 

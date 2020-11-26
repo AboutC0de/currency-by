@@ -9,6 +9,7 @@ import 'exchange_rate_dto.dart';
 
 const String oneDayCollection = '1D';
 const String monthAllCurrenciesCollection = 'monthAllCurrency';
+const String oneYearCollection = '1Y';
 
 @LazySingleton(as: IExchangeRateRepository)
 class ExchangeRateRepository implements IExchangeRateRepository {
@@ -18,29 +19,26 @@ class ExchangeRateRepository implements IExchangeRateRepository {
 
   @override
   Future<List<ExchangeRate>> getTodayExchangeRates() async {
-    final exchangeRates = await _firestore
+    final documentSnapshot = await _firestore
         .collection(oneDayCollection)
         .doc('exchangeRates')
         .get();
-    final result = exchangeRates
-        .data()
-        .values
-        .toList()[0]
+    return documentSnapshot
+        .data()['exchangeRates']
         .map((rate) =>
             ExchangeRateDTO.fromJson(rate as Map<String, dynamic>).toDomain())
         .cast<ExchangeRate>()
-        .toList();
-    return result as List<ExchangeRate>;
+        .toList() as List<ExchangeRate>;
   }
 
   @override
   Future<Map<String, List<OneDayExchangeRate>>>
       getCurrentWeekExchangeRates() async {
-    final exchangeRates = await _firestore
+    final documentSnapshot = await _firestore
         .collection(monthAllCurrenciesCollection)
         .doc('exchangeRates')
         .get();
-    return exchangeRates
+    return documentSnapshot
         .data()
         .map((currency, value) => MapEntry(
               currency,
@@ -52,5 +50,19 @@ class ExchangeRateRepository implements IExchangeRateRepository {
                   .toList(),
             ))
         .cast<String, List<OneDayExchangeRate>>();
+  }
+
+  @override
+  Future<List<OneDayExchangeRate>> getOneYearExchangeRateByCurrency(
+      String currency) async {
+    final documentSnapshot =
+        await _firestore.collection(oneYearCollection).doc(currency).get();
+    return documentSnapshot
+        .data()['exchangeRates']
+        .map((rate) =>
+            OneDayExchangeRateDTO.fromJson(rate as Map<String, dynamic>)
+                .toDomain())
+        .cast<OneDayExchangeRate>()
+        .toList() as List<OneDayExchangeRate>;
   }
 }

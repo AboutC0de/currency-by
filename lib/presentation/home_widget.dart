@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../generated/l10n.dart';
+import '../utils/constants.dart';
 import 'one_day_exchange_rate_widget.dart';
+import 'widgets/loading_progress_indicator.dart';
 
 class HomeWidget extends StatelessWidget {
   @override
@@ -32,7 +34,7 @@ class HomeWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    DateFormat('dd MMMM').format(DateTime.now()).toString(),
+                    DateFormat(dateFormat).format(DateTime.now()).toString(),
                     style: const TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,
@@ -65,17 +67,7 @@ class HomeWidget extends StatelessWidget {
             },
           ),
         ),
-        loading: () => Container(
-          color: Theme.of(context).accentColor,
-          child: Center(
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                accentColor: Colors.white,
-              ),
-              child: const CircularProgressIndicator(),
-            ),
-          ),
-        ),
+        loading: () => LoadingProgressIndicator(),
       ),
     );
   }

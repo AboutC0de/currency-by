@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import 'application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
 import 'application/exchange_rate/exchange_rate_bloc.dart';
 import 'infrastructure/exchange_rate/exchange_rate_repository.dart';
 import 'infrastructure/core/firebase_injectable_module.dart';
@@ -26,6 +27,8 @@ GetIt $initGetIt(
   gh.lazySingleton<FirebaseFirestore>(() => firebaseInjectableModule.firestore);
   gh.lazySingleton<IExchangeRateRepository>(
       () => ExchangeRateRepository(get<FirebaseFirestore>()));
+  gh.factory<CurrencyExchangeRateBloc>(
+      () => CurrencyExchangeRateBloc(get<IExchangeRateRepository>()));
   gh.factory<ExchangeRateBloc>(
       () => ExchangeRateBloc(get<IExchangeRateRepository>()));
   return get;
