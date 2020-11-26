@@ -21,4 +21,21 @@ extension ChartPeriodExtension on ChartPeriod {
         return S.of(context).oneWeek;
     }
   }
+
+  int getAmountOfDays(int max) {
+    switch (this) {
+      case ChartPeriod.oneWeek:
+        return max < 7 ? max : 7;
+      case ChartPeriod.oneMonth:
+        return max < 31 ? max : 31;
+      case ChartPeriod.threeMonth:
+        return max < 90 ? max : 90;
+      case ChartPeriod.sixMonth:
+        return max < 180 ? max : 180;
+      case ChartPeriod.oneYear:
+        return max < 365 ? max : 365;
+      default:
+        return max;
+    }
+  }
 }

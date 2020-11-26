@@ -42,7 +42,7 @@ void showCurrencyInfo(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
                       children: [
                         Text(
                           exchangeRate.currencyCode,
@@ -105,7 +105,8 @@ void showCurrencyInfo(
                   ],
                 ),
                 CurrencyInfoCharts(
-                  exchangeRate: exchangeRate,
+                  chartColor: source.getChartColor(exchangeRate),
+                  gradientColor: source.getColor(exchangeRate),
                 ),
               ],
             ),
