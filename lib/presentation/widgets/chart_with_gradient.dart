@@ -1,11 +1,18 @@
+import 'package:charts_common/common.dart' as common
+    show BasicDateTimeTickFormatterSpec;
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 
 class ChartWithGradient extends StatelessWidget {
   final charts.Color color;
   final Color gradientColor;
+  final bool showAxisData;
+
   final List<charts.ChartBehavior> behaviors;
-  final List<charts.Series<dynamic, DateTime>> series;
+  final List<charts.Series<OneDayExchangeRate, DateTime>> series;
 
   const ChartWithGradient({
     Key key,
@@ -13,6 +20,7 @@ class ChartWithGradient extends StatelessWidget {
     @required this.gradientColor,
     @required this.behaviors,
     @required this.series,
+    this.showAxisData = false,
   }) : super(key: key);
 
   @override
@@ -58,16 +66,38 @@ class ChartWithGradient extends StatelessWidget {
           charts.TimeSeriesChart(
             series,
             animate: false,
-            primaryMeasureAxis: const charts.NumericAxisSpec(
-              renderSpec: charts.NoneRenderSpec(),
-              tickProviderSpec: charts.BasicNumericTickProviderSpec(
+            primaryMeasureAxis: charts.NumericAxisSpec(
+              renderSpec: !showAxisData ? const charts.NoneRenderSpec() : null,
+              tickProviderSpec: const charts.BasicNumericTickProviderSpec(
                 zeroBound: false,
+              ),
+              tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
+                (measure) => (measure / 10000).toStringAsFixed(1),
               ),
               showAxisLine: false,
             ),
-            domainAxis: const charts.DateTimeAxisSpec(
-              renderSpec: charts.NoneRenderSpec(),
+            domainAxis: charts.DateTimeAxisSpec(
+              renderSpec: !showAxisData
+                  ? const charts.NoneRenderSpec()
+                  : charts.GridlineRendererSpec(),
               showAxisLine: false,
+              tickFormatterSpec:
+                  common.BasicDateTimeTickFormatterSpec.fromDateFormat(
+                DateFormat('dd MMM'),
+              ),
+              tickProviderSpec: charts.StaticDateTimeTickProviderSpec(
+                [
+                  charts.TickSpec(
+                    series.first.data[0].nbDate,
+                  ),
+                  charts.TickSpec(
+                    series.first.data[1].nbDate,
+                  ),
+                  charts.TickSpec(
+                    series.first.data[5].nbDate,
+                  ),
+                ],
+              ),
             ),
             behaviors: behaviors,
           ),

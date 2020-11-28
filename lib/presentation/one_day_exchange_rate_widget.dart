@@ -139,6 +139,7 @@ class _ExchangeRateChart extends StatelessWidget {
       gradientColor: currencySource.getColor(exchangeRate),
       behaviors: behaviors,
       series: series,
+      showAxisData: true,
     );
   }
 }
