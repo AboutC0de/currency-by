@@ -1,4 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:currency_by/presentation/widgets/chart_with_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -133,59 +134,11 @@ class _ExchangeRateChart extends StatelessWidget {
       )
     ];
 
-    return Stack(
-      children: [
-        ShaderMask(
-          shaderCallback: (Rect bounds) {
-            return LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                currencySource.getColor(exchangeRate),
-                Colors.transparent,
-              ],
-            ).createShader(bounds);
-          },
-          blendMode: BlendMode.dstIn,
-          child: charts.TimeSeriesChart(
-            series,
-            defaultRenderer: charts.LineRendererConfig(
-              areaOpacity: 0.2,
-              includeArea: true,
-              stacked: true,
-            ),
-            animate: false,
-            primaryMeasureAxis: const charts.NumericAxisSpec(
-              renderSpec: charts.NoneRenderSpec(),
-              tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                zeroBound: false,
-              ),
-              showAxisLine: false,
-            ),
-            domainAxis: const charts.DateTimeAxisSpec(
-              renderSpec: charts.NoneRenderSpec(),
-              showAxisLine: false,
-            ),
-            behaviors: behaviors,
-          ),
-        ),
-        charts.TimeSeriesChart(
-          series,
-          animate: false,
-          primaryMeasureAxis: const charts.NumericAxisSpec(
-            renderSpec: charts.NoneRenderSpec(),
-            tickProviderSpec: charts.BasicNumericTickProviderSpec(
-              zeroBound: false,
-            ),
-            showAxisLine: false,
-          ),
-          domainAxis: const charts.DateTimeAxisSpec(
-            renderSpec: charts.NoneRenderSpec(),
-            showAxisLine: false,
-          ),
-          behaviors: behaviors,
-        ),
-      ],
+    return ChartWithGradient(
+      color: currencySource.getChartColor(exchangeRate),
+      gradientColor: currencySource.getColor(exchangeRate),
+      behaviors: behaviors,
+      series: series,
     );
   }
 }
