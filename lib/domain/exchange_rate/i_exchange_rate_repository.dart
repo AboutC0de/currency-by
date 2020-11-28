@@ -6,5 +6,8 @@ abstract class IExchangeRateRepository {
 
   Future<Map<String, List<OneDayExchangeRate>>> getCurrentWeekExchangeRates();
 
-  Future<List<OneDayExchangeRate>> getOneYearExchangeRateByCurrency(String currency);
+  Future<List<OneDayExchangeRate>> getOneYearExchangeRateByCurrency(
+      String currency);
+
+  Stream<List<ExchangeRate>> subscribeOnCurrencyChanges();
 }

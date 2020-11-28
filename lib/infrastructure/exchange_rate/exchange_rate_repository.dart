@@ -10,6 +10,7 @@ import 'exchange_rate_dto.dart';
 const String oneDayCollection = '1D';
 const String monthAllCurrenciesCollection = 'monthAllCurrency';
 const String oneYearCollection = '1Y';
+const String documentId = 'exchangeRates';
 
 @LazySingleton(as: IExchangeRateRepository)
 class ExchangeRateRepository implements IExchangeRateRepository {
@@ -19,10 +20,8 @@ class ExchangeRateRepository implements IExchangeRateRepository {
 
   @override
   Future<List<ExchangeRate>> getTodayExchangeRates() async {
-    final documentSnapshot = await _firestore
-        .collection(oneDayCollection)
-        .doc('exchangeRates')
-        .get();
+    final documentSnapshot =
+        await _firestore.collection(oneDayCollection).doc(documentId).get();
     return documentSnapshot
         .data()['exchangeRates']
         .map((rate) =>
@@ -64,5 +63,20 @@ class ExchangeRateRepository implements IExchangeRateRepository {
                 .toDomain())
         .cast<OneDayExchangeRate>()
         .toList() as List<OneDayExchangeRate>;
+  }
+
+  @override
+  Stream<List<ExchangeRate>> subscribeOnCurrencyChanges() {
+    return _firestore
+        .collection(oneDayCollection)
+        .doc(documentId)
+        .snapshots()
+        .map((snapshot) => snapshot
+            .data()['exchangeRates']
+            .map((rate) =>
+                ExchangeRateDTO.fromJson(rate as Map<String, dynamic>)
+                    .toDomain())
+            .cast<ExchangeRate>()
+            .toList() as List<ExchangeRate>);
   }
 }

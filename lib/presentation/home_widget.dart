@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
+import '../domain/exchange_rate/exchange_rate.dart';
 import '../generated/l10n.dart';
 import '../utils/constants.dart';
 import 'one_day_exchange_rate_widget.dart';
@@ -48,16 +49,16 @@ class HomeWidget extends StatelessWidget {
       ),
       body: bloc.state.when(
         initial: () => const Text('initial'),
-        loaded: () => Container(
+        loaded: (List<ExchangeRate> rates) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return OneDayExchangeRateWidget(
-                exchangeRate: bloc.exchangeRates[index],
+                exchangeRate: rates[index],
               );
             },
-            itemCount: bloc.exchangeRates.length,
+            itemCount: rates.length,
             separatorBuilder: (BuildContext context, int index) {
               return Column(
                 children: const [

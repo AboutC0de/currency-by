@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,20 +18,18 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
   List<ExchangeRate> _exchangeRates;
   Map<String, List<OneDayExchangeRate>> _weekExchangeRates;
 
+  StreamSubscription<dynamic> _currencyChangesSubscription;
+
   ExchangeRateBloc(this._exchangeRateRepository)
       : super(const ExchangeRateState.initial()) {
     _getAllData();
+    _subscribeOnCurrencyChanges();
   }
 
   Future<void> _getAllData() async {
     emit(const ExchangeRateState.loading());
-    await _getTodayExchangeRates();
     await _getCurrentWeekExchangeRates();
-    emit(const ExchangeRateState.loaded());
-  }
-
-  Future<void> _getTodayExchangeRates() async {
-    _exchangeRates = await _exchangeRateRepository.getTodayExchangeRates();
+    emit(ExchangeRateState.loaded(_exchangeRates));
   }
 
   Future<void> _getCurrentWeekExchangeRates() async {
@@ -37,8 +37,24 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
         await _exchangeRateRepository.getCurrentWeekExchangeRates();
   }
 
-  List<ExchangeRate> get exchangeRates => _exchangeRates;
+  void _subscribeOnCurrencyChanges() {
+    _currencyChangesSubscription =
+        _exchangeRateRepository.subscribeOnCurrencyChanges().listen(
+      (exchangeRates) {
+        _exchangeRates = exchangeRates;
+        if (state != const ExchangeRateState.loading()) {
+          emit(ExchangeRateState.loaded(exchangeRates));
+        }
+      },
+    );
+  }
 
   Map<String, List<OneDayExchangeRate>> get weekExchangeRates =>
       _weekExchangeRates;
+
+  @override
+  Future<void> close() async {
+    await _currencyChangesSubscription?.cancel();
+    return super.close();
+  }
 }

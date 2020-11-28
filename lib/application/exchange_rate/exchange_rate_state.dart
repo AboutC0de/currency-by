@@ -6,5 +6,5 @@ abstract class ExchangeRateState with _$ExchangeRateState {
 
   const factory ExchangeRateState.loading() = Loading;
 
-  const factory ExchangeRateState.loaded() = Loaded;
+  const factory ExchangeRateState.loaded(List<ExchangeRate> rates) = Loaded;
 }

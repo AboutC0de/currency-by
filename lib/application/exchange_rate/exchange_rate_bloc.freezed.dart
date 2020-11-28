@@ -24,8 +24,10 @@ class _$ExchangeRateStateTearOff {
   }
 
 // ignore: unused_element
-  Loaded loaded() {
-    return const Loaded();
+  Loaded loaded(List<ExchangeRate> rates) {
+    return Loaded(
+      rates,
+    );
   }
 }
 
@@ -39,13 +41,13 @@ mixin _$ExchangeRateState {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loading(),
-    @required Result loaded(),
+    @required Result loaded(List<ExchangeRate> rates),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loading(),
-    Result loaded(),
+    Result loaded(List<ExchangeRate> rates),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -118,7 +120,7 @@ class _$Initial implements Initial {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loading(),
-    @required Result loaded(),
+    @required Result loaded(List<ExchangeRate> rates),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -131,7 +133,7 @@ class _$Initial implements Initial {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loading(),
-    Result loaded(),
+    Result loaded(List<ExchangeRate> rates),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -212,7 +214,7 @@ class _$Loading implements Loading {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loading(),
-    @required Result loaded(),
+    @required Result loaded(List<ExchangeRate> rates),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -225,7 +227,7 @@ class _$Loading implements Loading {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loading(),
-    Result loaded(),
+    Result loaded(List<ExchangeRate> rates),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -272,6 +274,7 @@ abstract class Loading implements ExchangeRateState {
 abstract class $LoadedCopyWith<$Res> {
   factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) then) =
       _$LoadedCopyWithImpl<$Res>;
+  $Res call({List<ExchangeRate> rates});
 }
 
 /// @nodoc
@@ -282,36 +285,56 @@ class _$LoadedCopyWithImpl<$Res> extends _$ExchangeRateStateCopyWithImpl<$Res>
 
   @override
   Loaded get _value => super._value as Loaded;
+
+  @override
+  $Res call({
+    Object rates = freezed,
+  }) {
+    return _then(Loaded(
+      rates == freezed ? _value.rates : rates as List<ExchangeRate>,
+    ));
+  }
 }
 
 /// @nodoc
 class _$Loaded implements Loaded {
-  const _$Loaded();
+  const _$Loaded(this.rates) : assert(rates != null);
+
+  @override
+  final List<ExchangeRate> rates;
 
   @override
   String toString() {
-    return 'ExchangeRateState.loaded()';
+    return 'ExchangeRateState.loaded(rates: $rates)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loaded);
+    return identical(this, other) ||
+        (other is Loaded &&
+            (identical(other.rates, rates) ||
+                const DeepCollectionEquality().equals(other.rates, rates)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(rates);
+
+  @override
+  $LoadedCopyWith<Loaded> get copyWith =>
+      _$LoadedCopyWithImpl<Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loading(),
-    @required Result loaded(),
+    @required Result loaded(List<ExchangeRate> rates),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
-    return loaded();
+    return loaded(rates);
   }
 
   @override
@@ -319,12 +342,12 @@ class _$Loaded implements Loaded {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loading(),
-    Result loaded(),
+    Result loaded(List<ExchangeRate> rates),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (loaded != null) {
-      return loaded();
+      return loaded(rates);
     }
     return orElse();
   }
@@ -359,5 +382,8 @@ class _$Loaded implements Loaded {
 }
 
 abstract class Loaded implements ExchangeRateState {
-  const factory Loaded() = _$Loaded;
+  const factory Loaded(List<ExchangeRate> rates) = _$Loaded;
+
+  List<ExchangeRate> get rates;
+  $LoadedCopyWith<Loaded> get copyWith;
 }
