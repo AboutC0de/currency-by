@@ -84,21 +84,23 @@ void showCurrencyInfo(
                 ),
                 const DividerWithPadding(),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
                     Text(
                       exchangeRate.nb.toString(),
                       style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     Text(
-                      exchangeRate.nbDiff.toString(),
+                      source.getDiff(exchangeRate),
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 12,
                         color: source.getNbDiffColor(exchangeRate),
                       ),
                     )

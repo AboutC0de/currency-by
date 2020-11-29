@@ -57,8 +57,12 @@ extension CurrencySourceExtension on CurrencySource {
 
   String getDiff(ExchangeRate exchangeRate) {
     final diff = getDiffValue(exchangeRate);
-    final sign = diff > 0 ? '+' : '';
-    return sign + diff.toStringAsFixed(4);
+    final sign = diff == 0
+        ? ''
+        : diff > 0
+            ? '+'
+            : '-';
+    return sign + diff.abs().toStringAsFixed(4);
   }
 
   String getDate(ExchangeRate exchangeRate) {

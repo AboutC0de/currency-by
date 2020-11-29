@@ -63,29 +63,25 @@ class _CurrencyChanges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Container(
-          width: 50,
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(2.0),
-            ),
-            color: color,
+    return Container(
+      width: 50,
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(2.0),
+        ),
+        color: color,
+      ),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          diff,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 12,
           ),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              diff,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-              ),
-            ),
-          ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
