@@ -85,6 +85,8 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
           ChartWithGradient(
             color: widget.chartColor,
             gradientColor: widget.gradientColor,
+            showAxisData: true,
+            period: chartPeriod,
             series: [
               charts.Series<OneDayExchangeRate, DateTime>(
                 id: 'currency',

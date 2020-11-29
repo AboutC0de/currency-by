@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
+import '../../infrastructure/exchange_rate/chart_period.dart';
+import '../../utils/constants.dart';
 
 class ChartWithGradient extends StatelessWidget {
   final charts.Color color;
   final Color gradientColor;
   final bool showAxisData;
+  final ChartPeriod period;
 
   final List<charts.ChartBehavior> behaviors;
   final List<charts.Series<OneDayExchangeRate, DateTime>> series;
@@ -21,6 +24,7 @@ class ChartWithGradient extends StatelessWidget {
     @required this.behaviors,
     @required this.series,
     this.showAxisData = false,
+    this.period = ChartPeriod.oneWeek,
   }) : super(key: key);
 
   @override
@@ -49,16 +53,46 @@ class ChartWithGradient extends StatelessWidget {
                 stacked: true,
               ),
               animate: false,
-              primaryMeasureAxis: const charts.NumericAxisSpec(
-                renderSpec: charts.NoneRenderSpec(),
-                tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                  zeroBound: false,
+              primaryMeasureAxis: charts.NumericAxisSpec(
+                renderSpec: !showAxisData
+                    ? const charts.NoneRenderSpec()
+                    : charts.GridlineRendererSpec(
+                        lineStyle: charts.LineStyleSpec(
+                          thickness: 0,
+                          color: charts.Color.fromHex(code: greyHexColorString),
+                        ),
+                        axisLineStyle: const charts.LineStyleSpec(
+                          thickness: 0,
+                        ),
+                        tickLengthPx: 15,
+                        labelJustification:
+                            charts.TickLabelJustification.inside,
+                        labelOffsetFromAxisPx: 20,
+                      ),
+                tickProviderSpec: const charts.BasicNumericTickProviderSpec(
+                    zeroBound: false, desiredTickCount: 4),
+                tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
+                  (measure) => (measure / 10000).toStringAsFixed(2),
                 ),
                 showAxisLine: false,
               ),
-              domainAxis: const charts.DateTimeAxisSpec(
-                renderSpec: charts.NoneRenderSpec(),
+              domainAxis: charts.DateTimeAxisSpec(
+                renderSpec: !showAxisData
+                    ? const charts.NoneRenderSpec()
+                    : charts.GridlineRendererSpec(
+                        lineStyle: charts.LineStyleSpec(
+                          thickness: 0,
+                          color: charts.Color.fromHex(code: greyHexColorString),
+                        ),
+                      ),
                 showAxisLine: false,
+                tickFormatterSpec:
+                    common.BasicDateTimeTickFormatterSpec.fromDateFormat(
+                  DateFormat(period.getDateFormat()),
+                ),
+                tickProviderSpec: charts.DayTickProviderSpec(
+                  increments: [period.getChartDaysPeriod()],
+                ),
               ),
               behaviors: behaviors,
             ),
@@ -67,36 +101,36 @@ class ChartWithGradient extends StatelessWidget {
             series,
             animate: false,
             primaryMeasureAxis: charts.NumericAxisSpec(
-              renderSpec: !showAxisData ? const charts.NoneRenderSpec() : null,
+              renderSpec: !showAxisData
+                  ? const charts.NoneRenderSpec()
+                  : const charts.SmallTickRendererSpec(
+                      lineStyle: charts.LineStyleSpec(
+                        color: charts.Color.transparent,
+                      ),
+                      labelOffsetFromAxisPx: 20,
+                    ),
               tickProviderSpec: const charts.BasicNumericTickProviderSpec(
-                zeroBound: false,
-              ),
+                  zeroBound: false, desiredTickCount: 4),
               tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
-                (measure) => (measure / 10000).toStringAsFixed(1),
+                (measure) => (measure / 10000).toStringAsFixed(2),
               ),
               showAxisLine: false,
             ),
             domainAxis: charts.DateTimeAxisSpec(
               renderSpec: !showAxisData
                   ? const charts.NoneRenderSpec()
-                  : charts.GridlineRendererSpec(),
+                  : const charts.SmallTickRendererSpec(
+                      lineStyle: charts.LineStyleSpec(
+                        color: charts.Color.transparent,
+                      ),
+                    ),
               showAxisLine: false,
               tickFormatterSpec:
                   common.BasicDateTimeTickFormatterSpec.fromDateFormat(
-                DateFormat('dd MMM'),
+                DateFormat(period.getDateFormat()),
               ),
-              tickProviderSpec: charts.StaticDateTimeTickProviderSpec(
-                [
-                  charts.TickSpec(
-                    series.first.data[0].nbDate,
-                  ),
-                  charts.TickSpec(
-                    series.first.data[1].nbDate,
-                  ),
-                  charts.TickSpec(
-                    series.first.data[5].nbDate,
-                  ),
-                ],
+              tickProviderSpec: charts.DayTickProviderSpec(
+                increments: [period.getChartDaysPeriod()],
               ),
             ),
             behaviors: behaviors,

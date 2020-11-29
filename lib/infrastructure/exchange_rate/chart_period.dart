@@ -38,4 +38,38 @@ extension ChartPeriodExtension on ChartPeriod {
         return max;
     }
   }
+
+  String getDateFormat() {
+    switch (this) {
+      case ChartPeriod.oneWeek:
+        return 'd';
+      case ChartPeriod.oneMonth:
+        return 'd';
+      case ChartPeriod.threeMonth:
+        return 'MMM';
+      case ChartPeriod.sixMonth:
+        return 'MMM';
+      case ChartPeriod.oneYear:
+        return 'MMM';
+      default:
+        return 'dd';
+    }
+  }
+
+  int getChartDaysPeriod() {
+    switch (this) {
+      case ChartPeriod.oneWeek:
+        return 1;
+      case ChartPeriod.oneMonth:
+        return 6;
+      case ChartPeriod.threeMonth:
+        return 31;
+      case ChartPeriod.sixMonth:
+        return 31;
+      case ChartPeriod.oneYear:
+        return 160;
+      default:
+        return 2;
+    }
+  }
 }
