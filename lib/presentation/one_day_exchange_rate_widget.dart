@@ -1,5 +1,4 @@
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:currency_by/presentation/widgets/chart_with_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,8 +6,10 @@ import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../infrastructure/currency_source.dart';
+import '../utils/constants.dart';
 import 'currency_info.dart';
 import 'exchange_rate_widget.dart';
+import 'widgets/chart_with_gradient.dart';
 
 class OneDayExchangeRateWidget extends StatefulWidget {
   final ExchangeRate _exchangeRate;
@@ -47,16 +48,21 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
                 Text(
                   exchangeRate.currencyCode,
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 17,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text(
                   exchangeRate.currencyFullName,
                   style: const TextStyle(
-                    color: Colors.grey,
+                    color: greyColor,
+                    fontSize: 14,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -71,14 +77,14 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
               ),
             ),
           ),
-          Expanded(
-            flex: 3,
+          SizedBox(
+            width: 70,
             child: ExchangeRateWidget(
               diff: _currencySource.getDiff(exchangeRate),
               color: _currencySource.getColor(exchangeRate),
               label:
                   '${_currencySource.getTranslation(context)}: ${_currencySource.getDate(exchangeRate)}',
-              value: _currencySource.getValue(exchangeRate).toString(),
+              value: _currencySource.getValue(exchangeRate).toStringAsFixed(4),
               onSourceChange: onSourceChange,
             ),
           ),

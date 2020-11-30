@@ -41,42 +41,45 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
         const DividerWithPadding(
           padding: 2,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ...ChartPeriod.values
-                .map(
-                  (period) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        chartPeriod = period;
-                      });
-                    },
-                    child: Container(
-                      width: 27,
-                      height: 27,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: period == chartPeriod
-                            ? backgroundGreyColor
-                            : Colors.transparent,
-                      ),
-                      child: Text(
-                        period.getTranslations(context),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: period == chartPeriod
-                              ? FontWeight.bold
-                              : FontWeight.normal,
+        SizedBox(
+          height: 30,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ...ChartPeriod.values
+                  .map(
+                    (period) => GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          chartPeriod = period;
+                        });
+                      },
+                      child: Container(
+                        width: 27,
+                        height: 27,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: period == chartPeriod
+                              ? backgroundGreyColor
+                              : Colors.transparent,
+                        ),
+                        child: Text(
+                          period.getTranslations(context),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: period == chartPeriod
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
-                .toList(),
-          ],
+                  )
+                  .toList(),
+            ],
+          ),
         ),
         const DividerWithPadding(padding: 2),
         if (bloc.state == const CurrencyExchangeRateState.loading())

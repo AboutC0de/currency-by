@@ -48,14 +48,20 @@ class HomeWidget extends StatelessWidget {
         ),
       ),
       body: bloc.state.when(
-        initial: () => const Text('initial'),
+        initial: () => LoadingProgressIndicator(),
         loaded: (List<ExchangeRate> rates) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return OneDayExchangeRateWidget(
-                exchangeRate: rates[index],
+              return Padding(
+                padding: EdgeInsets.only(
+                  top: index == 0 ? 10 : 0,
+                  bottom: index == rates.length - 1 ? 30 : 0,
+                ),
+                child: OneDayExchangeRateWidget(
+                  exchangeRate: rates[index],
+                ),
               );
             },
             itemCount: rates.length,

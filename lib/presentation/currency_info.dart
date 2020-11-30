@@ -33,8 +33,8 @@ void showCurrencyInfo(
           height: MediaQuery.of(context).size.height * 0.80,
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 16,
+              vertical: 16,
+              horizontal: 26,
             ),
             child: Column(
               children: [
@@ -48,8 +48,8 @@ void showCurrencyInfo(
                           exchangeRate.currencyCode,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 27,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                         const SizedBox(
@@ -60,8 +60,9 @@ void showCurrencyInfo(
                               exchangeRate.currencyFullName.substring(1),
                           style: const TextStyle(
                             color: greyColor,
-                            fontSize: 14,
+                            fontSize: 17,
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -82,29 +83,32 @@ void showCurrencyInfo(
                     ),
                   ],
                 ),
-                const DividerWithPadding(),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  children: [
-                    Text(
-                      exchangeRate.nb.toString(),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                const DividerWithPadding(
+                  padding: 0,
+                ),
+                SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      Text(
+                        exchangeRate.nb.toString(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      source.getDiff(exchangeRate),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: source.getNbDiffColor(exchangeRate),
+                      const SizedBox(
+                        width: 5,
                       ),
-                    )
-                  ],
+                      Text(
+                        source.getDiff(exchangeRate),
+                        style: TextStyle(
+                          color: source.getNbDiffColor(exchangeRate),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 CurrencyInfoCharts(
                   chartColor: source.getChartColor(exchangeRate),

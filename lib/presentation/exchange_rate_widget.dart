@@ -28,19 +28,16 @@ class ExchangeRateWidget extends StatelessWidget {
             style: const TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.w400,
-              fontSize: 7,
+              fontSize: 10,
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const SizedBox(width: 1),
-              Text(
-                value,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ],
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
           _CurrencyChanges(
             diff: diff,
@@ -64,7 +61,7 @@ class _CurrencyChanges extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
+      width: 60,
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
@@ -78,7 +75,7 @@ class _CurrencyChanges extends StatelessWidget {
           diff,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 12,
+            fontSize: 14,
           ),
         ),
       ),

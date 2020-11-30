@@ -13,6 +13,7 @@ class ChartWithGradient extends StatelessWidget {
   final Color gradientColor;
   final bool showAxisData;
   final ChartPeriod period;
+  final int labelOffset;
 
   final List<charts.ChartBehavior> behaviors;
   final List<charts.Series<OneDayExchangeRate, DateTime>> series;
@@ -25,6 +26,7 @@ class ChartWithGradient extends StatelessWidget {
     @required this.series,
     this.showAxisData = false,
     this.period = ChartPeriod.oneWeek,
+    this.labelOffset = 20,
   }) : super(key: key);
 
   @override
@@ -67,7 +69,10 @@ class ChartWithGradient extends StatelessWidget {
                         tickLengthPx: 15,
                         labelJustification:
                             charts.TickLabelJustification.inside,
-                        labelOffsetFromAxisPx: 20,
+                        labelOffsetFromAxisPx: labelOffset,
+                        labelStyle: const charts.TextStyleSpec(
+                          color: charts.Color.white,
+                        ),
                       ),
                 tickProviderSpec: const charts.BasicNumericTickProviderSpec(
                     zeroBound: false, desiredTickCount: 4),
@@ -83,6 +88,9 @@ class ChartWithGradient extends StatelessWidget {
                         lineStyle: charts.LineStyleSpec(
                           thickness: 0,
                           color: charts.Color.fromHex(code: greyHexColorString),
+                        ),
+                        labelStyle: const charts.TextStyleSpec(
+                          color: charts.Color.white,
                         ),
                       ),
                 showAxisLine: false,
@@ -103,11 +111,14 @@ class ChartWithGradient extends StatelessWidget {
             primaryMeasureAxis: charts.NumericAxisSpec(
               renderSpec: !showAxisData
                   ? const charts.NoneRenderSpec()
-                  : const charts.SmallTickRendererSpec(
-                      lineStyle: charts.LineStyleSpec(
+                  : charts.SmallTickRendererSpec(
+                      lineStyle: const charts.LineStyleSpec(
                         color: charts.Color.transparent,
                       ),
-                      labelOffsetFromAxisPx: 20,
+                      labelStyle: const charts.TextStyleSpec(
+                        color: charts.Color.white,
+                      ),
+                      labelOffsetFromAxisPx: labelOffset,
                     ),
               tickProviderSpec: const charts.BasicNumericTickProviderSpec(
                   zeroBound: false, desiredTickCount: 4),
@@ -122,6 +133,9 @@ class ChartWithGradient extends StatelessWidget {
                   : const charts.SmallTickRendererSpec(
                       lineStyle: charts.LineStyleSpec(
                         color: charts.Color.transparent,
+                      ),
+                      labelStyle: charts.TextStyleSpec(
+                        color: charts.Color.white,
                       ),
                     ),
               showAxisLine: false,
