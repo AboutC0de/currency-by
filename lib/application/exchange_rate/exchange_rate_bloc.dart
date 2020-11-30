@@ -28,13 +28,13 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
 
   Future<void> _getAllData() async {
     emit(const ExchangeRateState.loading());
-    await _getCurrentWeekExchangeRates();
+    await _getCurrentMonthExchangeRates();
     emit(ExchangeRateState.loaded(_exchangeRates));
   }
 
-  Future<void> _getCurrentWeekExchangeRates() async {
+  Future<void> _getCurrentMonthExchangeRates() async {
     _weekExchangeRates =
-        await _exchangeRateRepository.getCurrentWeekExchangeRates();
+        await _exchangeRateRepository.getCurrentMonthExchangeRates();
   }
 
   void _subscribeOnCurrencyChanges() {

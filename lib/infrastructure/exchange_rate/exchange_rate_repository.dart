@@ -32,7 +32,7 @@ class ExchangeRateRepository implements IExchangeRateRepository {
 
   @override
   Future<Map<String, List<OneDayExchangeRate>>>
-      getCurrentWeekExchangeRates() async {
+      getCurrentMonthExchangeRates() async {
     final documentSnapshot = await _firestore
         .collection(monthAllCurrenciesCollection)
         .doc('exchangeRates')
