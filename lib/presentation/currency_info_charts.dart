@@ -85,24 +85,27 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
         if (bloc.state == const CurrencyExchangeRateState.loading())
           LoadingProgressIndicator()
         else
-          ChartWithGradient(
-            color: widget.chartColor,
-            gradientColor: widget.gradientColor,
-            showAxisData: true,
-            period: chartPeriod,
-            series: [
-              charts.Series<OneDayExchangeRate, DateTime>(
-                id: 'currency',
-                colorFn: (_, __) => widget.chartColor,
-                domainFn: (OneDayExchangeRate exchangeRate, _) =>
-                    exchangeRate.nbDate,
-                measureFn: (OneDayExchangeRate exchangeRate, _) =>
-                    exchangeRate.nb * 10000,
-                data: range,
-                strokeWidthPxFn: (_, __) => 1.5,
-              ),
-            ],
-            behaviors: const [],
+          SizedBox(
+            height: 200,
+            child: ChartWithGradient(
+              color: widget.chartColor,
+              gradientColor: widget.gradientColor,
+              showAxisData: true,
+              period: chartPeriod,
+              series: [
+                charts.Series<OneDayExchangeRate, DateTime>(
+                  id: 'currency',
+                  colorFn: (_, __) => widget.chartColor,
+                  domainFn: (OneDayExchangeRate exchangeRate, _) =>
+                      exchangeRate.nbDate,
+                  measureFn: (OneDayExchangeRate exchangeRate, _) =>
+                      exchangeRate.nb * 10000,
+                  data: range,
+                  strokeWidthPxFn: (_, __) => 1.5,
+                ),
+              ],
+              behaviors: const [],
+            ),
           ),
       ],
     );

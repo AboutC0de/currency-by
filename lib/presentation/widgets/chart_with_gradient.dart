@@ -31,94 +31,45 @@ class ChartWithGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Stack(
-        children: [
-          ShaderMask(
-            shaderCallback: (Rect bounds) {
-              return LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  gradientColor,
-                  Colors.transparent,
-                ],
-              ).createShader(bounds);
-            },
-            blendMode: BlendMode.dstIn,
-            child: charts.TimeSeriesChart(
-              series,
-              defaultRenderer: charts.LineRendererConfig(
-                areaOpacity: 0.2,
-                includeArea: true,
-                stacked: true,
-              ),
-              animate: false,
-              primaryMeasureAxis: charts.NumericAxisSpec(
-                renderSpec: !showAxisData
-                    ? const charts.NoneRenderSpec()
-                    : charts.GridlineRendererSpec(
-                        lineStyle: charts.LineStyleSpec(
-                          thickness: 0,
-                          color: charts.Color.fromHex(code: greyHexColorString),
-                        ),
-                        axisLineStyle: const charts.LineStyleSpec(
-                          thickness: 0,
-                        ),
-                        tickLengthPx: 15,
-                        labelJustification:
-                            charts.TickLabelJustification.inside,
-                        labelOffsetFromAxisPx: labelOffset,
-                        labelStyle: const charts.TextStyleSpec(
-                          color: charts.Color.white,
-                        ),
-                      ),
-                tickProviderSpec: const charts.BasicNumericTickProviderSpec(
-                    zeroBound: false, desiredTickCount: 4),
-                tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
-                  (measure) => (measure / 10000).toStringAsFixed(2),
-                ),
-                showAxisLine: false,
-              ),
-              domainAxis: charts.DateTimeAxisSpec(
-                renderSpec: !showAxisData
-                    ? const charts.NoneRenderSpec()
-                    : charts.GridlineRendererSpec(
-                        lineStyle: charts.LineStyleSpec(
-                          thickness: 0,
-                          color: charts.Color.fromHex(code: greyHexColorString),
-                        ),
-                        labelStyle: const charts.TextStyleSpec(
-                          color: charts.Color.white,
-                        ),
-                      ),
-                showAxisLine: false,
-                tickFormatterSpec:
-                    common.BasicDateTimeTickFormatterSpec.fromDateFormat(
-                  DateFormat(period.getDateFormat()),
-                ),
-                tickProviderSpec: charts.DayTickProviderSpec(
-                  increments: [period.getChartDaysPeriod()],
-                ),
-              ),
-              behaviors: behaviors,
-            ),
-          ),
-          charts.TimeSeriesChart(
+    return Stack(
+      children: [
+        ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                gradientColor,
+                Colors.transparent,
+              ],
+            ).createShader(bounds);
+          },
+          blendMode: BlendMode.dstIn,
+          child: charts.TimeSeriesChart(
             series,
+            defaultRenderer: charts.LineRendererConfig(
+              areaOpacity: 0.2,
+              includeArea: true,
+              stacked: true,
+            ),
             animate: false,
             primaryMeasureAxis: charts.NumericAxisSpec(
               renderSpec: !showAxisData
                   ? const charts.NoneRenderSpec()
-                  : charts.SmallTickRendererSpec(
-                      lineStyle: const charts.LineStyleSpec(
-                        color: charts.Color.transparent,
+                  : charts.GridlineRendererSpec(
+                      lineStyle: charts.LineStyleSpec(
+                        thickness: 0,
+                        color: charts.Color.fromHex(code: greyHexColorString),
                       ),
+                      axisLineStyle: const charts.LineStyleSpec(
+                        thickness: 0,
+                      ),
+                      tickLengthPx: 15,
+                      labelJustification: charts.TickLabelJustification.inside,
+                      labelOffsetFromAxisPx: labelOffset,
                       labelStyle: const charts.TextStyleSpec(
                         color: charts.Color.white,
                       ),
-                      labelOffsetFromAxisPx: labelOffset,
                     ),
               tickProviderSpec: const charts.BasicNumericTickProviderSpec(
                   zeroBound: false, desiredTickCount: 4),
@@ -130,11 +81,12 @@ class ChartWithGradient extends StatelessWidget {
             domainAxis: charts.DateTimeAxisSpec(
               renderSpec: !showAxisData
                   ? const charts.NoneRenderSpec()
-                  : const charts.SmallTickRendererSpec(
+                  : charts.GridlineRendererSpec(
                       lineStyle: charts.LineStyleSpec(
-                        color: charts.Color.transparent,
+                        thickness: 0,
+                        color: charts.Color.fromHex(code: greyHexColorString),
                       ),
-                      labelStyle: charts.TextStyleSpec(
+                      labelStyle: const charts.TextStyleSpec(
                         color: charts.Color.white,
                       ),
                     ),
@@ -149,8 +101,52 @@ class ChartWithGradient extends StatelessWidget {
             ),
             behaviors: behaviors,
           ),
-        ],
-      ),
+        ),
+        charts.TimeSeriesChart(
+          series,
+          animate: false,
+          primaryMeasureAxis: charts.NumericAxisSpec(
+            renderSpec: !showAxisData
+                ? const charts.NoneRenderSpec()
+                : charts.SmallTickRendererSpec(
+                    lineStyle: const charts.LineStyleSpec(
+                      color: charts.Color.transparent,
+                    ),
+                    labelStyle: const charts.TextStyleSpec(
+                      color: charts.Color.white,
+                    ),
+                    labelOffsetFromAxisPx: labelOffset,
+                  ),
+            tickProviderSpec: const charts.BasicNumericTickProviderSpec(
+                zeroBound: false, desiredTickCount: 4),
+            tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
+              (measure) => (measure / 10000).toStringAsFixed(2),
+            ),
+            showAxisLine: false,
+          ),
+          domainAxis: charts.DateTimeAxisSpec(
+            renderSpec: !showAxisData
+                ? const charts.NoneRenderSpec()
+                : const charts.SmallTickRendererSpec(
+                    lineStyle: charts.LineStyleSpec(
+                      color: charts.Color.transparent,
+                    ),
+                    labelStyle: charts.TextStyleSpec(
+                      color: charts.Color.white,
+                    ),
+                  ),
+            showAxisLine: false,
+            tickFormatterSpec:
+                common.BasicDateTimeTickFormatterSpec.fromDateFormat(
+              DateFormat(period.getDateFormat()),
+            ),
+            tickProviderSpec: charts.DayTickProviderSpec(
+              increments: [period.getChartDaysPeriod()],
+            ),
+          ),
+          behaviors: behaviors,
+        ),
+      ],
     );
   }
 }
