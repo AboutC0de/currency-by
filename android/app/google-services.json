@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1030892012360:android:b12c2c31901265a51ce97d",
+        "mobilesdk_app_id": "1:1030892012360:android:152f89dbb2c12dc71ce97d",
         "android_client_info": {
-          "package_name": "com.currency_by"
+          "package_name": "com.andrsoft.currency_by"
         }
       },
       "oauth_client": [
