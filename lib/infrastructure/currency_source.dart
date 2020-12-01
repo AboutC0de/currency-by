@@ -1,4 +1,3 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -101,15 +100,5 @@ extension CurrencySourceExtension on CurrencySource {
 
   Color getNbDiffColor(ExchangeRate exchangeRate) {
     return _getDiffColor(exchangeRate.nbDiff);
-  }
-
-  charts.Color getChartColor(ExchangeRate exchangeRate) {
-    final color = _getDiffColor(exchangeRate.nbDiff);
-    return charts.Color(
-      r: color.red,
-      g: color.green,
-      b: color.blue,
-      a: color.alpha,
-    );
   }
 }

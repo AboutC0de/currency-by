@@ -6,7 +6,7 @@ import '../domain/exchange_rate/exchange_rate.dart';
 import '../infrastructure/currency_source.dart';
 import '../injection.dart';
 import '../utils/constants.dart';
-import 'currency_info_charts.dart';
+import 'widgets/chart_fusion.dart';
 import 'widgets/divider_with_paddings.dart';
 
 void showCurrencyInfo(
@@ -110,9 +110,9 @@ void showCurrencyInfo(
                     ],
                   ),
                 ),
-                CurrencyInfoCharts(
-                  chartColor: source.getChartColor(exchangeRate),
-                  gradientColor: source.getColor(exchangeRate),
+                ChartFusion(
+                  color: source.getColor(exchangeRate),
+                  exchangeRates: const [],
                 ),
               ],
             ),

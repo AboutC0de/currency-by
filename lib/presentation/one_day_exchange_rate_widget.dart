@@ -1,15 +1,13 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
-import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../infrastructure/currency_source.dart';
 import '../utils/constants.dart';
 import 'currency_info.dart';
 import 'exchange_rate_widget.dart';
-import 'widgets/chart_with_gradient.dart';
+import 'widgets/chart_fusion.dart';
 
 class OneDayExchangeRateWidget extends StatefulWidget {
   final ExchangeRate _exchangeRate;
@@ -118,33 +116,10 @@ class _ExchangeRateChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.watch<ExchangeRateBloc>();
     final exchangeRates = bloc.weekExchangeRates[exchangeRate.currencyCode];
-    final series = [
-      charts.Series<OneDayExchangeRate, DateTime>(
-        id: 'currency',
-        colorFn: (_, __) => currencySource.getChartColor(exchangeRate),
-        domainFn: (OneDayExchangeRate exchangeRate, _) => exchangeRate.nbDate,
-        measureFn: (OneDayExchangeRate exchangeRate, _) =>
-            exchangeRate.nb * 10000,
-        data: exchangeRates,
-        strokeWidthPxFn: (_, __) => 1.5,
-      ),
-    ];
 
-    final behaviors = [
-      charts.LinePointHighlighter(
-        showHorizontalFollowLine:
-            charts.LinePointHighlighterFollowLineType.none,
-        showVerticalFollowLine: charts.LinePointHighlighterFollowLineType.none,
-        drawFollowLinesAcrossChart: false,
-        defaultRadiusPx: 0,
-      )
-    ];
-
-    return ChartWithGradient(
-      color: currencySource.getChartColor(exchangeRate),
-      gradientColor: currencySource.getColor(exchangeRate),
-      behaviors: behaviors,
-      series: series,
+    return ChartFusion(
+      color: currencySource.getColor(exchangeRate),
+      exchangeRates: exchangeRates,
     );
   }
 }

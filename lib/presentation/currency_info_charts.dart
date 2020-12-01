@@ -1,22 +1,18 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
-import '../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../infrastructure/exchange_rate/chart_period.dart';
 import '../utils/constants.dart';
-import 'widgets/chart_with_gradient.dart';
+import 'widgets/chart_fusion.dart';
 import 'widgets/divider_with_paddings.dart';
 import 'widgets/loading_progress_indicator.dart';
 
 class CurrencyInfoCharts extends StatefulWidget {
-  final charts.Color chartColor;
-  final Color gradientColor;
+  final Color chartColor;
 
   const CurrencyInfoCharts({
     @required this.chartColor,
-    @required this.gradientColor,
   });
 
   @override
@@ -87,24 +83,11 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
         else
           SizedBox(
             height: 200,
-            child: ChartWithGradient(
+            child: ChartFusion(
               color: widget.chartColor,
-              gradientColor: widget.gradientColor,
               showAxisData: true,
-              period: chartPeriod,
-              series: [
-                charts.Series<OneDayExchangeRate, DateTime>(
-                  id: 'currency',
-                  colorFn: (_, __) => widget.chartColor,
-                  domainFn: (OneDayExchangeRate exchangeRate, _) =>
-                      exchangeRate.nbDate,
-                  measureFn: (OneDayExchangeRate exchangeRate, _) =>
-                      exchangeRate.nb * 10000,
-                  data: range,
-                  strokeWidthPxFn: (_, __) => 1.5,
-                ),
-              ],
-              behaviors: const [],
+              chartPeriod: chartPeriod,
+              exchangeRates: range,
             ),
           ),
       ],
