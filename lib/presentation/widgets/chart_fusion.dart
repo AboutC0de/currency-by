@@ -48,12 +48,12 @@ class ChartFusion extends StatelessWidget {
       primaryXAxis: DateTimeAxis(
         isVisible: showAxisData,
         rangePadding: ChartRangePadding.auto,
-        majorTickLines: MajorTickLines(width: 0),
+        majorTickLines: MajorTickLines(width: 0.1),
         majorGridLines: MajorGridLines(width: 0.1),
         minorGridLines: MinorGridLines(width: 0),
         minorTickLines: MinorTickLines(width: 0),
         axisLine: AxisLine(
-          width: 0.2,
+          width: 0.5,
           color: greyColor,
         ),
         dateFormat: DateFormat(
@@ -64,15 +64,17 @@ class ChartFusion extends StatelessWidget {
       primaryYAxis: NumericAxis(
         isVisible: showAxisData,
         rangePadding: ChartRangePadding.auto,
-        majorTickLines: MajorTickLines(width: 0),
+        majorTickLines: MajorTickLines(width: 0.1),
         minorGridLines: MinorGridLines(width: 0),
         majorGridLines: MajorGridLines(width: 0.1),
         minorTickLines: MinorTickLines(width: 0),
-        axisLine: AxisLine(width: 0),
+        axisLine: AxisLine(width: 0.1),
         minimum: min,
         maximum: max,
         placeLabelsNearAxisLine: false,
         opposedPosition: true,
+        desiredIntervals: 3,
+        maximumLabels: 1,
       ),
       series: <ChartSeries>[
         // Initialize line series
