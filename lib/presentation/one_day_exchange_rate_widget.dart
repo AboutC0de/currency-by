@@ -66,7 +66,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
             ),
           ),
           Expanded(
-            flex: 8,
+            flex: 5,
             child: SizedBox(
               height: 50,
               child: _ExchangeRateChart(
