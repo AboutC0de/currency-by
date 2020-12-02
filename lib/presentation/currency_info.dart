@@ -110,7 +110,7 @@ void showCurrencyInfo(
                 ),
               ),
               CurrencyInfoCharts(
-                chartColor: source.getColor(exchangeRate),
+                source: source,
               ),
             ],
           ),

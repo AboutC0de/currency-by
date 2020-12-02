@@ -85,7 +85,7 @@ extension CurrencySourceExtension on CurrencySource {
     return res != null ? DateFormat('dd MMM').format(res) : '-';
   }
 
-  Color _getDiffColor(double diff) {
+  Color getDiffColor(double diff) {
     return diff == 0
         ? greyColor
         : diff > 0
@@ -95,10 +95,10 @@ extension CurrencySourceExtension on CurrencySource {
 
   Color getColor(ExchangeRate exchangeRate) {
     final diff = getDiffValue(exchangeRate);
-    return _getDiffColor(diff);
+    return getDiffColor(diff);
   }
 
   Color getNbDiffColor(ExchangeRate exchangeRate) {
-    return _getDiffColor(exchangeRate.nbDiff);
+    return getDiffColor(exchangeRate.nbDiff);
   }
 }

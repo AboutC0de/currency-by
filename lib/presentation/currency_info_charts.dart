@@ -1,3 +1,4 @@
+import 'package:currency_by/infrastructure/currency_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,10 +10,10 @@ import 'widgets/divider_with_paddings.dart';
 import 'widgets/loading_progress_indicator.dart';
 
 class CurrencyInfoCharts extends StatefulWidget {
-  final Color chartColor;
+  final CurrencySource source;
 
   const CurrencyInfoCharts({
-    @required this.chartColor,
+    @required this.source,
   });
 
   @override
@@ -32,6 +33,7 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
           chartPeriod.getAmountOfDays(exchangeRates.length),
         )
         .toList();
+
     return Column(
       children: [
         const DividerWithPadding(
@@ -84,7 +86,7 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
           SizedBox(
             height: 200,
             child: ChartFusion(
-              color: widget.chartColor,
+              color: widget.source.getDiffColor(range.first.nb - range.last.nb),
               showAxisData: true,
               chartPeriod: chartPeriod,
               exchangeRates: range,
