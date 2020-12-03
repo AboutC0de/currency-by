@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit" : MessageLookupByLibrary.simpleMessage("изменить"),
     "nb" : MessageLookupByLibrary.simpleMessage("НБРБ"),
     "oneMonth" : MessageLookupByLibrary.simpleMessage("1М"),
-    "oneWeek" : MessageLookupByLibrary.simpleMessage("7Д"),
+    "oneWeek" : MessageLookupByLibrary.simpleMessage("1Н"),
     "oneYear" : MessageLookupByLibrary.simpleMessage("1Г"),
     "sell" : MessageLookupByLibrary.simpleMessage("Продать"),
     "sixMonth" : MessageLookupByLibrary.simpleMessage("6М"),

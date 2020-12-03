@@ -105,10 +105,10 @@ class S {
     );
   }
 
-  /// `7Д`
+  /// `1Н`
   String get oneWeek {
     return Intl.message(
-      '7Д',
+      '1Н',
       name: 'oneWeek',
       desc: '',
       args: [],
