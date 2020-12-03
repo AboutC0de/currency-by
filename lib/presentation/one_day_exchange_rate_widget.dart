@@ -81,7 +81,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
           SizedBox(
             width: 80,
             child: ExchangeRateWidget(
-              diff: _currencySource.getDiff(exchangeRate),
+              diff: _currencySource.getDiffSign(exchangeRate),
               color: _currencySource.getColor(exchangeRate),
               label:
                   '${_currencySource.getTranslation(context)}: ${_currencySource.getDate(exchangeRate)}',
@@ -121,7 +121,7 @@ class _ExchangeRateChart extends StatelessWidget {
     final exchangeRates = bloc.weekExchangeRates[exchangeRate.currencyCode];
 
     return ChartFusion(
-      color: currencySource.getColor(exchangeRate),
+      color: currencySource.getDiffColor(exchangeRate.nbDiff),
       exchangeRates: exchangeRates,
     );
   }

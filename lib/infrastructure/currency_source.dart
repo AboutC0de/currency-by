@@ -54,7 +54,7 @@ extension CurrencySourceExtension on CurrencySource {
     }
   }
 
-  String getDiff(ExchangeRate exchangeRate) {
+  String getDiffSign(ExchangeRate exchangeRate) {
     final diff = getDiffValue(exchangeRate);
     final sign = diff == 0
         ? ''
