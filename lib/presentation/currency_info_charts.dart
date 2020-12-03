@@ -1,8 +1,8 @@
-import 'package:currency_by/infrastructure/currency_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
+import '../infrastructure/currency_source.dart';
 import '../infrastructure/exchange_rate/chart_period.dart';
 import '../utils/constants.dart';
 import 'widgets/chart_fusion.dart';

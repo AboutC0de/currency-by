@@ -61,13 +61,13 @@ extension ChartPeriodExtension on ChartPeriod {
       case ChartPeriod.oneWeek:
         return 6;
       case ChartPeriod.oneMonth:
-        return 6;
+        return 4;
       case ChartPeriod.threeMonth:
         return 2;
       case ChartPeriod.sixMonth:
         return 5;
       case ChartPeriod.oneYear:
-        return 11;
+        return 2;
       default:
         return 6;
     }

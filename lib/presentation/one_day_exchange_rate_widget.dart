@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
@@ -29,10 +30,18 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
     final exchangeRate = widget._exchangeRate;
     return GestureDetector(
       onTap: () {
-        showCurrencyInfo(
-          context,
-          exchangeRate,
-          _currencySource,
+        showCupertinoModalBottomSheet(
+          expand: true,
+          useRootNavigator: true,
+          context: context,
+          builder: (context) => CurrencyInfoModal(
+            exchangeRate: exchangeRate,
+            source: _currencySource,
+          ),
+          barrierColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          transitionBackgroundColor: Colors.transparent,
+          duration: const Duration(milliseconds: 250),
         );
       },
       child: Row(
