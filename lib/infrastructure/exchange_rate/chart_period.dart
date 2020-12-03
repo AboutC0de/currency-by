@@ -56,20 +56,20 @@ extension ChartPeriodExtension on ChartPeriod {
     }
   }
 
-  double getChartInterval() {
+  int getChartInterval() {
     switch (this) {
       case ChartPeriod.oneWeek:
-        return 1;
+        return 6;
       case ChartPeriod.oneMonth:
         return 6;
       case ChartPeriod.threeMonth:
-        return 1;
+        return 2;
       case ChartPeriod.sixMonth:
-        return 1;
-      case ChartPeriod.oneYear:
-        return 4;
-      default:
         return 5;
+      case ChartPeriod.oneYear:
+        return 11;
+      default:
+        return 6;
     }
   }
 }

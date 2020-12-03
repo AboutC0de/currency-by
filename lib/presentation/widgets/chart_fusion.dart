@@ -59,7 +59,7 @@ class ChartFusion extends StatelessWidget {
         dateFormat: DateFormat(
           chartPeriod.getDateFormat(),
         ),
-        interval: chartPeriod.getChartInterval(),
+        desiredIntervals: chartPeriod.getChartInterval(),
       ),
       primaryYAxis: NumericAxis(
         isVisible: showAxisData,
