@@ -127,7 +127,7 @@ class _ExchangeRateChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<ExchangeRateBloc>();
-    final exchangeRates = bloc.weekExchangeRates[exchangeRate.currencyCode];
+    final exchangeRates = bloc.monthExchangeRates[exchangeRate.currencyCode];
 
     return ChartFusion(
       color: currencySource.getDiffColor(exchangeRate.nbDiff),

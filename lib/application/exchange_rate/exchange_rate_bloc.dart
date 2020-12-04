@@ -16,7 +16,7 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
   final IExchangeRateRepository _exchangeRateRepository;
 
   List<ExchangeRate> _exchangeRates;
-  Map<String, List<OneDayExchangeRate>> _weekExchangeRates;
+  Map<String, List<OneDayExchangeRate>> _monthExchangeRates;
 
   StreamSubscription<dynamic> _currencyChangesSubscription;
 
@@ -33,7 +33,7 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
   }
 
   Future<void> _getCurrentMonthExchangeRates() async {
-    _weekExchangeRates =
+    _monthExchangeRates =
         await _exchangeRateRepository.getCurrentMonthExchangeRates();
   }
 
@@ -49,8 +49,8 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
     );
   }
 
-  Map<String, List<OneDayExchangeRate>> get weekExchangeRates =>
-      _weekExchangeRates;
+  Map<String, List<OneDayExchangeRate>> get monthExchangeRates =>
+      _monthExchangeRates;
 
   @override
   Future<void> close() async {
