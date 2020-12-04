@@ -29,7 +29,8 @@ class _$ExchangeRateTearOff {
       DateTime nbDate,
       @required double nbDiff,
       @required double sell,
-      @required double sellDiff}) {
+      @required double sellDiff,
+      bool visible = true}) {
     return _ExchangeRate(
       amount: amount,
       bcseDate: bcseDate,
@@ -46,6 +47,7 @@ class _$ExchangeRateTearOff {
       nbDiff: nbDiff,
       sell: sell,
       sellDiff: sellDiff,
+      visible: visible,
     );
   }
 }
@@ -71,6 +73,7 @@ mixin _$ExchangeRate {
   double get nbDiff;
   double get sell;
   double get sellDiff;
+  bool get visible;
 
   $ExchangeRateCopyWith<ExchangeRate> get copyWith;
 }
@@ -95,7 +98,8 @@ abstract class $ExchangeRateCopyWith<$Res> {
       DateTime nbDate,
       double nbDiff,
       double sell,
-      double sellDiff});
+      double sellDiff,
+      bool visible});
 }
 
 /// @nodoc
@@ -123,6 +127,7 @@ class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
     Object nbDiff = freezed,
     Object sell = freezed,
     Object sellDiff = freezed,
+    Object visible = freezed,
   }) {
     return _then(_value.copyWith(
       amount: amount == freezed ? _value.amount : amount as double,
@@ -145,6 +150,7 @@ class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
       nbDiff: nbDiff == freezed ? _value.nbDiff : nbDiff as double,
       sell: sell == freezed ? _value.sell : sell as double,
       sellDiff: sellDiff == freezed ? _value.sellDiff : sellDiff as double,
+      visible: visible == freezed ? _value.visible : visible as bool,
     ));
   }
 }
@@ -171,7 +177,8 @@ abstract class _$ExchangeRateCopyWith<$Res>
       DateTime nbDate,
       double nbDiff,
       double sell,
-      double sellDiff});
+      double sellDiff,
+      bool visible});
 }
 
 /// @nodoc
@@ -201,6 +208,7 @@ class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
     Object nbDiff = freezed,
     Object sell = freezed,
     Object sellDiff = freezed,
+    Object visible = freezed,
   }) {
     return _then(_ExchangeRate(
       amount: amount == freezed ? _value.amount : amount as double,
@@ -223,6 +231,7 @@ class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
       nbDiff: nbDiff == freezed ? _value.nbDiff : nbDiff as double,
       sell: sell == freezed ? _value.sell : sell as double,
       sellDiff: sellDiff == freezed ? _value.sellDiff : sellDiff as double,
+      visible: visible == freezed ? _value.visible : visible as bool,
     ));
   }
 }
@@ -244,7 +253,8 @@ class _$_ExchangeRate extends _ExchangeRate {
       this.nbDate,
       @required this.nbDiff,
       @required this.sell,
-      @required this.sellDiff})
+      @required this.sellDiff,
+      this.visible = true})
       : assert(amount != null),
         assert(bcseDiff != null),
         assert(bcseRate != null),
@@ -258,6 +268,7 @@ class _$_ExchangeRate extends _ExchangeRate {
         assert(nbDiff != null),
         assert(sell != null),
         assert(sellDiff != null),
+        assert(visible != null),
         super._();
 
   @override
@@ -290,10 +301,13 @@ class _$_ExchangeRate extends _ExchangeRate {
   final double sell;
   @override
   final double sellDiff;
+  @JsonKey(defaultValue: true)
+  @override
+  final bool visible;
 
   @override
   String toString() {
-    return 'ExchangeRate(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff)';
+    return 'ExchangeRate(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff, visible: $visible)';
   }
 
   @override
@@ -337,7 +351,9 @@ class _$_ExchangeRate extends _ExchangeRate {
                 const DeepCollectionEquality().equals(other.sell, sell)) &&
             (identical(other.sellDiff, sellDiff) ||
                 const DeepCollectionEquality()
-                    .equals(other.sellDiff, sellDiff)));
+                    .equals(other.sellDiff, sellDiff)) &&
+            (identical(other.visible, visible) ||
+                const DeepCollectionEquality().equals(other.visible, visible)));
   }
 
   @override
@@ -357,7 +373,8 @@ class _$_ExchangeRate extends _ExchangeRate {
       const DeepCollectionEquality().hash(nbDate) ^
       const DeepCollectionEquality().hash(nbDiff) ^
       const DeepCollectionEquality().hash(sell) ^
-      const DeepCollectionEquality().hash(sellDiff);
+      const DeepCollectionEquality().hash(sellDiff) ^
+      const DeepCollectionEquality().hash(visible);
 
   @override
   _$ExchangeRateCopyWith<_ExchangeRate> get copyWith =>
@@ -381,7 +398,8 @@ abstract class _ExchangeRate extends ExchangeRate {
       DateTime nbDate,
       @required double nbDiff,
       @required double sell,
-      @required double sellDiff}) = _$_ExchangeRate;
+      @required double sellDiff,
+      bool visible}) = _$_ExchangeRate;
 
   @override
   double get amount;
@@ -413,6 +431,8 @@ abstract class _ExchangeRate extends ExchangeRate {
   double get sell;
   @override
   double get sellDiff;
+  @override
+  bool get visible;
   @override
   _$ExchangeRateCopyWith<_ExchangeRate> get copyWith;
 }

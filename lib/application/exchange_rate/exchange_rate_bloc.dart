@@ -41,9 +41,10 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
     _currencyChangesSubscription =
         _exchangeRateRepository.subscribeOnCurrencyChanges().listen(
       (exchangeRates) {
-        _exchangeRates = exchangeRates;
+        _exchangeRates =
+            exchangeRates.where((rate) => rate.visible).toList() ?? [];
         if (state != const ExchangeRateState.loading()) {
-          emit(ExchangeRateState.loaded(exchangeRates));
+          emit(ExchangeRateState.loaded(_exchangeRates));
         }
       },
     );

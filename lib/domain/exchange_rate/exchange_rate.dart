@@ -22,6 +22,7 @@ abstract class ExchangeRate implements _$ExchangeRate {
     @required double nbDiff,
     @required double sell,
     @required double sellDiff,
+    @Default(true) bool visible,
   }) = _ExchangeRate;
 
   String get currencyFullName {

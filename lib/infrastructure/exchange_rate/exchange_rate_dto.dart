@@ -48,6 +48,8 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
         double sell,
     @required
         double sellDiff,
+    @Default(true)
+        bool visible,
   }) = _ExchangeRateDTO;
 
   factory ExchangeRateDTO.fromDomain(ExchangeRate exchangeRate) {
@@ -67,6 +69,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       nbDiff: exchangeRate.nbDiff,
       sell: exchangeRate.sell,
       sellDiff: exchangeRate.sellDiff,
+      visible: exchangeRate.visible,
     );
   }
 
@@ -87,6 +90,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       nbDiff: nbDiff,
       sell: sell,
       sellDiff: sellDiff,
+      visible: visible,
     );
   }
 

@@ -19,18 +19,6 @@ class ExchangeRateRepository implements IExchangeRateRepository {
   ExchangeRateRepository(this._firestore);
 
   @override
-  Future<List<ExchangeRate>> getTodayExchangeRates() async {
-    final documentSnapshot =
-        await _firestore.collection(oneDayCollection).doc(documentId).get();
-    return documentSnapshot
-        .data()['exchangeRates']
-        .map((rate) =>
-            ExchangeRateDTO.fromJson(rate as Map<String, dynamic>).toDomain())
-        .cast<ExchangeRate>()
-        .toList() as List<ExchangeRate>;
-  }
-
-  @override
   Future<Map<String, List<OneDayExchangeRate>>>
       getCurrentMonthExchangeRates() async {
     final documentSnapshot = await _firestore

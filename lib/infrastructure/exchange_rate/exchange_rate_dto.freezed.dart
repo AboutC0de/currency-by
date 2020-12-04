@@ -47,7 +47,8 @@ class _$ExchangeRateDTOTearOff {
       @required
           double sell,
       @required
-          double sellDiff}) {
+          double sellDiff,
+      bool visible = true}) {
     return _ExchangeRateDTO(
       amount: amount,
       bcseDate: bcseDate,
@@ -64,6 +65,7 @@ class _$ExchangeRateDTOTearOff {
       nbDiff: nbDiff,
       sell: sell,
       sellDiff: sellDiff,
+      visible: visible,
     );
   }
 
@@ -96,6 +98,7 @@ mixin _$ExchangeRateDTO {
   double get nbDiff;
   double get sell;
   double get sellDiff;
+  bool get visible;
 
   Map<String, dynamic> toJson();
   $ExchangeRateDTOCopyWith<ExchangeRateDTO> get copyWith;
@@ -123,7 +126,8 @@ abstract class $ExchangeRateDTOCopyWith<$Res> {
           DateTime nbDate,
       double nbDiff,
       double sell,
-      double sellDiff});
+      double sellDiff,
+      bool visible});
 }
 
 /// @nodoc
@@ -152,6 +156,7 @@ class _$ExchangeRateDTOCopyWithImpl<$Res>
     Object nbDiff = freezed,
     Object sell = freezed,
     Object sellDiff = freezed,
+    Object visible = freezed,
   }) {
     return _then(_value.copyWith(
       amount: amount == freezed ? _value.amount : amount as double,
@@ -174,6 +179,7 @@ class _$ExchangeRateDTOCopyWithImpl<$Res>
       nbDiff: nbDiff == freezed ? _value.nbDiff : nbDiff as double,
       sell: sell == freezed ? _value.sell : sell as double,
       sellDiff: sellDiff == freezed ? _value.sellDiff : sellDiff as double,
+      visible: visible == freezed ? _value.visible : visible as bool,
     ));
   }
 }
@@ -202,7 +208,8 @@ abstract class _$ExchangeRateDTOCopyWith<$Res>
           DateTime nbDate,
       double nbDiff,
       double sell,
-      double sellDiff});
+      double sellDiff,
+      bool visible});
 }
 
 /// @nodoc
@@ -233,6 +240,7 @@ class __$ExchangeRateDTOCopyWithImpl<$Res>
     Object nbDiff = freezed,
     Object sell = freezed,
     Object sellDiff = freezed,
+    Object visible = freezed,
   }) {
     return _then(_ExchangeRateDTO(
       amount: amount == freezed ? _value.amount : amount as double,
@@ -255,6 +263,7 @@ class __$ExchangeRateDTOCopyWithImpl<$Res>
       nbDiff: nbDiff == freezed ? _value.nbDiff : nbDiff as double,
       sell: sell == freezed ? _value.sell : sell as double,
       sellDiff: sellDiff == freezed ? _value.sellDiff : sellDiff as double,
+      visible: visible == freezed ? _value.visible : visible as bool,
     ));
   }
 }
@@ -293,7 +302,8 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
       @required
           this.sell,
       @required
-          this.sellDiff})
+          this.sellDiff,
+      this.visible = true})
       : assert(amount != null),
         assert(bcseDiff != null),
         assert(bcseRate != null),
@@ -307,6 +317,7 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
         assert(nbDiff != null),
         assert(sell != null),
         assert(sellDiff != null),
+        assert(visible != null),
         super._();
 
   factory _$_ExchangeRateDTO.fromJson(Map<String, dynamic> json) =>
@@ -344,10 +355,13 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
   final double sell;
   @override
   final double sellDiff;
+  @JsonKey(defaultValue: true)
+  @override
+  final bool visible;
 
   @override
   String toString() {
-    return 'ExchangeRateDTO(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff)';
+    return 'ExchangeRateDTO(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff, visible: $visible)';
   }
 
   @override
@@ -391,7 +405,9 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
                 const DeepCollectionEquality().equals(other.sell, sell)) &&
             (identical(other.sellDiff, sellDiff) ||
                 const DeepCollectionEquality()
-                    .equals(other.sellDiff, sellDiff)));
+                    .equals(other.sellDiff, sellDiff)) &&
+            (identical(other.visible, visible) ||
+                const DeepCollectionEquality().equals(other.visible, visible)));
   }
 
   @override
@@ -411,7 +427,8 @@ class _$_ExchangeRateDTO extends _ExchangeRateDTO {
       const DeepCollectionEquality().hash(nbDate) ^
       const DeepCollectionEquality().hash(nbDiff) ^
       const DeepCollectionEquality().hash(sell) ^
-      const DeepCollectionEquality().hash(sellDiff);
+      const DeepCollectionEquality().hash(sellDiff) ^
+      const DeepCollectionEquality().hash(visible);
 
   @override
   _$ExchangeRateDTOCopyWith<_ExchangeRateDTO> get copyWith =>
@@ -455,7 +472,8 @@ abstract class _ExchangeRateDTO extends ExchangeRateDTO {
       @required
           double sell,
       @required
-          double sellDiff}) = _$_ExchangeRateDTO;
+          double sellDiff,
+      bool visible}) = _$_ExchangeRateDTO;
 
   factory _ExchangeRateDTO.fromJson(Map<String, dynamic> json) =
       _$_ExchangeRateDTO.fromJson;
@@ -492,6 +510,8 @@ abstract class _ExchangeRateDTO extends ExchangeRateDTO {
   double get sell;
   @override
   double get sellDiff;
+  @override
+  bool get visible;
   @override
   _$ExchangeRateDTOCopyWith<_ExchangeRateDTO> get copyWith;
 }

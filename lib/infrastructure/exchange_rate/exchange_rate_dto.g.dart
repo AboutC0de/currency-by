@@ -23,6 +23,7 @@ _$_ExchangeRateDTO _$_$_ExchangeRateDTOFromJson(Map<String, dynamic> json) {
     nbDiff: (json['nbDiff'] as num)?.toDouble(),
     sell: (json['sell'] as num)?.toDouble(),
     sellDiff: (json['sellDiff'] as num)?.toDouble(),
+    visible: json['visible'] as bool ?? true,
   );
 }
 
@@ -43,4 +44,5 @@ Map<String, dynamic> _$_$_ExchangeRateDTOToJson(_$_ExchangeRateDTO instance) =>
       'nbDiff': instance.nbDiff,
       'sell': instance.sell,
       'sellDiff': instance.sellDiff,
+      'visible': instance.visible,
     };

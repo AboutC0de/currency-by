@@ -1,4 +1,3 @@
-import 'package:currency_by/presentation/widgets/divider_with_paddings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,7 @@ import '../infrastructure/currency_source.dart';
 import '../injection.dart';
 import '../utils/constants.dart';
 import 'currency_info_charts.dart';
+import 'widgets/divider_with_paddings.dart';
 
 class CurrencyInfoModal extends StatelessWidget {
   final ExchangeRate exchangeRate;
