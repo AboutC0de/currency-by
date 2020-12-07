@@ -14,6 +14,7 @@ class ChartFusion extends StatelessWidget {
   final Color color;
   final bool showAxisData;
   final ChartPeriod chartPeriod;
+  final VoidCallback onChartTapped;
 
   const ChartFusion({
     Key key,
@@ -21,6 +22,7 @@ class ChartFusion extends StatelessWidget {
     @required this.color,
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
+    this.onChartTapped,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,9 @@ class ChartFusion extends StatelessWidget {
         if (args.axis is NumericAxis) {
           args.text = (args.value / cof).toStringAsFixed(2);
         }
+      },
+      onChartTouchInteractionUp: (args) {
+        onChartTapped();
       },
       primaryXAxis: DateTimeAxis(
         isVisible: showAxisData,

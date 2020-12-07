@@ -25,26 +25,28 @@ class OneDayExchangeRateWidget extends StatefulWidget {
 class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
   CurrencySource _currencySource = CurrencySource.nb;
 
+  void onTap() {
+    showCupertinoModalBottomSheet(
+      expand: true,
+      useRootNavigator: true,
+      context: context,
+      builder: (context) => CurrencyInfoModal(
+        exchangeRate: widget._exchangeRate,
+        source: _currencySource,
+      ),
+      barrierColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      transitionBackgroundColor: Colors.transparent,
+      duration: const Duration(milliseconds: 250),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final exchangeRate = widget._exchangeRate;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: () {
-        showCupertinoModalBottomSheet(
-          expand: true,
-          useRootNavigator: true,
-          context: context,
-          builder: (context) => CurrencyInfoModal(
-            exchangeRate: exchangeRate,
-            source: _currencySource,
-          ),
-          barrierColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
-          transitionBackgroundColor: Colors.transparent,
-          duration: const Duration(milliseconds: 250),
-        );
-      },
+      onTap: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -84,6 +86,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
                 child: _ExchangeRateChart(
                   exchangeRate: exchangeRate,
                   currencySource: _currencySource,
+                  onTap: onTap,
                 ),
               ),
             ),
@@ -118,11 +121,13 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
 class _ExchangeRateChart extends StatelessWidget {
   final ExchangeRate exchangeRate;
   final CurrencySource currencySource;
+  final VoidCallback onTap;
 
   const _ExchangeRateChart({
     Key key,
     @required this.exchangeRate,
     @required this.currencySource,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -133,6 +138,7 @@ class _ExchangeRateChart extends StatelessWidget {
     return ChartFusion(
       color: currencySource.getDiffColor(exchangeRate.nbDiff),
       exchangeRates: exchangeRates,
+      onChartTapped: onTap,
     );
   }
 }
