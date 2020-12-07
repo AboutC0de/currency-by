@@ -29,6 +29,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
   Widget build(BuildContext context) {
     final exchangeRate = widget._exchangeRate;
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         showCupertinoModalBottomSheet(
           expand: true,
