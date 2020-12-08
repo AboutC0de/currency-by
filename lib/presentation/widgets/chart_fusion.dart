@@ -9,7 +9,12 @@ import '../../utils/constants.dart';
 const cof = 10000;
 const interval = 100;
 
-class ChartFusion extends StatelessWidget {
+enum ChartMode {
+  normal,
+  trackball,
+}
+
+class ChartFusion extends StatefulWidget {
   final List<OneDayExchangeRate> exchangeRates;
   final Color color;
   final bool showAxisData;
@@ -26,13 +31,19 @@ class ChartFusion extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _ChartFusionState createState() => _ChartFusionState();
+}
+
+class _ChartFusionState extends State<ChartFusion> {
+  ChartMode _chartMode = ChartMode.normal;
+  @override
   Widget build(BuildContext context) {
-    final max = exchangeRates
+    final max = widget.exchangeRates
                 .reduce((curr, next) => curr.nb > next.nb ? curr : next)
                 .nb *
             cof +
         interval;
-    final min = exchangeRates
+    final min = widget.exchangeRates
                 .reduce((curr, next) => curr.nb < next.nb ? curr : next)
                 .nb *
             cof -
@@ -46,11 +57,31 @@ class ChartFusion extends StatelessWidget {
           args.text = (args.value / cof).toStringAsFixed(2);
         }
       },
-      onChartTouchInteractionUp: (args) {
-        onChartTapped();
+      trackballBehavior: TrackballBehavior(
+        markerSettings: TrackballMarkerSettings(
+          borderWidth: 1,
+          markerVisibility: TrackballVisibilityMode.visible,
+          color: widget.color,
+        ),
+        enable: widget.showAxisData,
+        tooltipAlignment: ChartAlignment.near,
+        tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
+        tooltipSettings: InteractiveTooltip(
+          format: 'point.y',
+        ),
+      ),
+      onTrackballPositionChanging: (args) {
+        final index = args.chartPointInfo.dataPointIndex;
+        final rate = widget.exchangeRates[index];
+        final dateLabel = DateFormat('d.MM.yyyy').format(rate.nbDate);
+        final valueLabel =
+            (double.parse(args.chartPointInfo.label) / cof).toStringAsFixed(4);
+
+        args.chartPointInfo.label = valueLabel;
+        args.chartPointInfo.header = '';
       },
       primaryXAxis: DateTimeAxis(
-        isVisible: showAxisData,
+        isVisible: widget.showAxisData,
         rangePadding: ChartRangePadding.auto,
         majorTickLines: MajorTickLines(width: 0.1),
         majorGridLines: MajorGridLines(width: 0.1),
@@ -61,13 +92,13 @@ class ChartFusion extends StatelessWidget {
           color: greyColor,
         ),
         dateFormat: DateFormat(
-          chartPeriod.getDateFormat(),
+          widget.chartPeriod.getDateFormat(),
         ),
-        desiredIntervals: chartPeriod.getChartInterval(),
+        desiredIntervals: widget.chartPeriod.getChartInterval(),
         edgeLabelPlacement: EdgeLabelPlacement.shift,
       ),
       primaryYAxis: NumericAxis(
-        isVisible: showAxisData,
+        isVisible: widget.showAxisData,
         rangePadding: ChartRangePadding.auto,
         majorTickLines: MajorTickLines(width: 0.1),
         minorGridLines: MinorGridLines(width: 0),
@@ -87,18 +118,18 @@ class ChartFusion extends StatelessWidget {
         AreaSeries<OneDayExchangeRate, DateTime>(
           enableTooltip: false,
           opacity: 0.5,
-          color: color,
+          color: widget.color,
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
-              color,
+              widget.color,
               Colors.transparent,
             ],
           ),
-          borderColor: color,
+          borderColor: widget.color,
           borderWidth: 1,
-          dataSource: exchangeRates,
+          dataSource: widget.exchangeRates,
           xValueMapper: (OneDayExchangeRate rate, _) => rate.nbDate,
           yValueMapper: (OneDayExchangeRate rate, _) => rate.nb * cof,
         ),
