@@ -15,6 +15,7 @@ class ChartFusion extends StatelessWidget {
   final bool showAxisData;
   final ChartPeriod chartPeriod;
   final VoidCallback onChartTapped;
+  final double margin;
 
   const ChartFusion({
     Key key,
@@ -22,8 +23,9 @@ class ChartFusion extends StatelessWidget {
     @required this.color,
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
-    this.onChartTapped,
-  }) : super(key: key);
+    this.onChartTapped = emptyFunc,
+  })  : margin = showAxisData ? 5 : 0,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,9 @@ class ChartFusion extends StatelessWidget {
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       backgroundColor: Colors.transparent,
-      margin: EdgeInsets.only(top: showAxisData ? 5 : 0),
+      margin: EdgeInsets.only(
+        top: margin,
+      ),
       onAxisLabelRender: (args) {
         if (args.axis is NumericAxis) {
           args.text = (args.value / cof).toStringAsFixed(2);
@@ -65,6 +69,7 @@ class ChartFusion extends StatelessWidget {
           chartPeriod.getDateFormat(),
         ),
         desiredIntervals: chartPeriod.getChartInterval(),
+        edgeLabelPlacement: EdgeLabelPlacement.shift,
       ),
       primaryYAxis: NumericAxis(
         isVisible: showAxisData,
