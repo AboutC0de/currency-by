@@ -14,28 +14,48 @@ enum ChartMode {
   trackball,
 }
 
+class TrackballArgs {
+  final double x;
+  final double y;
+  final String date;
+  final String value;
+  final bool tracking;
+
+  TrackballArgs({
+    this.x,
+    this.y,
+    this.date,
+    this.value,
+    this.tracking,
+  });
+}
+
+typedef OnTrackballPositionChanging = void Function(TrackballArgs);
+
 class ChartFusion extends StatefulWidget {
   final List<OneDayExchangeRate> exchangeRates;
   final Color color;
   final bool showAxisData;
   final ChartPeriod chartPeriod;
   final VoidCallback onChartTapped;
+  final OnTrackballPositionChanging onTrackballPositionChanging;
+  final bool tracking;
 
   const ChartFusion({
-    Key key,
     @required this.exchangeRates,
     @required this.color,
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
     this.onChartTapped = emptyFunc,
-  }) : super(key: key);
+    this.onTrackballPositionChanging,
+    this.tracking = false,
+  });
 
   @override
   _ChartFusionState createState() => _ChartFusionState();
 }
 
 class _ChartFusionState extends State<ChartFusion> {
-  ChartMode _chartMode = ChartMode.normal;
   @override
   Widget build(BuildContext context) {
     final max = widget.exchangeRates
@@ -49,6 +69,8 @@ class _ChartFusionState extends State<ChartFusion> {
             cof -
         interval;
 
+    final color = widget.tracking ? Colors.blue : widget.color;
+    print('build');
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       backgroundColor: Colors.transparent,
@@ -57,17 +79,28 @@ class _ChartFusionState extends State<ChartFusion> {
           args.text = (args.value / cof).toStringAsFixed(2);
         }
       },
+      onChartTouchInteractionUp: (args) {
+        if (widget.onTrackballPositionChanging != null) {
+          widget.onTrackballPositionChanging(
+            TrackballArgs(
+              tracking: false,
+            ),
+          );
+        }
+      },
       trackballBehavior: TrackballBehavior(
         markerSettings: TrackballMarkerSettings(
           borderWidth: 1,
           markerVisibility: TrackballVisibilityMode.visible,
-          color: widget.color,
+          color: color,
         ),
         enable: widget.showAxisData,
         tooltipAlignment: ChartAlignment.near,
         tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
         tooltipSettings: InteractiveTooltip(
-          format: 'point.y',
+          color: Colors.transparent,
+          borderColor: Colors.transparent,
+          textStyle: const TextStyle(color: Colors.transparent),
         ),
       ),
       onTrackballPositionChanging: (args) {
@@ -76,9 +109,18 @@ class _ChartFusionState extends State<ChartFusion> {
         final dateLabel = DateFormat('d.MM.yyyy').format(rate.nbDate);
         final valueLabel =
             (double.parse(args.chartPointInfo.label) / cof).toStringAsFixed(4);
-
-        args.chartPointInfo.label = valueLabel;
         args.chartPointInfo.header = '';
+        if (widget.onTrackballPositionChanging != null) {
+          widget.onTrackballPositionChanging(
+            TrackballArgs(
+              x: args.chartPointInfo.xPosition,
+              y: args.chartPointInfo.yPosition,
+              date: dateLabel,
+              value: valueLabel,
+              tracking: true,
+            ),
+          );
+        }
       },
       primaryXAxis: DateTimeAxis(
         isVisible: widget.showAxisData,
@@ -118,16 +160,16 @@ class _ChartFusionState extends State<ChartFusion> {
         AreaSeries<OneDayExchangeRate, DateTime>(
           enableTooltip: false,
           opacity: 0.5,
-          color: widget.color,
+          color: color,
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
-              widget.color,
+              color,
               Colors.transparent,
             ],
           ),
-          borderColor: widget.color,
+          borderColor: color,
           borderWidth: 1,
           dataSource: widget.exchangeRates,
           xValueMapper: (OneDayExchangeRate rate, _) => rate.nbDate,

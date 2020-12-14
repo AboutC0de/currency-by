@@ -22,7 +22,7 @@ class CurrencyInfoModal extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Material(
       color: darkGreyColor,
       child: Scaffold(
@@ -71,7 +71,7 @@ class CurrencyInfoModal extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(ctx);
+                          Navigator.pop(context);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -110,7 +110,7 @@ class CurrencyInfoModal extends StatelessWidget {
               ),
               child: ListView(
                 padding: const EdgeInsets.symmetric(),
-                controller: ModalScrollController.of(ctx),
+                controller: ModalScrollController.of(context),
                 children: [
                   SizedBox(
                     height: 30,

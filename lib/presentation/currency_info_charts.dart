@@ -22,6 +22,7 @@ class CurrencyInfoCharts extends StatefulWidget {
 
 class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
   ChartPeriod chartPeriod = ChartPeriod.oneMonth;
+  TrackballArgs args;
 
   @override
   Widget build(BuildContext context) {
@@ -44,38 +45,41 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ...ChartPeriod.values
-                  .map(
-                    (period) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          chartPeriod = period;
-                        });
-                      },
-                      child: Container(
-                        width: 27,
-                        height: 27,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: period == chartPeriod
-                              ? backgroundGreyColor
-                              : Colors.transparent,
-                        ),
-                        child: Text(
-                          period.getTranslations(context),
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                            fontWeight: period == chartPeriod
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+              if (!(args?.tracking ?? false))
+                ...ChartPeriod.values
+                    .map(
+                      (period) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            chartPeriod = period;
+                          });
+                        },
+                        child: Container(
+                          width: 27,
+                          height: 27,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: period == chartPeriod
+                                ? backgroundGreyColor
+                                : Colors.transparent,
+                          ),
+                          child: Text(
+                            period.getTranslations(context),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontWeight: period == chartPeriod
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList()
+              else
+                Text(args.date + args.value),
             ],
           ),
         ),
@@ -90,9 +94,19 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
               showAxisData: true,
               chartPeriod: chartPeriod,
               exchangeRates: range,
+              onTrackballPositionChanging: _onChangePosition,
+              tracking: args?.tracking ?? false,
             ),
           ),
       ],
     );
+  }
+
+  void _onChangePosition(TrackballArgs position) {
+    // Future.delayed(const Duration(milliseconds: 300), () {
+    //   setState(() {
+    //     args = position;
+    //   });
+    // });
   }
 }

@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import 'application/chart/chart_cubit.dart';
 import 'application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
 import 'application/exchange_rate/exchange_rate_bloc.dart';
 import 'infrastructure/exchange_rate/exchange_rate_repository.dart';
@@ -24,6 +25,7 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final firebaseInjectableModule = _$FirebaseInjectableModule();
+  gh.factory<ChartCubit>(() => ChartCubit());
   gh.lazySingleton<FirebaseFirestore>(() => firebaseInjectableModule.firestore);
   gh.lazySingleton<IExchangeRateRepository>(
       () => ExchangeRateRepository(get<FirebaseFirestore>()));
