@@ -1,6 +1,8 @@
 part of 'chart_cubit.dart';
 
 @freezed
-abstract class ChartState with _$ChartState {
-  const factory ChartState.initial() = Initial;
+abstract class ChartCubitState with _$ChartCubitState {
+  const factory ChartCubitState.preview() = Preview;
+
+  const factory ChartCubitState.tracking(TrackingArgs tracking) = Tracking;
 }
