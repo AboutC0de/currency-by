@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../application/chart/chart_cubit.dart';
 import '../../domain/exchange_rate/one_day/one_day_exchange_rate.dart';
 import '../../infrastructure/exchange_rate/chart_period.dart';
+import '../../infrastructure/tracking.dart';
 import '../../utils/constants.dart';
 
 const cof = 10000;
@@ -14,31 +17,14 @@ enum ChartMode {
   trackball,
 }
 
-class TrackballArgs {
-  final double x;
-  final double y;
-  final String date;
-  final String value;
-  final bool tracking;
-
-  TrackballArgs({
-    this.x,
-    this.y,
-    this.date,
-    this.value,
-    this.tracking,
-  });
-}
-
 typedef OnTrackballPositionChanging = void Function(TrackballArgs);
 
-class ChartFusion extends StatefulWidget {
+class ChartFusion extends StatelessWidget {
   final List<OneDayExchangeRate> exchangeRates;
   final Color color;
   final bool showAxisData;
   final ChartPeriod chartPeriod;
   final VoidCallback onChartTapped;
-  final OnTrackballPositionChanging onTrackballPositionChanging;
   final bool tracking;
 
   const ChartFusion({
@@ -47,30 +33,24 @@ class ChartFusion extends StatefulWidget {
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
     this.onChartTapped = emptyFunc,
-    this.onTrackballPositionChanging,
     this.tracking = false,
   });
 
   @override
-  _ChartFusionState createState() => _ChartFusionState();
-}
-
-class _ChartFusionState extends State<ChartFusion> {
-  @override
   Widget build(BuildContext context) {
-    final max = widget.exchangeRates
+    final max = exchangeRates
                 .reduce((curr, next) => curr.nb > next.nb ? curr : next)
                 .nb *
             cof +
         interval;
-    final min = widget.exchangeRates
+    final min = exchangeRates
                 .reduce((curr, next) => curr.nb < next.nb ? curr : next)
                 .nb *
             cof -
         interval;
 
-    final color = widget.tracking ? Colors.blue : widget.color;
-    print('build');
+    final color = context.select(
+        (ChartCubit cubit) => cubit.state is Preview ? this.color : blueColor);
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       backgroundColor: Colors.transparent,
@@ -80,21 +60,18 @@ class _ChartFusionState extends State<ChartFusion> {
         }
       },
       onChartTouchInteractionUp: (args) {
-        if (widget.onTrackballPositionChanging != null) {
-          widget.onTrackballPositionChanging(
-            TrackballArgs(
-              tracking: false,
-            ),
-          );
-        }
+        context.read<ChartCubit>().onPreview();
       },
       trackballBehavior: TrackballBehavior(
         markerSettings: TrackballMarkerSettings(
-          borderWidth: 1,
+          borderWidth: 3,
           markerVisibility: TrackballVisibilityMode.visible,
           color: color,
+          borderColor: Colors.black,
         ),
-        enable: widget.showAxisData,
+        lineColor: color,
+        activationMode: ActivationMode.singleTap,
+        enable: showAxisData,
         tooltipAlignment: ChartAlignment.near,
         tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
         tooltipSettings: InteractiveTooltip(
@@ -105,25 +82,22 @@ class _ChartFusionState extends State<ChartFusion> {
       ),
       onTrackballPositionChanging: (args) {
         final index = args.chartPointInfo.dataPointIndex;
-        final rate = widget.exchangeRates[index];
+        final rate = exchangeRates[index];
         final dateLabel = DateFormat('d.MM.yyyy').format(rate.nbDate);
         final valueLabel =
             (double.parse(args.chartPointInfo.label) / cof).toStringAsFixed(4);
         args.chartPointInfo.header = '';
-        if (widget.onTrackballPositionChanging != null) {
-          widget.onTrackballPositionChanging(
-            TrackballArgs(
-              x: args.chartPointInfo.xPosition,
-              y: args.chartPointInfo.yPosition,
-              date: dateLabel,
-              value: valueLabel,
-              tracking: true,
-            ),
-          );
-        }
+        context.read<ChartCubit>().onTracking(
+              TrackingArgs(
+                x: args.chartPointInfo.xPosition,
+                y: args.chartPointInfo.yPosition,
+                dateLabel: dateLabel,
+                valueLabel: valueLabel,
+              ),
+            );
       },
       primaryXAxis: DateTimeAxis(
-        isVisible: widget.showAxisData,
+        isVisible: showAxisData,
         rangePadding: ChartRangePadding.auto,
         majorTickLines: MajorTickLines(width: 0.1),
         majorGridLines: MajorGridLines(width: 0.1),
@@ -134,13 +108,14 @@ class _ChartFusionState extends State<ChartFusion> {
           color: greyColor,
         ),
         dateFormat: DateFormat(
-          widget.chartPeriod.getDateFormat(),
+          chartPeriod.getDateFormat(),
         ),
-        desiredIntervals: widget.chartPeriod.getChartInterval(),
+        desiredIntervals: chartPeriod.getChartInterval(),
         edgeLabelPlacement: EdgeLabelPlacement.shift,
+        labelStyle: const TextStyle(color: Colors.white),
       ),
       primaryYAxis: NumericAxis(
-        isVisible: widget.showAxisData,
+        isVisible: showAxisData,
         rangePadding: ChartRangePadding.auto,
         majorTickLines: MajorTickLines(width: 0.1),
         minorGridLines: MinorGridLines(width: 0),
@@ -154,9 +129,9 @@ class _ChartFusionState extends State<ChartFusion> {
         desiredIntervals: 3,
         maximumLabels: 1,
         edgeLabelPlacement: EdgeLabelPlacement.shift,
+        labelStyle: const TextStyle(color: Colors.white),
       ),
       series: <ChartSeries>[
-        // Initialize line series
         AreaSeries<OneDayExchangeRate, DateTime>(
           enableTooltip: false,
           opacity: 0.5,
@@ -164,14 +139,20 @@ class _ChartFusionState extends State<ChartFusion> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
+            stops: const [
+              0,
+              0.6,
+              1,
+            ],
             colors: <Color>[
               color,
-              Colors.transparent,
+              color.withOpacity(0.4),
+              color.withOpacity(0.1),
             ],
           ),
           borderColor: color,
           borderWidth: 1,
-          dataSource: widget.exchangeRates,
+          dataSource: exchangeRates,
           xValueMapper: (OneDayExchangeRate rate, _) => rate.nbDate,
           yValueMapper: (OneDayExchangeRate rate, _) => rate.nb * cof,
         ),

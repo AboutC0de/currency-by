@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../application/chart/chart_cubit.dart';
 import '../application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
 import '../infrastructure/currency_source.dart';
 import '../infrastructure/exchange_rate/chart_period.dart';
@@ -22,7 +23,6 @@ class CurrencyInfoCharts extends StatefulWidget {
 
 class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
   ChartPeriod chartPeriod = ChartPeriod.oneMonth;
-  TrackballArgs args;
 
   @override
   Widget build(BuildContext context) {
@@ -40,47 +40,76 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
         const DividerWithPadding(
           padding: 2,
         ),
-        SizedBox(
-          height: 30,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (!(args?.tracking ?? false))
-                ...ChartPeriod.values
-                    .map(
-                      (period) => GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            chartPeriod = period;
-                          });
-                        },
-                        child: Container(
-                          width: 27,
-                          height: 27,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            color: period == chartPeriod
-                                ? backgroundGreyColor
-                                : Colors.transparent,
-                          ),
-                          child: Text(
-                            period.getTranslations(context),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: period == chartPeriod
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
+        BlocBuilder<ChartCubit, ChartCubitState>(
+          builder: (context, state) => SizedBox(
+            width: double.infinity,
+            height: 30,
+            child: state.when(preview: () {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ...ChartPeriod.values
+                      .map(
+                        (period) => GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              chartPeriod = period;
+                            });
+                          },
+                          child: Container(
+                            width: 27,
+                            height: 27,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                              color: period == chartPeriod
+                                  ? backgroundGreyColor
+                                  : Colors.transparent,
+                            ),
+                            child: Text(
+                              period.getTranslations(context),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: period == chartPeriod
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
                             ),
                           ),
                         ),
+                      )
+                      .toList()
+                ],
+              );
+            }, tracking: (tracking) {
+              return Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      tracking.dateLabel,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
                       ),
-                    )
-                    .toList()
-              else
-                Text(args.date + args.value),
-            ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 16,
+                    left: tracking.x,
+                    child: Text(
+                      tracking.valueLabel,
+                      style: const TextStyle(
+                        color: blueColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }),
           ),
         ),
         const DividerWithPadding(padding: 2),
@@ -94,19 +123,9 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
               showAxisData: true,
               chartPeriod: chartPeriod,
               exchangeRates: range,
-              onTrackballPositionChanging: _onChangePosition,
-              tracking: args?.tracking ?? false,
             ),
           ),
       ],
     );
-  }
-
-  void _onChangePosition(TrackballArgs position) {
-    // Future.delayed(const Duration(milliseconds: 300), () {
-    //   setState(() {
-    //     args = position;
-    //   });
-    // });
   }
 }

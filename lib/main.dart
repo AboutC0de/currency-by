@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 
+import 'application/chart/chart_cubit.dart';
 import 'application/exchange_rate/exchange_rate_bloc.dart';
 import 'generated/l10n.dart';
 import 'injection.dart';
@@ -25,6 +26,9 @@ class CurrencyApp extends StatelessWidget {
       providers: [
         BlocProvider<ExchangeRateBloc>(
           create: (BuildContext context) => getIt<ExchangeRateBloc>(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => getIt<ChartCubit>(),
         ),
       ],
       child: MaterialApp(

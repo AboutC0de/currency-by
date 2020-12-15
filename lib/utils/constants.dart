@@ -4,6 +4,7 @@ const String dateFormat = 'dd MMMM';
 
 const greenColor = Color(0xFF36c759);
 const redColor = Color(0xFFfe3c30);
+const blueColor = Color(0xFF75C8FF);
 
 const greyHexColorString = 'FF8e8d93';
 
