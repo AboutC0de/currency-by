@@ -8,7 +8,7 @@ import '../infrastructure/currency_source.dart';
 import '../utils/constants.dart';
 import 'currency_info.dart';
 import 'exchange_rate_widget.dart';
-import 'widgets/chart_fusion.dart';
+import 'widgets/currency_chart.dart';
 
 class OneDayExchangeRateWidget extends StatefulWidget {
   final ExchangeRate _exchangeRate;
@@ -135,7 +135,7 @@ class _ExchangeRateChart extends StatelessWidget {
     final bloc = context.watch<ExchangeRateBloc>();
     final exchangeRates = bloc.monthExchangeRates[exchangeRate.currencyCode];
 
-    return ChartFusion(
+    return CurrencyChart(
       color: currencySource.getDiffColor(exchangeRate.nbDiff),
       exchangeRates: exchangeRates,
       onChartTapped: onTap,

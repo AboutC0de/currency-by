@@ -6,7 +6,7 @@ import '../application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
 import '../infrastructure/currency_source.dart';
 import '../infrastructure/exchange_rate/chart_period.dart';
 import '../utils/constants.dart';
-import 'widgets/chart_fusion.dart';
+import 'widgets/currency_chart.dart';
 import 'widgets/divider_with_paddings.dart';
 import 'widgets/loading_progress_indicator.dart';
 
@@ -118,7 +118,7 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
         else
           SizedBox(
             height: 200,
-            child: ChartFusion(
+            child: CurrencyChart(
               color: widget.source.getDiffColor(range.first.nb - range.last.nb),
               showAxisData: true,
               chartPeriod: chartPeriod,

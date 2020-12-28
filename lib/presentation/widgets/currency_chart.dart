@@ -19,7 +19,7 @@ enum ChartMode {
 
 typedef OnTrackballPositionChanging = void Function(TrackballArgs);
 
-class ChartFusion extends StatelessWidget {
+class CurrencyChart extends StatelessWidget {
   final List<OneDayExchangeRate> exchangeRates;
   final Color color;
   final bool showAxisData;
@@ -27,7 +27,7 @@ class ChartFusion extends StatelessWidget {
   final VoidCallback onChartTapped;
   final bool tracking;
 
-  const ChartFusion({
+  const CurrencyChart({
     @required this.exchangeRates,
     @required this.color,
     this.showAxisData = false,
@@ -83,7 +83,7 @@ class ChartFusion extends StatelessWidget {
       onTrackballPositionChanging: (args) {
         final index = args.chartPointInfo.dataPointIndex;
         final rate = exchangeRates[index];
-        final dateLabel = DateFormat('d.MM.yyyy').format(rate.nbDate);
+        final dateLabel = DateFormat(chartDateFormat).format(rate.nbDate);
         final valueLabel =
             (double.parse(args.chartPointInfo.label) / cof).toStringAsFixed(4);
         args.chartPointInfo.header = '';
