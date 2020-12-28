@@ -66,6 +66,13 @@ dev_dependencies:
   auto_route_generator: ^0.6.10
   flutter_launcher_icons: ^0.8.1
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "dev_assets/currency.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "dev_assets/currency-adaptive.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
