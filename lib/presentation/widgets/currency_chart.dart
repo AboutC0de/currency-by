@@ -32,22 +32,30 @@ class CurrencyChart extends StatelessWidget {
     @required this.color,
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
-    this.onChartTapped = emptyFunc,
+    this.onChartTapped,
     this.tracking = false,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    final max = exchangeRates
+  double _maxExchangeRate() {
+    return exchangeRates
                 .reduce((curr, next) => curr.nb > next.nb ? curr : next)
                 .nb *
             cof +
         interval;
-    final min = exchangeRates
+  }
+
+  double _minExchangeRate() {
+    return exchangeRates
                 .reduce((curr, next) => curr.nb < next.nb ? curr : next)
                 .nb *
             cof -
         interval;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final max = _maxExchangeRate();
+    final min = _minExchangeRate();
 
     final color = context.select(
         (ChartCubit cubit) => cubit.state is Preview ? this.color : blueColor);
@@ -60,7 +68,11 @@ class CurrencyChart extends StatelessWidget {
         }
       },
       onChartTouchInteractionUp: (args) {
-        context.read<ChartCubit>().onPreview();
+        if (onChartTapped == null) {
+          context.read<ChartCubit>().onPreview();
+        } else {
+          onChartTapped();
+        }
       },
       trackballBehavior: TrackballBehavior(
         markerSettings: TrackballMarkerSettings(

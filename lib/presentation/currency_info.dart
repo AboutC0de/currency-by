@@ -128,7 +128,7 @@ class CurrencyInfoModal extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          source.getDiffSign(exchangeRate),
+                          source.formatDiff(exchangeRate.nbDiff),
                           style: TextStyle(
                             color: source.getNbDiffColor(exchangeRate),
                           ),

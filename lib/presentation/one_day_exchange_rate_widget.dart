@@ -94,7 +94,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
           SizedBox(
             width: 80,
             child: ExchangeRateWidget(
-              diff: _currencySource.getDiffSign(exchangeRate),
+              diff: _currencySource.getDiffWithSign(exchangeRate),
               color: _currencySource.getColor(exchangeRate),
               label:
                   '${_currencySource.getTranslation(context)}: ${_currencySource.getDate(exchangeRate)}',
