@@ -46,11 +46,11 @@ dependencies:
   flutter_bloc: ^6.1.1
 
   get_it: ^5.0.3
-  injectable: ^1.0.5
+  injectable: ^1.0.7
 
   auto_route: ^0.6.9
 
-  syncfusion_flutter_charts: ^18.4.31
+  syncfusion_flutter_charts: ^18.4.32+1
   modal_bottom_sheet: ^1.0.0+1
 
 dev_dependencies:
@@ -70,8 +70,8 @@ flutter_icons:
   android: true
   ios: true
   image_path: "dev_assets/currency.png"
-  adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "dev_assets/currency-adaptive.png"
+  adaptive_icon_background: "#ff0000"
+  adaptive_icon_foreground: "dev_assets/currency_adaptive.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

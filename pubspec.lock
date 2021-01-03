@@ -440,7 +440,7 @@ packages:
       name: injectable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.7"
   injectable_generator:
     dependency: "direct dev"
     description:
@@ -683,14 +683,14 @@ packages:
       name: syncfusion_flutter_charts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "18.4.31"
+    version: "18.4.32+1"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "18.4.31"
+    version: "18.4.32"
   term_glyph:
     dependency: transitive
     description:
