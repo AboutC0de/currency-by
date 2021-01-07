@@ -51,7 +51,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 7,
+            flex: 6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,8 +91,8 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
               ),
             ),
           ),
-          SizedBox(
-            width: 80,
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
             child: ExchangeRateWidget(
               diff: _currencySource.getDiffWithSign(exchangeRate),
               color: _currencySource.getColor(exchangeRate),
