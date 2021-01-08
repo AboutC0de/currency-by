@@ -58,9 +58,9 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
                 Text(
                   exchangeRate.currencyCode,
                   style: const TextStyle(
-                    fontSize: 17,
+                    fontSize: 21,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(

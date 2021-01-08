@@ -19,7 +19,7 @@ class HomeWidget extends StatelessWidget {
         elevation: 0,
         backgroundColor: Theme.of(context).accentColor,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
