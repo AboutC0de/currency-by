@@ -50,8 +50,8 @@ class CurrencyInfoModal extends StatelessWidget {
                           Text(
                             exchangeRate.currencyCode,
                             style: const TextStyle(
-                              color: Colors.white,
                               fontSize: 27,
+                              color: Colors.white,
                               fontWeight: FontWeight.w900,
                             ),
                           ),
