@@ -46,6 +46,7 @@ class CurrencyInfoModal extends StatelessWidget {
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
                         children: [
                           Text(
                             exchangeRate.currencyCode,
