@@ -57,7 +57,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
                   exchangeRate.currencyFullName,
                   style: const TextStyle(
                     color: greyColor,
-                    fontSize: 14,
+                    fontSize: 15,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

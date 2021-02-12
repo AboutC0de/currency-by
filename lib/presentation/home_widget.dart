@@ -18,30 +18,28 @@ class HomeWidget extends StatelessWidget {
         titleSpacing: 0,
         elevation: 0,
         backgroundColor: Theme.of(context).accentColor,
+        toolbarHeight: 80,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    S.of(context).appTitle,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    DateFormat(dateFormat).format(DateTime.now()).toString(),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
+              Text(
+                S.of(context).appTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 26,
+                  letterSpacing: -1,
+                ),
               ),
+              Text(
+                DateFormat(dateFormat).format(DateTime.now()).toString(),
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
+                ),
+              )
             ],
           ),
         ),
@@ -49,7 +47,9 @@ class HomeWidget extends StatelessWidget {
       body: bloc.state.when(
         initial: () => LoadingProgressIndicator(),
         loaded: (List<ExchangeRate> rates) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+          ),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
             itemBuilder: (context, index) {
