@@ -163,7 +163,7 @@ class CurrencyChart extends StatelessWidget {
             ],
           ),
           borderColor: color,
-          borderWidth: 1,
+          borderWidth: 2,
           dataSource: exchangeRates,
           xValueMapper: (OneDayExchangeRate rate, _) => rate.nbDate,
           yValueMapper: (OneDayExchangeRate rate, _) => rate.nb * cof,

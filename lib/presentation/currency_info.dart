@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../application/currency_exchange_rate/currency_exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
@@ -111,7 +110,6 @@ class CurrencyInfoModal extends StatelessWidget {
               ),
               child: ListView(
                 padding: const EdgeInsets.symmetric(),
-                controller: ModalScrollController.of(context),
                 children: [
                   SizedBox(
                     height: 30,

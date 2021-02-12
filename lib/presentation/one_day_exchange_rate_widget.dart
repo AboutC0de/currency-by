@@ -1,12 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
 import '../infrastructure/currency_source.dart';
 import '../utils/constants.dart';
-import 'currency_info.dart';
 import 'exchange_rate_widget.dart';
 import 'widgets/currency_chart.dart';
 
@@ -26,19 +25,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
   CurrencySource _currencySource = CurrencySource.nb;
 
   void onTap() {
-    showCupertinoModalBottomSheet(
-      expand: true,
-      useRootNavigator: true,
-      context: context,
-      builder: (context) => CurrencyInfoModal(
-        exchangeRate: widget._exchangeRate,
-        source: _currencySource,
-      ),
-      barrierColor: Colors.transparent,
-      backgroundColor: Colors.transparent,
-      transitionBackgroundColor: Colors.transparent,
-      duration: const Duration(milliseconds: 250),
-    );
+    // Router.navigate(context, () { })
   }
 
   @override
@@ -97,7 +84,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
               diff: _currencySource.getDiffWithSign(exchangeRate),
               color: _currencySource.getColor(exchangeRate),
               label:
-                  '${_currencySource.getTranslation(context)}: ${_currencySource.getDate(exchangeRate)}',
+              '${_currencySource.getTranslation(context)}: ${_currencySource.getDate(exchangeRate)}',
               value: _currencySource.getValue(exchangeRate).toStringAsFixed(4),
               onSourceChange: onSourceChange,
             ),
