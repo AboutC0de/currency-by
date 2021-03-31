@@ -14,37 +14,8 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.watch<ExchangeRateBloc>();
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        elevation: 0,
-        backgroundColor: Theme.of(context).accentColor,
-        toolbarHeight: 80,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Text(
-                S.of(context).appTitle,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 26,
-                  letterSpacing: -1,
-                ),
-              ),
-              Text(
-                DateFormat(dateFormat).format(DateTime.now()).toString(),
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 26,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      body: bloc.state.when(
+
+    body: bloc.state.when(
         initial: () => LoadingProgressIndicator(),
         loaded: (List<ExchangeRate> rates) => Container(
           padding: const EdgeInsets.symmetric(
