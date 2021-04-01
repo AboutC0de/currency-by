@@ -15,9 +15,9 @@ class CurrencyInfoModal extends StatelessWidget {
   final CurrencySource source;
 
   const CurrencyInfoModal({
-    Key key,
-    @required this.exchangeRate,
-    @required this.source,
+    Key? key,
+    required this.exchangeRate,
+    required this.source,
   }) : super(key: key);
 
   @override

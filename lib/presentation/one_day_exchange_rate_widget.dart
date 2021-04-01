@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +11,8 @@ import 'widgets/currency_chart.dart';
 class OneDayExchangeRateWidget extends StatefulWidget {
   final ExchangeRate _exchangeRate;
 
-  const OneDayExchangeRateWidget({Key key, ExchangeRate exchangeRate})
+  const OneDayExchangeRateWidget(
+      {required Key key, required ExchangeRate exchangeRate})
       : _exchangeRate = exchangeRate,
         super(key: key);
 

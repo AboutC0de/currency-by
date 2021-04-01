@@ -15,10 +15,10 @@ part 'exchange_rate_state.dart';
 class ExchangeRateBloc extends Cubit<ExchangeRateState> {
   final IExchangeRateRepository _exchangeRateRepository;
 
-  List<ExchangeRate> _exchangeRates;
-  Map<String, List<OneDayExchangeRate>> _monthExchangeRates;
+  late List<ExchangeRate> _exchangeRates;
+  late Map<String, List<OneDayExchangeRate>> _monthExchangeRates;
 
-  StreamSubscription<dynamic> _currencyChangesSubscription;
+  late StreamSubscription<dynamic> _currencyChangesSubscription;
 
   ExchangeRateBloc(this._exchangeRateRepository)
       : super(const ExchangeRateState.initial()) {

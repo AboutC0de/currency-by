@@ -12,7 +12,8 @@ abstract class OneDayExchangeRateDTO implements _$OneDayExchangeRateDTO {
   const OneDayExchangeRateDTO._();
 
   const factory OneDayExchangeRateDTO({
-    double nb,
+    @Default
+        double nb,
     @JsonKey(
       fromJson: stringToDateTime,
       toJson: dateTimeToString,

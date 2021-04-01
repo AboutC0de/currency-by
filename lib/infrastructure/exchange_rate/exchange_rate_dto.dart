@@ -12,6 +12,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
   const ExchangeRateDTO._();
 
   const factory ExchangeRateDTO({
+    @Default
     @required
         double amount,
     @JsonKey(

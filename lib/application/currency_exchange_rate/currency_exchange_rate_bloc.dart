@@ -12,7 +12,7 @@ part 'currency_exchange_rate_state.dart';
 class CurrencyExchangeRateBloc extends Cubit<CurrencyExchangeRateState> {
   final IExchangeRateRepository _exchangeRateRepository;
 
-  List<OneDayExchangeRate> _currencyExchangeRates;
+  late List<OneDayExchangeRate> _currencyExchangeRates;
 
   CurrencyExchangeRateBloc(this._exchangeRateRepository)
       : super(const CurrencyExchangeRateState.initial());

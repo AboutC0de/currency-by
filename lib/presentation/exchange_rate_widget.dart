@@ -8,13 +8,12 @@ class ExchangeRateWidget extends StatelessWidget {
   final String value;
 
   const ExchangeRateWidget({
-    Key key,
-    @required this.color,
-    @required this.diff,
-    @required this.label,
-    @required this.value,
-    @required this.onSourceChange,
-  }) : super(key: key);
+    required this.color,
+    required this.diff,
+    required this.label,
+    required this.value,
+    required this.onSourceChange,
+  }) : super(key: null);
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +53,8 @@ class _CurrencyChanges extends StatelessWidget {
   final String diff;
 
   const _CurrencyChanges({
-    @required this.color,
-    @required this.diff,
+    required this.color,
+    required this.diff,
   });
 
   @override
