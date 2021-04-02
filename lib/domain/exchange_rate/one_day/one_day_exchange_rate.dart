@@ -7,7 +7,7 @@ abstract class OneDayExchangeRate implements _$OneDayExchangeRate {
   const OneDayExchangeRate._();
 
   const factory OneDayExchangeRate({
-    double nb,
-    DateTime nbDate,
+    required double nb,
+    required DateTime nbDate,
   }) = _OneDayExchangeRate;
 }

@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route_annotations.dart';
+import 'package:auto_route/annotations.dart';
 
 import '../currency_info.dart';
 import '../home_widget.dart';
