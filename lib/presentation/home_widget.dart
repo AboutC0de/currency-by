@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../application/exchange_rate/exchange_rate_bloc.dart';
 import '../domain/exchange_rate/exchange_rate.dart';
-import '../generated/l10n.dart';
-import '../utils/constants.dart';
 import 'one_day_exchange_rate_widget.dart';
 import 'widgets/loading_progress_indicator.dart';
 

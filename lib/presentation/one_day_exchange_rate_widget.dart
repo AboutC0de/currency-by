@@ -11,8 +11,7 @@ import 'widgets/currency_chart.dart';
 class OneDayExchangeRateWidget extends StatefulWidget {
   final ExchangeRate _exchangeRate;
 
-  const OneDayExchangeRateWidget(
-      {required Key key, required ExchangeRate exchangeRate})
+  const OneDayExchangeRateWidget({Key? key, required ExchangeRate exchangeRate})
       : _exchangeRate = exchangeRate,
         super(key: key);
 
@@ -111,9 +110,9 @@ class _ExchangeRateChart extends StatelessWidget {
   final VoidCallback onTap;
 
   const _ExchangeRateChart({
-    Key key,
-    @required this.exchangeRate,
-    @required this.currencySource,
+    Key? key,
+    required this.exchangeRate,
+    required this.currencySource,
     this.onTap,
   }) : super(key: key);
 

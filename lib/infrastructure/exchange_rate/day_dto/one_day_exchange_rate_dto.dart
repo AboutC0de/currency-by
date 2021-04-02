@@ -12,13 +12,12 @@ abstract class OneDayExchangeRateDTO implements _$OneDayExchangeRateDTO {
   const OneDayExchangeRateDTO._();
 
   const factory OneDayExchangeRateDTO({
-    @Default
-        double nb,
+    required double nb,
     @JsonKey(
       fromJson: stringToDateTime,
       toJson: dateTimeToString,
     )
-        DateTime nbDate,
+        required DateTime nbDate,
   }) = _OneDayExchangeRateDTO;
 
   factory OneDayExchangeRateDTO.fromDomain(

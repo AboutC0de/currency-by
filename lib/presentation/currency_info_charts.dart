@@ -14,7 +14,7 @@ class CurrencyInfoCharts extends StatefulWidget {
   final CurrencySource source;
 
   const CurrencyInfoCharts({
-    @required this.source,
+    required this.source,
   });
 
   @override
