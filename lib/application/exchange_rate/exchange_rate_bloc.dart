@@ -41,8 +41,7 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
     _currencyChangesSubscription =
         _exchangeRateRepository.subscribeOnCurrencyChanges().listen(
       (exchangeRates) {
-        _exchangeRates =
-            exchangeRates.where((rate) => rate.visible).toList() ?? [];
+        _exchangeRates = exchangeRates.where((rate) => rate.visible).toList();
         if (state != const ExchangeRateState.loading()) {
           emit(ExchangeRateState.loaded(_exchangeRates));
         }
@@ -55,7 +54,7 @@ class ExchangeRateBloc extends Cubit<ExchangeRateState> {
 
   @override
   Future<void> close() async {
-    await _currencyChangesSubscription?.cancel();
+    await _currencyChangesSubscription.cancel();
     return super.close();
   }
 }

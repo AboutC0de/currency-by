@@ -20,18 +20,19 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "appTitle" : MessageLookupByLibrary.simpleMessage("Currency BY"),
-    "bcse" : MessageLookupByLibrary.simpleMessage("БВФБ"),
-    "buy" : MessageLookupByLibrary.simpleMessage("Купить"),
-    "currency" : MessageLookupByLibrary.simpleMessage("Курсы валют"),
-    "edit" : MessageLookupByLibrary.simpleMessage("изменить"),
-    "nb" : MessageLookupByLibrary.simpleMessage("НБРБ"),
-    "oneMonth" : MessageLookupByLibrary.simpleMessage("1М"),
-    "oneWeek" : MessageLookupByLibrary.simpleMessage("1Н"),
-    "oneYear" : MessageLookupByLibrary.simpleMessage("1Г"),
-    "sell" : MessageLookupByLibrary.simpleMessage("Продать"),
-    "sixMonth" : MessageLookupByLibrary.simpleMessage("6М"),
-    "threeMonth" : MessageLookupByLibrary.simpleMessage("3М")
-  };
+
+  static _notInlinedMessages(_) => <String, Function>{
+        "appTitle": MessageLookupByLibrary.simpleMessage("Currency BY"),
+        "bcse": MessageLookupByLibrary.simpleMessage("БВФБ"),
+        "buy": MessageLookupByLibrary.simpleMessage("Купить"),
+        "currency": MessageLookupByLibrary.simpleMessage("Курсы валют"),
+        "edit": MessageLookupByLibrary.simpleMessage("изменить"),
+        "nb": MessageLookupByLibrary.simpleMessage("НБРБ"),
+        "oneMonth": MessageLookupByLibrary.simpleMessage("1М"),
+        "oneWeek": MessageLookupByLibrary.simpleMessage("1Н"),
+        "oneYear": MessageLookupByLibrary.simpleMessage("1Г"),
+        "sell": MessageLookupByLibrary.simpleMessage("Продать"),
+        "sixMonth": MessageLookupByLibrary.simpleMessage("6М"),
+        "threeMonth": MessageLookupByLibrary.simpleMessage("3М")
+      };
 }

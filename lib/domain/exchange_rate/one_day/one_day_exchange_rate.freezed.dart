@@ -30,6 +30,7 @@ const $OneDayExchangeRate = _$OneDayExchangeRateTearOff();
 /// @nodoc
 mixin _$OneDayExchangeRate {
   double get nb => throw _privateConstructorUsedError;
+
   DateTime get nbDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,6 +43,7 @@ abstract class $OneDayExchangeRateCopyWith<$Res> {
   factory $OneDayExchangeRateCopyWith(
           OneDayExchangeRate value, $Res Function(OneDayExchangeRate) then) =
       _$OneDayExchangeRateCopyWithImpl<$Res>;
+
   $Res call({double nb, DateTime nbDate});
 }
 
@@ -51,6 +53,7 @@ class _$OneDayExchangeRateCopyWithImpl<$Res>
   _$OneDayExchangeRateCopyWithImpl(this._value, this._then);
 
   final OneDayExchangeRate _value;
+
   // ignore: unused_field
   final $Res Function(OneDayExchangeRate) _then;
 
@@ -78,6 +81,7 @@ abstract class _$OneDayExchangeRateCopyWith<$Res>
   factory _$OneDayExchangeRateCopyWith(
           _OneDayExchangeRate value, $Res Function(_OneDayExchangeRate) then) =
       __$OneDayExchangeRateCopyWithImpl<$Res>;
+
   @override
   $Res call({double nb, DateTime nbDate});
 }
@@ -151,12 +155,15 @@ class _$_OneDayExchangeRate extends _OneDayExchangeRate {
 abstract class _OneDayExchangeRate extends OneDayExchangeRate {
   const factory _OneDayExchangeRate(
       {required double nb, required DateTime nbDate}) = _$_OneDayExchangeRate;
+
   const _OneDayExchangeRate._() : super._();
 
   @override
   double get nb => throw _privateConstructorUsedError;
+
   @override
   DateTime get nbDate => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$OneDayExchangeRateCopyWith<_OneDayExchangeRate> get copyWith =>

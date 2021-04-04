@@ -86,7 +86,7 @@ extension CurrencySourceExtension on CurrencySource {
         res = exchangeRate.nbDate!;
         break;
     }
-    return res != null ? DateFormat('dd MMM').format(res) : '-';
+    return DateFormat('dd MMM').format(res);
   }
 
   Color getDiffColor(double diff) {

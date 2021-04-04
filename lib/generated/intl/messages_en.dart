@@ -20,18 +20,19 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "appTitle" : MessageLookupByLibrary.simpleMessage("Currency BY"),
-    "bcse" : MessageLookupByLibrary.simpleMessage("BCSE"),
-    "buy" : MessageLookupByLibrary.simpleMessage("Buy"),
-    "currency" : MessageLookupByLibrary.simpleMessage("Currency"),
-    "edit" : MessageLookupByLibrary.simpleMessage("edit"),
-    "nb" : MessageLookupByLibrary.simpleMessage("NB"),
-    "oneMonth" : MessageLookupByLibrary.simpleMessage("1M"),
-    "oneWeek" : MessageLookupByLibrary.simpleMessage("1W"),
-    "oneYear" : MessageLookupByLibrary.simpleMessage("1Y"),
-    "sell" : MessageLookupByLibrary.simpleMessage("Sell"),
-    "sixMonth" : MessageLookupByLibrary.simpleMessage("6M"),
-    "threeMonth" : MessageLookupByLibrary.simpleMessage("3M")
-  };
+
+  static _notInlinedMessages(_) => <String, Function>{
+        "appTitle": MessageLookupByLibrary.simpleMessage("Currency BY"),
+        "bcse": MessageLookupByLibrary.simpleMessage("BCSE"),
+        "buy": MessageLookupByLibrary.simpleMessage("Buy"),
+        "currency": MessageLookupByLibrary.simpleMessage("Currency"),
+        "edit": MessageLookupByLibrary.simpleMessage("edit"),
+        "nb": MessageLookupByLibrary.simpleMessage("NB"),
+        "oneMonth": MessageLookupByLibrary.simpleMessage("1M"),
+        "oneWeek": MessageLookupByLibrary.simpleMessage("1W"),
+        "oneYear": MessageLookupByLibrary.simpleMessage("1Y"),
+        "sell": MessageLookupByLibrary.simpleMessage("Sell"),
+        "sixMonth": MessageLookupByLibrary.simpleMessage("6M"),
+        "threeMonth": MessageLookupByLibrary.simpleMessage("3M")
+      };
 }

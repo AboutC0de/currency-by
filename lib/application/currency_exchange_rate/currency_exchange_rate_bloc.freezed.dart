@@ -41,6 +41,7 @@ mixin _$CurrencyExchangeRateState {
     required TResult Function() loaded,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
@@ -49,6 +50,7 @@ mixin _$CurrencyExchangeRateState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
@@ -56,6 +58,7 @@ mixin _$CurrencyExchangeRateState {
     required TResult Function(Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
@@ -79,6 +82,7 @@ class _$CurrencyExchangeRateStateCopyWithImpl<$Res>
   _$CurrencyExchangeRateStateCopyWithImpl(this._value, this._then);
 
   final CurrencyExchangeRateState _value;
+
   // ignore: unused_field
   final $Res Function(CurrencyExchangeRateState) _then;
 }

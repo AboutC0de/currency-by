@@ -27,7 +27,7 @@ class _CurrencyInfoChartsState extends State<CurrencyInfoCharts> {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<CurrencyExchangeRateBloc>();
-    final exchangeRates = bloc.currencyExchangeRates ?? [];
+    final exchangeRates = bloc.currencyExchangeRates;
     final range = exchangeRates
         .getRange(
           0,

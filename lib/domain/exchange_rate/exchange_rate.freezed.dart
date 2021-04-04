@@ -60,20 +60,35 @@ const $ExchangeRate = _$ExchangeRateTearOff();
 /// @nodoc
 mixin _$ExchangeRate {
   double get amount => throw _privateConstructorUsedError;
+
   DateTime? get bcseDate => throw _privateConstructorUsedError;
+
   double get bcseDiff => throw _privateConstructorUsedError;
+
   double get bcseRate => throw _privateConstructorUsedError;
+
   double get buy => throw _privateConstructorUsedError;
+
   double get buyDiff => throw _privateConstructorUsedError;
+
   String get currencyCode => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get namePlural => throw _privateConstructorUsedError;
+
   String get namePluralShort => throw _privateConstructorUsedError;
+
   double get nb => throw _privateConstructorUsedError;
+
   DateTime? get nbDate => throw _privateConstructorUsedError;
+
   double get nbDiff => throw _privateConstructorUsedError;
+
   double get sell => throw _privateConstructorUsedError;
+
   double get sellDiff => throw _privateConstructorUsedError;
+
   bool get visible => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -86,6 +101,7 @@ abstract class $ExchangeRateCopyWith<$Res> {
   factory $ExchangeRateCopyWith(
           ExchangeRate value, $Res Function(ExchangeRate) then) =
       _$ExchangeRateCopyWithImpl<$Res>;
+
   $Res call(
       {double amount,
       DateTime? bcseDate,
@@ -110,6 +126,7 @@ class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
   _$ExchangeRateCopyWithImpl(this._value, this._then);
 
   final ExchangeRate _value;
+
   // ignore: unused_field
   final $Res Function(ExchangeRate) _then;
 
@@ -207,6 +224,7 @@ abstract class _$ExchangeRateCopyWith<$Res>
   factory _$ExchangeRateCopyWith(
           _ExchangeRate value, $Res Function(_ExchangeRate) then) =
       __$ExchangeRateCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {double amount,
@@ -475,40 +493,57 @@ abstract class _ExchangeRate extends ExchangeRate {
       required double sell,
       required double sellDiff,
       bool visible}) = _$_ExchangeRate;
+
   const _ExchangeRate._() : super._();
 
   @override
   double get amount => throw _privateConstructorUsedError;
+
   @override
   DateTime? get bcseDate => throw _privateConstructorUsedError;
+
   @override
   double get bcseDiff => throw _privateConstructorUsedError;
+
   @override
   double get bcseRate => throw _privateConstructorUsedError;
+
   @override
   double get buy => throw _privateConstructorUsedError;
+
   @override
   double get buyDiff => throw _privateConstructorUsedError;
+
   @override
   String get currencyCode => throw _privateConstructorUsedError;
+
   @override
   String get name => throw _privateConstructorUsedError;
+
   @override
   String get namePlural => throw _privateConstructorUsedError;
+
   @override
   String get namePluralShort => throw _privateConstructorUsedError;
+
   @override
   double get nb => throw _privateConstructorUsedError;
+
   @override
   DateTime? get nbDate => throw _privateConstructorUsedError;
+
   @override
   double get nbDiff => throw _privateConstructorUsedError;
+
   @override
   double get sell => throw _privateConstructorUsedError;
+
   @override
   double get sellDiff => throw _privateConstructorUsedError;
+
   @override
   bool get visible => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$ExchangeRateCopyWith<_ExchangeRate> get copyWith =>
