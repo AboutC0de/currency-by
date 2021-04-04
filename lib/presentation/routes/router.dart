@@ -4,9 +4,10 @@ import '../currency_info.dart';
 import '../home_widget.dart';
 
 @MaterialAutoRouter(
+  replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    MaterialRoute(page: HomeWidget, initial: true),
-    MaterialRoute(
+    AutoRoute(page: HomeWidget, initial: true),
+    AutoRoute(
       fullscreenDialog: true,
       page: CurrencyInfoModal,
     ),

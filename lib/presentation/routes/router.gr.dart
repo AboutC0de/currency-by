@@ -17,11 +17,11 @@ class Router extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    HomeWidgetRoute.name: (entry) {
+    HomeWidget.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: _i2.HomeWidget());
     },
-    CurrencyInfoModalRoute.name: (entry) {
-      var args = entry.routeData.argsAs<CurrencyInfoModalRouteArgs>();
+    CurrencyInfoModal.name: (entry) {
+      var args = entry.routeData.argsAs<CurrencyInfoModalArgs>();
       return _i1.MaterialPageX(
           entry: entry,
           child: _i3.CurrencyInfoModal(
@@ -33,35 +33,34 @@ class Router extends _i1.RootStackRouter {
   };
 
   @override
-  List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeWidgetRoute.name, path: '/'),
-        _i1.RouteConfig(CurrencyInfoModalRoute.name,
-            path: '/currency-info-modal')
+  List<_i1.RouteConfig> get routes =>
+      [
+        _i1.RouteConfig(HomeWidget.name, path: '/'),
+        _i1.RouteConfig(CurrencyInfoModal.name, path: '/currency-info-modal')
       ];
 }
 
-class HomeWidgetRoute extends _i1.PageRouteInfo {
-  const HomeWidgetRoute() : super(name, path: '/');
+class HomeWidget extends _i1.PageRouteInfo {
+  const HomeWidget() : super(name, path: '/');
 
-  static const String name = 'HomeWidgetRoute';
+  static const String name = 'HomeWidget';
 }
 
-class CurrencyInfoModalRoute
-    extends _i1.PageRouteInfo<CurrencyInfoModalRouteArgs> {
-  CurrencyInfoModalRoute(
+class CurrencyInfoModal extends _i1.PageRouteInfo<CurrencyInfoModalArgs> {
+  CurrencyInfoModal(
       {_i4.Key? key,
       required _i5.ExchangeRate exchangeRate,
       required _i6.CurrencySource source})
       : super(name,
             path: '/currency-info-modal',
-            args: CurrencyInfoModalRouteArgs(
+            args: CurrencyInfoModalArgs(
                 key: key, exchangeRate: exchangeRate, source: source));
 
-  static const String name = 'CurrencyInfoModalRoute';
+  static const String name = 'CurrencyInfoModal';
 }
 
-class CurrencyInfoModalRouteArgs {
-  const CurrencyInfoModalRouteArgs(
+class CurrencyInfoModalArgs {
+  const CurrencyInfoModalArgs(
       {this.key, required this.exchangeRate, required this.source});
 
   final _i4.Key? key;

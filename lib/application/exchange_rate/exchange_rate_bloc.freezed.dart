@@ -43,7 +43,6 @@ mixin _$ExchangeRateState {
     required TResult Function(List<ExchangeRate> rates) loaded,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
@@ -52,7 +51,6 @@ mixin _$ExchangeRateState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
@@ -60,7 +58,6 @@ mixin _$ExchangeRateState {
     required TResult Function(Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
@@ -84,7 +81,6 @@ class _$ExchangeRateStateCopyWithImpl<$Res>
   _$ExchangeRateStateCopyWithImpl(this._value, this._then);
 
   final ExchangeRateState _value;
-
   // ignore: unused_field
   final $Res Function(ExchangeRateState) _then;
 }
@@ -265,7 +261,6 @@ abstract class Loading implements ExchangeRateState {
 abstract class $LoadedCopyWith<$Res> {
   factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) then) =
       _$LoadedCopyWithImpl<$Res>;
-
   $Res call({List<ExchangeRate> rates});
 }
 
@@ -373,7 +368,6 @@ abstract class Loaded implements ExchangeRateState {
   const factory Loaded(List<ExchangeRate> rates) = _$Loaded;
 
   List<ExchangeRate> get rates => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LoadedCopyWith<Loaded> get copyWith => throw _privateConstructorUsedError;
 }

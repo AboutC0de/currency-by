@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import 'application/chart/chart_cubit.dart';
 import 'application/exchange_rate/exchange_rate_bloc.dart';
 import 'generated/l10n.dart';
 import 'injection.dart';
-import 'presentation/home_widget.dart';
 import 'presentation/routes/router.gr.dart' as generated_router;
 
 Future<void> main() async {
@@ -20,6 +18,8 @@ Future<void> main() async {
 }
 
 class CurrencyApp extends StatelessWidget {
+  final _appRouter = generated_router.Router();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -31,7 +31,7 @@ class CurrencyApp extends StatelessWidget {
           create: (BuildContext context) => getIt<ChartCubit>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Currency BY',
         localizationsDelegates: const [
@@ -41,13 +41,11 @@ class CurrencyApp extends StatelessWidget {
           S.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: HomeWidget(),
-        builder: ExtendedNavigator(
-          router: generated_router.Router(),
-        ),
         theme: ThemeData(
           accentColor: Colors.black,
         ),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }
