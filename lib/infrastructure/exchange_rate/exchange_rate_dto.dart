@@ -12,45 +12,30 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
   const ExchangeRateDTO._();
 
   const factory ExchangeRateDTO({
-    @Default
-    @required
-        double amount,
+    required double amount,
     @JsonKey(
       fromJson: stringToDateTime,
       toJson: dateTimeToString,
     )
         DateTime bcseDate,
-    @required
-        double bcseDiff,
-    @required
-        double bcseRate,
-    @required
-        double buy,
-    @required
-        double buyDiff,
-    @required
-        String currencyCode,
-    @required
-        String name,
-    @required
-        String namePlural,
-    @required
-        String namePluralShort,
-    @required
-        double nb,
+    required double bcseDiff,
+    required double bcseRate,
+    required double buy,
+    required double buyDiff,
+    required String currencyCode,
+    required String name,
+    required String namePlural,
+    required String namePluralShort,
+    required double nb,
     @JsonKey(
       fromJson: stringToDateTime,
       toJson: dateTimeToString,
     )
         DateTime nbDate,
-    @required
-        double nbDiff,
-    @required
-        double sell,
-    @required
-        double sellDiff,
-    @Default(true)
-        bool visible,
+    required double nbDiff,
+    required double sell,
+    required double sellDiff,
+    required bool visible,
   }) = _ExchangeRateDTO;
 
   factory ExchangeRateDTO.fromDomain(ExchangeRate exchangeRate) {
