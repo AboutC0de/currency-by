@@ -39,5 +39,5 @@ abstract class OneDayExchangeRateDTO implements _$OneDayExchangeRateDTO {
       _$OneDayExchangeRateDTOFromJson(json);
 
   factory OneDayExchangeRateDTO.fromFirestore(DocumentSnapshot doc) =>
-      OneDayExchangeRateDTO.fromJson(doc.data());
+      OneDayExchangeRateDTO.fromJson(doc.data()!);
 }

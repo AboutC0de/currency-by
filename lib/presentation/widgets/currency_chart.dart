@@ -24,12 +24,12 @@ class CurrencyChart extends StatelessWidget {
   final Color color;
   final bool showAxisData;
   final ChartPeriod chartPeriod;
-  final VoidCallback onChartTapped;
+  final VoidCallback? onChartTapped;
   final bool tracking;
 
   const CurrencyChart({
-    @required this.exchangeRates,
-    @required this.color,
+    required this.exchangeRates,
+    required this.color,
     this.showAxisData = false,
     this.chartPeriod = ChartPeriod.oneMonth,
     this.onChartTapped,
@@ -64,14 +64,14 @@ class CurrencyChart extends StatelessWidget {
       backgroundColor: Colors.transparent,
       onAxisLabelRender: (args) {
         if (args.axis is NumericAxis) {
-          args.text = (args.value / cof).toStringAsFixed(2);
+          args.text = (args.value! / cof).toStringAsFixed(2);
         }
       },
       onChartTouchInteractionUp: (args) {
         if (onChartTapped == null) {
           context.read<ChartCubit>().onPreview();
         } else {
-          onChartTapped();
+          onChartTapped!();
         }
       },
       trackballBehavior: TrackballBehavior(
@@ -86,23 +86,23 @@ class CurrencyChart extends StatelessWidget {
         enable: showAxisData,
         tooltipAlignment: ChartAlignment.near,
         tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
-        tooltipSettings: InteractiveTooltip(
+        tooltipSettings: const InteractiveTooltip(
           color: Colors.transparent,
           borderColor: Colors.transparent,
-          textStyle: const TextStyle(color: Colors.transparent),
+          textStyle: TextStyle(color: Colors.transparent),
         ),
       ),
       onTrackballPositionChanging: (args) {
         final index = args.chartPointInfo.dataPointIndex;
-        final rate = exchangeRates[index];
+        final rate = exchangeRates[index!];
         final dateLabel = DateFormat(chartDateFormat).format(rate.nbDate);
         final valueLabel =
-            (double.parse(args.chartPointInfo.label) / cof).toStringAsFixed(4);
+            (double.parse(args.chartPointInfo.label!) / cof).toStringAsFixed(4);
         args.chartPointInfo.header = '';
         context.read<ChartCubit>().onTracking(
               TrackingArgs(
-                x: args.chartPointInfo.xPosition,
-                y: args.chartPointInfo.yPosition,
+                x: args.chartPointInfo.xPosition!,
+                y: args.chartPointInfo.yPosition!,
                 dateLabel: dateLabel,
                 valueLabel: valueLabel,
               ),
@@ -111,11 +111,11 @@ class CurrencyChart extends StatelessWidget {
       primaryXAxis: DateTimeAxis(
         isVisible: showAxisData,
         rangePadding: ChartRangePadding.auto,
-        majorTickLines: MajorTickLines(width: 0.1),
-        majorGridLines: MajorGridLines(width: 0.1),
-        minorGridLines: MinorGridLines(width: 0),
-        minorTickLines: MinorTickLines(width: 0),
-        axisLine: AxisLine(
+        majorTickLines: const MajorTickLines(width: 0.1),
+        majorGridLines: const MajorGridLines(width: 0.1),
+        minorGridLines: const MinorGridLines(width: 0),
+        minorTickLines: const MinorTickLines(width: 0),
+        axisLine: const AxisLine(
           width: 0.5,
           color: greyColor,
         ),

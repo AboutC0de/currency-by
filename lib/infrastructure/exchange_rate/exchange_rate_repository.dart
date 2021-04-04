@@ -26,7 +26,7 @@ class ExchangeRateRepository implements IExchangeRateRepository {
         .doc('exchangeRates')
         .get();
     return documentSnapshot
-        .data()
+        .data()!
         .map((currency, value) => MapEntry(
               currency,
               value
@@ -45,7 +45,7 @@ class ExchangeRateRepository implements IExchangeRateRepository {
     final documentSnapshot =
         await _firestore.collection(oneYearCollection).doc(currency).get();
     return documentSnapshot
-        .data()['exchangeRates']
+        .data()!['exchangeRates']
         .map((rate) =>
             OneDayExchangeRateDTO.fromJson(rate as Map<String, dynamic>)
                 .toDomain())
@@ -59,8 +59,9 @@ class ExchangeRateRepository implements IExchangeRateRepository {
         .collection(oneDayCollection)
         .doc(documentId)
         .snapshots()
-        .map((snapshot) => snapshot
-            .data()['exchangeRates']
+        .map((snapshot) =>
+    snapshot
+            .data()!['exchangeRates']
             .map((rate) =>
                 ExchangeRateDTO.fromJson(rate as Map<String, dynamic>)
                     .toDomain())

@@ -76,14 +76,14 @@ extension CurrencySourceExtension on CurrencySource {
         res = DateTime.now();
         break;
       case CurrencySource.nb:
-        res = exchangeRate.nbDate;
+        res = exchangeRate.nbDate!;
         break;
       case CurrencySource.bcse:
-        res = exchangeRate.bcseDate;
+        res = exchangeRate.bcseDate!;
         break;
 
       default:
-        res = exchangeRate.nbDate;
+        res = exchangeRate.nbDate!;
         break;
     }
     return res != null ? DateFormat('dd MMM').format(res) : '-';

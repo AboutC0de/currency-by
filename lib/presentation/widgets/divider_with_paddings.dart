@@ -6,7 +6,7 @@ class DividerWithPadding extends StatelessWidget {
   final double padding;
 
   const DividerWithPadding({
-    Key key,
+    Key? key,
     this.padding = 5,
   }) : super(key: key);
 

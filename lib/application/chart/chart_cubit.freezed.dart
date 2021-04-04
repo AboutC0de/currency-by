@@ -38,7 +38,6 @@ mixin _$ChartCubitState {
     required TResult Function(TrackingArgs tracking) tracking,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? preview,
@@ -46,14 +45,12 @@ mixin _$ChartCubitState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Preview value) preview,
     required TResult Function(Tracking value) tracking,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Preview value)? preview,
@@ -166,7 +163,6 @@ abstract class Preview implements ChartCubitState {
 abstract class $TrackingCopyWith<$Res> {
   factory $TrackingCopyWith(Tracking value, $Res Function(Tracking) then) =
       _$TrackingCopyWithImpl<$Res>;
-
   $Res call({TrackingArgs tracking});
 }
 
@@ -271,7 +267,6 @@ abstract class Tracking implements ChartCubitState {
   const factory Tracking(TrackingArgs tracking) = _$Tracking;
 
   TrackingArgs get tracking => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $TrackingCopyWith<Tracking> get copyWith =>
       throw _privateConstructorUsedError;

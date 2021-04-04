@@ -17,7 +17,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       fromJson: stringToDateTime,
       toJson: dateTimeToString,
     )
-        DateTime bcseDate,
+        required DateTime bcseDate,
     required double bcseDiff,
     required double bcseRate,
     required double buy,
@@ -31,7 +31,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       fromJson: stringToDateTime,
       toJson: dateTimeToString,
     )
-        DateTime nbDate,
+        required DateTime nbDate,
     required double nbDiff,
     required double sell,
     required double sellDiff,
@@ -41,7 +41,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
   factory ExchangeRateDTO.fromDomain(ExchangeRate exchangeRate) {
     return ExchangeRateDTO(
       amount: exchangeRate.amount,
-      bcseDate: exchangeRate.bcseDate,
+      bcseDate: exchangeRate.bcseDate!,
       bcseDiff: exchangeRate.bcseDiff,
       bcseRate: exchangeRate.bcseRate,
       buy: exchangeRate.buy,
@@ -51,7 +51,7 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       namePlural: exchangeRate.namePlural,
       namePluralShort: exchangeRate.namePluralShort,
       nb: exchangeRate.nb,
-      nbDate: exchangeRate.nbDate,
+      nbDate: exchangeRate.nbDate!,
       nbDiff: exchangeRate.nbDiff,
       sell: exchangeRate.sell,
       sellDiff: exchangeRate.sellDiff,
@@ -84,5 +84,5 @@ abstract class ExchangeRateDTO implements _$ExchangeRateDTO {
       _$ExchangeRateDTOFromJson(json);
 
   factory ExchangeRateDTO.fromFirestore(DocumentSnapshot doc) =>
-      ExchangeRateDTO.fromJson(doc.data());
+      ExchangeRateDTO.fromJson(doc.data()!);
 }

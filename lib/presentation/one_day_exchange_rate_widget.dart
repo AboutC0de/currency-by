@@ -107,7 +107,7 @@ class _OneDayExchangeRateWidgetState extends State<OneDayExchangeRateWidget> {
 class _ExchangeRateChart extends StatelessWidget {
   final ExchangeRate exchangeRate;
   final CurrencySource currencySource;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const _ExchangeRateChart({
     Key? key,
@@ -123,7 +123,7 @@ class _ExchangeRateChart extends StatelessWidget {
 
     return CurrencyChart(
       color: currencySource.getDiffColor(exchangeRate.nbDiff),
-      exchangeRates: exchangeRates,
+      exchangeRates: exchangeRates!,
       onChartTapped: onTap,
     );
   }

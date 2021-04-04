@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'exchange_rate.dart';
+part of 'exchange_rate_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,28 +12,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-/// @nodoc
-class _$ExchangeRateTearOff {
-  const _$ExchangeRateTearOff();
+ExchangeRateDTO _$ExchangeRateDTOFromJson(Map<String, dynamic> json) {
+  return _ExchangeRateDTO.fromJson(json);
+}
 
-  _ExchangeRate call(
-      {required double amount,
-      DateTime? bcseDate,
-      required double bcseDiff,
-      required double bcseRate,
-      required double buy,
-      required double buyDiff,
-      required String currencyCode,
-      required String name,
-      required String namePlural,
-      required String namePluralShort,
-      required double nb,
-      DateTime? nbDate,
-      required double nbDiff,
-      required double sell,
-      required double sellDiff,
-      bool visible = true}) {
-    return _ExchangeRate(
+/// @nodoc
+class _$ExchangeRateDTOTearOff {
+  const _$ExchangeRateDTOTearOff();
+
+  _ExchangeRateDTO call({required double amount,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required DateTime bcseDate,
+    required double bcseDiff,
+    required double bcseRate,
+    required double buy,
+    required double buyDiff,
+    required String currencyCode,
+    required String name,
+    required String namePlural,
+    required String namePluralShort,
+    required double nb,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required DateTime nbDate,
+    required double nbDiff,
+    required double sell,
+    required double sellDiff,
+    required bool visible}) {
+    return _ExchangeRateDTO(
       amount: amount,
       bcseDate: bcseDate,
       bcseDiff: bcseDiff,
@@ -52,66 +57,93 @@ class _$ExchangeRateTearOff {
       visible: visible,
     );
   }
+
+  ExchangeRateDTO fromJson(Map<String, Object> json) {
+    return ExchangeRateDTO.fromJson(json);
+  }
 }
 
 /// @nodoc
-const $ExchangeRate = _$ExchangeRateTearOff();
+const $ExchangeRateDTO = _$ExchangeRateDTOTearOff();
 
 /// @nodoc
-mixin _$ExchangeRate {
+mixin _$ExchangeRateDTO {
   double get amount => throw _privateConstructorUsedError;
-  DateTime? get bcseDate => throw _privateConstructorUsedError;
+
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  DateTime get bcseDate => throw _privateConstructorUsedError;
+
   double get bcseDiff => throw _privateConstructorUsedError;
+
   double get bcseRate => throw _privateConstructorUsedError;
+
   double get buy => throw _privateConstructorUsedError;
+
   double get buyDiff => throw _privateConstructorUsedError;
+
   String get currencyCode => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get namePlural => throw _privateConstructorUsedError;
+
   String get namePluralShort => throw _privateConstructorUsedError;
+
   double get nb => throw _privateConstructorUsedError;
-  DateTime? get nbDate => throw _privateConstructorUsedError;
+
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  DateTime get nbDate => throw _privateConstructorUsedError;
+
   double get nbDiff => throw _privateConstructorUsedError;
+
   double get sell => throw _privateConstructorUsedError;
+
   double get sellDiff => throw _privateConstructorUsedError;
+
   bool get visible => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
-  $ExchangeRateCopyWith<ExchangeRate> get copyWith =>
+  $ExchangeRateDTOCopyWith<ExchangeRateDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExchangeRateCopyWith<$Res> {
-  factory $ExchangeRateCopyWith(
-          ExchangeRate value, $Res Function(ExchangeRate) then) =
-      _$ExchangeRateCopyWithImpl<$Res>;
-  $Res call(
-      {double amount,
-      DateTime? bcseDate,
-      double bcseDiff,
-      double bcseRate,
-      double buy,
-      double buyDiff,
-      String currencyCode,
-      String name,
-      String namePlural,
-      String namePluralShort,
-      double nb,
-      DateTime? nbDate,
-      double nbDiff,
-      double sell,
-      double sellDiff,
-      bool visible});
+abstract class $ExchangeRateDTOCopyWith<$Res> {
+  factory $ExchangeRateDTOCopyWith(ExchangeRateDTO value,
+      $Res Function(ExchangeRateDTO) then) =
+  _$ExchangeRateDTOCopyWithImpl<$Res>;
+
+  $Res call({double amount,
+    @JsonKey(
+        fromJson: stringToDateTime, toJson: dateTimeToString) DateTime bcseDate,
+    double bcseDiff,
+    double bcseRate,
+    double buy,
+    double buyDiff,
+    String currencyCode,
+    String name,
+    String namePlural,
+    String namePluralShort,
+    double nb,
+    @JsonKey(
+        fromJson: stringToDateTime, toJson: dateTimeToString) DateTime nbDate,
+    double nbDiff,
+    double sell,
+    double sellDiff,
+    bool visible});
 }
 
 /// @nodoc
-class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
-  _$ExchangeRateCopyWithImpl(this._value, this._then);
+class _$ExchangeRateDTOCopyWithImpl<$Res>
+    implements $ExchangeRateDTOCopyWith<$Res> {
+  _$ExchangeRateDTOCopyWithImpl(this._value, this._then);
 
-  final ExchangeRate _value;
+  final ExchangeRateDTO _value;
+
   // ignore: unused_field
-  final $Res Function(ExchangeRate) _then;
+  final $Res Function(ExchangeRateDTO) _then;
 
   @override
   $Res call({
@@ -136,106 +168,109 @@ class _$ExchangeRateCopyWithImpl<$Res> implements $ExchangeRateCopyWith<$Res> {
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       bcseDate: bcseDate == freezed
           ? _value.bcseDate
           : bcseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime,
       bcseDiff: bcseDiff == freezed
           ? _value.bcseDiff
           : bcseDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       bcseRate: bcseRate == freezed
           ? _value.bcseRate
           : bcseRate // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       buy: buy == freezed
           ? _value.buy
           : buy // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       buyDiff: buyDiff == freezed
           ? _value.buyDiff
           : buyDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       currencyCode: currencyCode == freezed
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       namePlural: namePlural == freezed
           ? _value.namePlural
           : namePlural // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       namePluralShort: namePluralShort == freezed
           ? _value.namePluralShort
           : namePluralShort // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       nb: nb == freezed
           ? _value.nb
           : nb // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       nbDate: nbDate == freezed
           ? _value.nbDate
           : nbDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime,
       nbDiff: nbDiff == freezed
           ? _value.nbDiff
           : nbDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       sell: sell == freezed
           ? _value.sell
           : sell // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       sellDiff: sellDiff == freezed
           ? _value.sellDiff
           : sellDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       visible: visible == freezed
           ? _value.visible
           : visible // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ExchangeRateCopyWith<$Res>
-    implements $ExchangeRateCopyWith<$Res> {
-  factory _$ExchangeRateCopyWith(
-          _ExchangeRate value, $Res Function(_ExchangeRate) then) =
-      __$ExchangeRateCopyWithImpl<$Res>;
+abstract class _$ExchangeRateDTOCopyWith<$Res>
+    implements $ExchangeRateDTOCopyWith<$Res> {
+  factory _$ExchangeRateDTOCopyWith(_ExchangeRateDTO value,
+      $Res Function(_ExchangeRateDTO) then) =
+  __$ExchangeRateDTOCopyWithImpl<$Res>;
+
   @override
-  $Res call(
-      {double amount,
-      DateTime? bcseDate,
-      double bcseDiff,
-      double bcseRate,
-      double buy,
-      double buyDiff,
-      String currencyCode,
-      String name,
-      String namePlural,
-      String namePluralShort,
-      double nb,
-      DateTime? nbDate,
-      double nbDiff,
-      double sell,
-      double sellDiff,
-      bool visible});
+  $Res call({double amount,
+    @JsonKey(
+        fromJson: stringToDateTime, toJson: dateTimeToString) DateTime bcseDate,
+    double bcseDiff,
+    double bcseRate,
+    double buy,
+    double buyDiff,
+    String currencyCode,
+    String name,
+    String namePlural,
+    String namePluralShort,
+    double nb,
+    @JsonKey(
+        fromJson: stringToDateTime, toJson: dateTimeToString) DateTime nbDate,
+    double nbDiff,
+    double sell,
+    double sellDiff,
+    bool visible});
 }
 
 /// @nodoc
-class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
-    implements _$ExchangeRateCopyWith<$Res> {
-  __$ExchangeRateCopyWithImpl(
-      _ExchangeRate _value, $Res Function(_ExchangeRate) _then)
-      : super(_value, (v) => _then(v as _ExchangeRate));
+class __$ExchangeRateDTOCopyWithImpl<$Res>
+    extends _$ExchangeRateDTOCopyWithImpl<$Res>
+    implements _$ExchangeRateDTOCopyWith<$Res> {
+  __$ExchangeRateDTOCopyWithImpl(_ExchangeRateDTO _value,
+      $Res Function(_ExchangeRateDTO) _then)
+      : super(_value, (v) => _then(v as _ExchangeRateDTO));
 
   @override
-  _ExchangeRate get _value => super._value as _ExchangeRate;
+  _ExchangeRateDTO get _value => super._value as _ExchangeRateDTO;
 
   @override
   $Res call({
@@ -256,100 +291,106 @@ class __$ExchangeRateCopyWithImpl<$Res> extends _$ExchangeRateCopyWithImpl<$Res>
     Object? sellDiff = freezed,
     Object? visible = freezed,
   }) {
-    return _then(_ExchangeRate(
+    return _then(_ExchangeRateDTO(
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       bcseDate: bcseDate == freezed
           ? _value.bcseDate
           : bcseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime,
       bcseDiff: bcseDiff == freezed
           ? _value.bcseDiff
           : bcseDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       bcseRate: bcseRate == freezed
           ? _value.bcseRate
           : bcseRate // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       buy: buy == freezed
           ? _value.buy
           : buy // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       buyDiff: buyDiff == freezed
           ? _value.buyDiff
           : buyDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       currencyCode: currencyCode == freezed
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       namePlural: namePlural == freezed
           ? _value.namePlural
           : namePlural // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       namePluralShort: namePluralShort == freezed
           ? _value.namePluralShort
           : namePluralShort // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       nb: nb == freezed
           ? _value.nb
           : nb // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       nbDate: nbDate == freezed
           ? _value.nbDate
           : nbDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      as DateTime,
       nbDiff: nbDiff == freezed
           ? _value.nbDiff
           : nbDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       sell: sell == freezed
           ? _value.sell
           : sell // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       sellDiff: sellDiff == freezed
           ? _value.sellDiff
           : sellDiff // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       visible: visible == freezed
           ? _value.visible
           : visible // ignore: cast_nullable_to_non_nullable
-              as bool,
+      as bool,
     ));
   }
 }
 
-/// @nodoc
-class _$_ExchangeRate extends _ExchangeRate {
-  const _$_ExchangeRate(
-      {required this.amount,
-      this.bcseDate,
-      required this.bcseDiff,
-      required this.bcseRate,
-      required this.buy,
-      required this.buyDiff,
-      required this.currencyCode,
-      required this.name,
-      required this.namePlural,
-      required this.namePluralShort,
-      required this.nb,
-      this.nbDate,
-      required this.nbDiff,
-      required this.sell,
-      required this.sellDiff,
-      this.visible = true})
+@JsonSerializable()
+
+/// @nodoc class _$_ExchangeRateDTO extends _ExchangeRateDTO {
+  const _$_ExchangeRateDTO({required this.amount,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required this.bcseDate,
+    required this.bcseDiff,
+    required this.bcseRate,
+    required this.buy,
+    required this.buyDiff,
+    required this.currencyCode,
+    required this.name,
+    required this.namePlural,
+    required this.namePluralShort,
+    required this.nb,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required this.nbDate,
+    required this.nbDiff,
+    required this.sell,
+    required this.sellDiff,
+    required this.visible})
       : super._();
+
+  factory _$_ExchangeRateDTO.fromJson(Map<String, dynamic> json) =>
+      _$_$_ExchangeRateDTOFromJson(json);
 
   @override
   final double amount;
   @override
-  final DateTime? bcseDate;
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  final DateTime bcseDate;
   @override
   final double bcseDiff;
   @override
@@ -369,26 +410,26 @@ class _$_ExchangeRate extends _ExchangeRate {
   @override
   final double nb;
   @override
-  final DateTime? nbDate;
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  final DateTime nbDate;
   @override
   final double nbDiff;
   @override
   final double sell;
   @override
   final double sellDiff;
-  @JsonKey(defaultValue: true)
   @override
   final bool visible;
 
   @override
   String toString() {
-    return 'ExchangeRate(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff, visible: $visible)';
+    return 'ExchangeRateDTO(amount: $amount, bcseDate: $bcseDate, bcseDiff: $bcseDiff, bcseRate: $bcseRate, buy: $buy, buyDiff: $buyDiff, currencyCode: $currencyCode, name: $name, namePlural: $namePlural, namePluralShort: $namePluralShort, nb: $nb, nbDate: $nbDate, nbDiff: $nbDiff, sell: $sell, sellDiff: $sellDiff, visible: $visible)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ExchangeRate &&
+        (other is _ExchangeRateDTO &&
             (identical(other.amount, amount) ||
                 const DeepCollectionEquality().equals(other.amount, amount)) &&
             (identical(other.bcseDate, bcseDate) ||
@@ -453,64 +494,92 @@ class _$_ExchangeRate extends _ExchangeRate {
 
   @JsonKey(ignore: true)
   @override
-  _$ExchangeRateCopyWith<_ExchangeRate> get copyWith =>
-      __$ExchangeRateCopyWithImpl<_ExchangeRate>(this, _$identity);
+  _$ExchangeRateDTOCopyWith<_ExchangeRateDTO> get copyWith =>
+      __$ExchangeRateDTOCopyWithImpl<_ExchangeRateDTO>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ExchangeRateDTOToJson(this);
+  }
 }
 
-abstract class _ExchangeRate extends ExchangeRate {
-  const factory _ExchangeRate(
-      {required double amount,
-      DateTime? bcseDate,
-      required double bcseDiff,
-      required double bcseRate,
-      required double buy,
-      required double buyDiff,
-      required String currencyCode,
-      required String name,
-      required String namePlural,
-      required String namePluralShort,
-      required double nb,
-      DateTime? nbDate,
-      required double nbDiff,
-      required double sell,
-      required double sellDiff,
-      bool visible}) = _$_ExchangeRate;
-  const _ExchangeRate._() : super._();
+abstract class _ExchangeRateDTO extends ExchangeRateDTO {
+  const factory _ExchangeRateDTO({required double amount,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required DateTime bcseDate,
+    required double bcseDiff,
+    required double bcseRate,
+    required double buy,
+    required double buyDiff,
+    required String currencyCode,
+    required String name,
+    required String namePlural,
+    required String namePluralShort,
+    required double nb,
+    @JsonKey(fromJson: stringToDateTime,
+        toJson: dateTimeToString) required DateTime nbDate,
+    required double nbDiff,
+    required double sell,
+    required double sellDiff,
+    required bool visible}) = _$_ExchangeRateDTO;
+
+  const _ExchangeRateDTO._() : super._();
+
+  factory _ExchangeRateDTO.fromJson(Map<String, dynamic> json) =
+  _$_ExchangeRateDTO.fromJson;
 
   @override
   double get amount => throw _privateConstructorUsedError;
+
   @override
-  DateTime? get bcseDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  DateTime get bcseDate => throw _privateConstructorUsedError;
+
   @override
   double get bcseDiff => throw _privateConstructorUsedError;
+
   @override
   double get bcseRate => throw _privateConstructorUsedError;
+
   @override
   double get buy => throw _privateConstructorUsedError;
+
   @override
   double get buyDiff => throw _privateConstructorUsedError;
+
   @override
   String get currencyCode => throw _privateConstructorUsedError;
+
   @override
   String get name => throw _privateConstructorUsedError;
+
   @override
   String get namePlural => throw _privateConstructorUsedError;
+
   @override
   String get namePluralShort => throw _privateConstructorUsedError;
+
   @override
   double get nb => throw _privateConstructorUsedError;
+
   @override
-  DateTime? get nbDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: stringToDateTime, toJson: dateTimeToString)
+  DateTime get nbDate => throw _privateConstructorUsedError;
+
   @override
   double get nbDiff => throw _privateConstructorUsedError;
+
   @override
   double get sell => throw _privateConstructorUsedError;
+
   @override
   double get sellDiff => throw _privateConstructorUsedError;
+
   @override
   bool get visible => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
-  _$ExchangeRateCopyWith<_ExchangeRate> get copyWith =>
+  _$ExchangeRateDTOCopyWith<_ExchangeRateDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
